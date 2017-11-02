@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory'
 import Page from './components/templates/PageTemplate.js'
-import './App.css';
 
 const browserHistory = createBrowserHistory()
 
