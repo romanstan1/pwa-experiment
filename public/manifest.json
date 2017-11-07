@@ -1,6 +1,6 @@
 {
-  "short_name": "PWA App",
-  "name": "My First Progressive Web App",
+  "short_name": "Specsavers",
+  "name": "Specsavers PWA",
   "icons": [
     {
       "src":"fav.png",

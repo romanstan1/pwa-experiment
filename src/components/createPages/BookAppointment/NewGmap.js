@@ -1,0 +1,91 @@
+import React, { Component, PureComponent} from 'react';
+import GoogleMap from 'google-map-react';
+import {connect} from 'react-redux'
+import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
+
+const cssClasses = {
+    root: 'form-group',
+    input: 'form-control',
+    autocompleteContainer: 'my-autocomplete-container'
+  }
+class AutoComplete extends Component {
+
+  state = { location: ''}
+  onChange = (location) => this.setState({ location })
+
+  handleSearch = location => {
+    this.setState({ location })
+    geocodeByAddress(location)
+      .then(results => getLatLng(results[0]))
+      .then(latLng => this.props.onInputChanged(latLng))
+      .catch(error => console.error('Error', error))
+  }
+
+  render() {
+    const inputProps = {
+      value: this.state.location,
+      onChange: this.onChange,
+      placeholder: 'Enter Location...',
+    }
+
+    return (<div className='gmap-search-wrap'>
+        <PlacesAutocomplete classNames={cssClasses} onSelect={this.handleSearch} inputProps={inputProps} onEnterKeyDown={this.handleSearch} highlightFirstSuggestion={true} />
+      </div>)
+  }
+}
+
+const HomeMarker = ({ text }) => <div className='gmapsMarker home'>{text}</div>
+const StoreMarker = ({ text , selectedStoreId, placeId}) =>
+<div className={selectedStoreId === placeId? 'gmapsMarker store selected' : 'gmapsMarker store'}>{text}</div>
+
+class NewGmap extends Component {
+
+  state = {
+    defaultCenter: {lat: 51.5074, lng: 0.1278},
+    center:{lat:0, lng:0},
+    zoom: 11
+  }
+
+  onInputChanged = center => {
+    this.setState({center})
+    this.props.fetchNearbyPlaces(center)
+  }
+
+  render() {
+    const {center,defaultCenter,zoom} = this.state
+    const {availableStores,selectedStoreId} = this.props
+
+    return (
+      <div className='gmap-wrap'>
+        <div id='gmap-attach'></div>
+        <GoogleMap
+          bootstrapURLKeys={{key: "AIzaSyD9T-reTt6UeEjRbwGNBWkH3mB2d21F7rs&v=3"}}
+          center={defaultCenter}
+          defaultZoom={zoom}
+        >
+          <HomeMarker
+            lat={center.lat}
+            lng={center.lng}
+            text={'Home'}
+          />
+          {!!availableStores? availableStores.map((store,index) =>
+            <StoreMarker
+              key={index}
+              placeId={store.place_id}
+              selectedStoreId={selectedStoreId}
+              lat={store.geometry.location.lat}
+              lng={store.geometry.location.lng}
+              text={'Store'}
+            />): null
+          }
+
+        </GoogleMap>
+        <AutoComplete placeholder='Enter Postcode' onInputChanged={this.onInputChanged}/>
+      </div>
+    )
+  }
+}
+
+export default connect(state => ({
+  availableStores: state.appointments.availableStores
+}))(NewGmap)

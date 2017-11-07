@@ -1,0 +1,786 @@
+html {
+  background: white; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  height: 100%;
+  overflow: hidden; }
+
+* {
+  box-sizing: border-box; }
+
+body {
+  max-width: 375px;
+  height: calc(100%);
+  margin: 0px auto;
+  -webkit-box-shadow: 0px 1px 26px 2px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 1px 26px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 1px 26px 2px rgba(0, 0, 0, 0.16); }
+
+a {
+  color: inherit;
+  text-decoration: none; }
+
+ul {
+  list-style: none; }
+
+div.wrap {
+  max-height: calc(100vh);
+  overflow-y: scroll; }
+  div.wrap > span {
+    padding: 0px 0;
+    display: flex;
+    width: 100%;
+    padding-bottom: 50px;
+    min-height: calc(100vh);
+    background: #f2f2f2;
+    font-size: 14px;
+    flex-direction: column; }
+    div.wrap > span a {
+      text-align: center; }
+
+.gm-style-mtc, .gm-svpc, button[title="Toggle fullscreen view"] {
+  display: none; }
+
+input.googleMapsInput {
+  box-sizing: border-box;
+  border: 0px solid transparent;
+  width: 120px;
+  height: 32px;
+  padding: 0 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  font-size: 12px;
+  outline: none;
+  text-overflow: ellipsis;
+  margin-top: 15px;
+  margin-left: -6px;
+  opacity: 0.85;
+  transition: 0.3s ease; }
+  input.googleMapsInput:focus {
+    opacity: 1;
+    width: 93%; }
+  input.googleMapsInput::placeholder {
+    font-style: italic;
+    color: black; }
+
+div.button {
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: inherit;
+  margin: 10px;
+  padding: 4px;
+  position: relative;
+  font-weight: 600;
+  line-height: 20px;
+  background: #f9fbff;
+  background: #e8efef;
+  text-transform: uppercase;
+  -webkit-box-shadow: 0px 1px 6px 2px rgba(0, 0, 0, 0.03);
+  -moz-box-shadow: 0px 1px 2px 2px rgba(0, 0, 0, 0.03);
+  box-shadow: 0px 1px 6px 2px rgba(0, 0, 0, 0.03);
+  transition: 0.1s ease;
+  text-align: center; }
+  div.button:hover {
+    background: #e8efef;
+    background: #f9fbff; }
+  div.button a {
+    width: 100%;
+    height: 100%; }
+
+div.content-image {
+  display: block;
+  padding: 10px; }
+  div.content-image div.imageBox {
+    display: block;
+    height: 215px;
+    overflow-y: hidden; }
+    div.content-image div.imageBox img {
+      overflow-y: hidden;
+      width: calc(100%); }
+  div.content-image div.textBox {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    font-weight: 400;
+    padding: 10px 0 40px 5px; }
+
+span.linkButton, span.logOutButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: inherit;
+  padding: 8px;
+  position: relative; }
+  span.linkButton a, span.linkButton span, span.logOutButton a, span.logOutButton span {
+    text-align: center;
+    cursor: pointer;
+    font-weight: 600;
+    margin: 0 10px;
+    padding: 4px;
+    width: 100%;
+    line-height: 20px;
+    font-size: 12px;
+    background: #f9fbff;
+    background: #e8efef;
+    text-transform: uppercase;
+    -webkit-box-shadow: 0px 1px 6px 2px rgba(0, 0, 0, 0.03);
+    -moz-box-shadow: 0px 1px 2px 2px rgba(0, 0, 0, 0.03);
+    box-shadow: 0px 1px 6px 2px rgba(0, 0, 0, 0.03);
+    transition: 0.1s ease; }
+    span.linkButton a:hover, span.linkButton span:hover, span.logOutButton a:hover, span.logOutButton span:hover {
+      background: #e8efef;
+      background: #f9fbff; }
+  span.linkButton a, span.logOutButton a {
+    opacity: 0.9;
+    background: #118848;
+    color: white; }
+    span.linkButton a:hover, span.logOutButton a:hover {
+      background: #42af85; }
+  span.linkButton.big a, span.logOutButton.big a {
+    margin: 20px 0 15px 0;
+    line-height: 70px;
+    background: #142119;
+    background: linear-gradient(-90deg, #09562d, #101110);
+    transition: 0.3s ease-out; }
+    span.linkButton.big a:hover, span.logOutButton.big a:hover {
+      opacity: 0.4; }
+
+div.confirmAppointmentPopUp {
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  height: 100vh;
+  width: 375px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  flex-direction: column; }
+  div.confirmAppointmentPopUp.show {
+    opacity: 1;
+    visibility: visible; }
+  div.confirmAppointmentPopUp span {
+    font-size: 22px;
+    font-weight: 600;
+    color: #118848; }
+
+div.Collapsible {
+  margin: 10px;
+  position: relative;
+  background: #f2f2f2;
+  line-height: 30px; }
+  div.Collapsible span.Collapsible__trigger {
+    padding-left: 5px;
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
+    width: 200px;
+    right: 0px; }
+    div.Collapsible span.Collapsible__trigger:after {
+      content: '';
+      display: inline-block;
+      margin: 2px;
+      margin-left: 170px;
+      margin-top: 9px;
+      width: 10px;
+      height: 10px;
+      border-top: 2px solid #333;
+      border-right: 2px solid #333;
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg); }
+    div.Collapsible span.Collapsible__trigger.is-open:after {
+      margin-top: 5px;
+      transform: rotate(135deg);
+      -webkit-transform: rotate(135deg); }
+  div.Collapsible span.titleCollapse {
+    padding-left: 20px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600; }
+  div.Collapsible div.Collapsible__contentInner p {
+    position: relative;
+    background: white;
+    line-height: 30px;
+    border: 1px solid #f2f2f2;
+    padding: 0px;
+    padding-left: 20px;
+    margin: 0px;
+    margin-top: -1px; }
+
+span.chatIntercomWrap {
+  font-size: 12px; }
+  span.chatIntercomWrap div.chatDialog {
+    background: white;
+    position: fixed;
+    width: 355px;
+    height: 90%;
+    bottom: 50px;
+    opacity: 1;
+    margin-left: 10px; }
+    span.chatIntercomWrap div.chatDialog > div {
+      padding: 10px;
+      height: 100%; }
+      span.chatIntercomWrap div.chatDialog > div > div.title {
+        line-height: 17px;
+        background: #118848;
+        color: white;
+        font-weight: 600;
+        text-align: center;
+        position: relative;
+        padding: 10px; }
+        span.chatIntercomWrap div.chatDialog > div > div.title span.close {
+          top: 8px;
+          width: 18px;
+          height: 20px; }
+          span.chatIntercomWrap div.chatDialog > div > div.title span.close::before {
+            width: 3px;
+            height: 24px; }
+          span.chatIntercomWrap div.chatDialog > div > div.title span.close::after {
+            width: 3px;
+            height: 24px; }
+      span.chatIntercomWrap div.chatDialog > div > div.history {
+        height: 85%;
+        border: 1px solid #f2f2f2;
+        padding: 5px;
+        overflow-y: scroll; }
+        span.chatIntercomWrap div.chatDialog > div > div.history div.message.me > div {
+          margin-top: 10px;
+          padding: 6px;
+          border-radius: 8px;
+          margin-right: 10%;
+          background: #eaf6f7; }
+        span.chatIntercomWrap div.chatDialog > div > div.history div.message.them > div {
+          margin-top: 10px;
+          padding: 6px;
+          border-radius: 8px;
+          margin-left: 10%;
+          background: #118848;
+          color: white; }
+          span.chatIntercomWrap div.chatDialog > div > div.history div.message.them > div.replies {
+            margin-top: 15px;
+            margin-left: 0%;
+            border-radius: 0px;
+            background: none;
+            display: flex;
+            justify-content: center;
+            align-items: center; }
+            span.chatIntercomWrap div.chatDialog > div > div.history div.message.them > div.replies > span {
+              padding: 7px 12px;
+              display: inline-block;
+              border-radius: 100px;
+              text-align: center;
+              opacity: 0.7;
+              margin: 2px 3px;
+              background: #551268;
+              cursor: pointer; }
+              span.chatIntercomWrap div.chatDialog > div > div.history div.message.them > div.replies > span:hover {
+                opacity: 0.8; }
+      span.chatIntercomWrap div.chatDialog > div > input {
+        margin-top: -1px;
+        font-size: 12px;
+        padding: 10px;
+        display: block;
+        outline: none;
+        width: 100%;
+        border: 1px solid #f2f2f2; }
+  span.chatIntercomWrap span.chatIntercom {
+    background: #118848;
+    width: 60px;
+    height: 60px;
+    border-radius: 40px;
+    position: fixed;
+    bottom: 72px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0.95;
+    margin-left: 300px; }
+    span.chatIntercomWrap span.chatIntercom span {
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 11.5px;
+      color: white;
+      cursor: inherit; }
+    span.chatIntercomWrap span.chatIntercom:hover {
+      opacity: 0.85; }
+
+div.headerBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #118848; }
+  div.headerBar span {
+    padding: 10px; }
+    div.headerBar span img {
+      border-radius: 40px; }
+
+div.gmapsMarker {
+  width: 60px;
+  height: 15px;
+  text-align: center;
+  opacity: 0.8;
+  transition: 0.2s ease; }
+  div.gmapsMarker.home {
+    background: tomato; }
+  div.gmapsMarker.store {
+    background: dodgerblue;
+    z-index: 1; }
+    div.gmapsMarker.store.selected {
+      background: blue;
+      opacity: 1;
+      font-size: 14px;
+      width: 80px;
+      height: 30px;
+      z-index: 100; }
+
+div.gmap-wrap {
+  width: 100%;
+  height: 300px;
+  position: relative; }
+  div.gmap-wrap div.gmap-search-wrap {
+    position: absolute;
+    width: 100%;
+    display: block;
+    top: 0; }
+    div.gmap-wrap div.gmap-search-wrap span.click {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      display: block;
+      background: red;
+      top: 0; }
+    div.gmap-wrap div.gmap-search-wrap div#PlacesAutocomplete__root {
+      line-height: 25px;
+      height: 25px;
+      width: 364px;
+      height: 34px;
+      position: absolute;
+      top: 7px;
+      right: 6px; }
+      div.gmap-wrap div.gmap-search-wrap div#PlacesAutocomplete__root input {
+        border: 0px;
+        padding: 0px;
+        outline: none;
+        width: 100%;
+        line-height: 34px;
+        text-indent: 15px;
+        border-radius: 2px;
+        opacity: 0.95;
+        outline: none; }
+        div.gmap-wrap div.gmap-search-wrap div#PlacesAutocomplete__root input:focus {
+          outline: none;
+          border: 0px;
+          opacity: 1; }
+      div.gmap-wrap div.gmap-search-wrap div#PlacesAutocomplete__root div.my-autocomplete-container {
+        height: 100px;
+        line-height: 12px;
+        font-size: 11px;
+        opacity: 1;
+        padding: 2px 0;
+        height: 25px;
+        z-index: 200;
+        display: block;
+        position: absolute;
+        width: 100%;
+        background: white;
+        margin-top: -2px; }
+        div.gmap-wrap div.gmap-search-wrap div#PlacesAutocomplete__root div.my-autocomplete-container > div {
+          border-top: 1px solid #eff1f2; }
+        div.gmap-wrap div.gmap-search-wrap div#PlacesAutocomplete__root div.my-autocomplete-container > div:nth-last-of-type(2) {
+          border-radius: 0 0 2px 2px;
+          background: red; }
+        div.gmap-wrap div.gmap-search-wrap div#PlacesAutocomplete__root div.my-autocomplete-container div#PlacesAutocomplete__google-logo {
+          display: none; }
+
+div.profileName {
+  text-align: center;
+  padding: 20px;
+  font-weight: 600; }
+
+div.ticket {
+  width: 100%;
+  background: white; }
+  div.ticket div.ticketTitle {
+    background: #f9fbff;
+    text-align: center;
+    padding-top: 15px;
+    line-height: 30px; }
+
+div.miniTicket {
+  padding: 10px;
+  padding-bottom: 0px;
+  position: relative;
+  background: #f2f2f2;
+  line-height: 20px; }
+  div.miniTicket:last-of-type {
+    padding-bottom: 80px; }
+  div.miniTicket div.miniTicketInnerWrap {
+    -webkit-box-shadow: 0px 1px 6px 2px rgba(0, 0, 0, 0.03);
+    -moz-box-shadow: 0px 1px 2px 2px transparent;
+    box-shadow: 0px 1px 6px 2px rgba(0, 0, 0, 0.03);
+    text-align: left;
+    background: #fcfcfc;
+    position: relative;
+    padding-bottom: 8px; }
+    div.miniTicket div.miniTicketInnerWrap > span {
+      display: block;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 13px;
+      padding: 15px 0 4px 15px; }
+  div.miniTicket div.miniTicketBody {
+    text-align: left; }
+  div.miniTicket.fixed {
+    opacity: 0.9;
+    padding: 0px;
+    position: fixed;
+    bottom: 50px;
+    width: 375px;
+    z-index: 400;
+    background: #f2f2f2; }
+    div.miniTicket.fixed div.miniTicketInnerWrap {
+      -webkit-box-shadow: 0px 0px 0px 0px transparent;
+      -moz-box-shadow: 0px 0px 0px 0px transparent;
+      box-shadow: 0px 0px 0px 0px transparent;
+      padding: 10px 0px;
+      background: #f2f2f2; }
+
+div.cardStyle {
+  padding: 5px;
+  margin: 5px 15px;
+  background: white; }
+  div.cardStyle div {
+    font-size: 12px; }
+
+span.close {
+  position: absolute;
+  right: 11px;
+  top: 7px;
+  width: 16px;
+  height: 16px;
+  opacity: 0.3; }
+  span.close:hover {
+    opacity: 1; }
+  span.close:before, span.close:after {
+    position: absolute;
+    top: -1px;
+    left: 7px;
+    content: ' ';
+    height: 19px;
+    width: 2px;
+    background-color: #333; }
+  span.close:before {
+    transform: rotate(45deg); }
+  span.close:after {
+    transform: rotate(-45deg); }
+
+div.noAppointments {
+  border: 1px solid #f2f2f2;
+  height: 100px;
+  margin: 0px 10px;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  div.noAppointments span {
+    margin-left: 3px; }
+
+div.selectStrip {
+  display: flex;
+  margin: 0px 10px;
+  border: 1px solid #f2f2f2;
+  flex-direction: row;
+  overflow-x: scroll;
+  padding: 10px 0;
+  background: white; }
+  div.selectStrip > span.stripItem {
+    display: inline-flex;
+    align-self: center;
+    margin: 0 5px;
+    justify-content: center;
+    width: 90px;
+    height: 100%;
+    position: relative;
+    color: black;
+    z-index: 15;
+    cursor: pointer; }
+    div.selectStrip > span.stripItem span {
+      position: relative;
+      text-align: center;
+      padding: 5px;
+      width: 75px;
+      display: flex;
+      justify-content: center;
+      z-index: 5;
+      border: 1px solid #f2f2f2;
+      font-size: 11.5px;
+      text-transform: uppercase;
+      flex-direction: column; }
+      div.selectStrip > span.stripItem span div {
+        align-self: center;
+        width: 100%;
+        align-content: stretch; }
+        div.selectStrip > span.stripItem span div.distance {
+          width: 100px; }
+    div.selectStrip > span.stripItem.date {
+      height: 120px; }
+    div.selectStrip > span.stripItem.store {
+      height: 110px;
+      width: 110px; }
+      div.selectStrip > span.stripItem.store span {
+        width: 100px; }
+    div.selectStrip > span.stripItem.time {
+      height: 40px; }
+    div.selectStrip > span.stripItem > div {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      height: 100%;
+      z-index: 10; }
+    div.selectStrip > span.stripItem:hover span {
+      border: 1px solid #d4d5d6; }
+  div.selectStrip.noScroll {
+    display: flex;
+    height: auto;
+    padding: 5px 0;
+    overflow: visible;
+    flex-wrap: wrap;
+    justify-content: center; }
+    div.selectStrip.noScroll > span.stripItem {
+      padding: 0;
+      margin: 5px 0 5px 0; }
+
+span.appointmentInput {
+  padding: 5px 10px 0 10px;
+  display: block;
+  width: 100%;
+  text-align: left; }
+  span.appointmentInput label {
+    height: 28px;
+    line-height: 28px;
+    display: block;
+    font-weight: 600;
+    margin-top: 5px;
+    margin-bottom: -1px;
+    background: #f9fbff;
+    text-indent: 20px;
+    font-size: 12px;
+    border: 1px solid #f2f2f2; }
+  span.appointmentInput input, span.appointmentInput textarea {
+    width: 100%;
+    font-weight: 600;
+    font-size: 12px;
+    padding: 0px;
+    text-align: left;
+    text-align: -webkit-left;
+    outline: none;
+    border: 1px solid #f2f2f2;
+    border-radius: 0px;
+    line-height: 34px;
+    text-indent: 20px; }
+  span.appointmentInput textarea {
+    font-weight: 400;
+    line-height: 16px;
+    text-indent: 0px;
+    padding: 10px;
+    min-height: 88px;
+    max-height: 150px;
+    min-width: 100%;
+    max-width: 100%; }
+
+span.formInput {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  span.formInput > form {
+    padding: 10px;
+    display: block;
+    width: 100%;
+    text-align: left; }
+    span.formInput > form span.nested label {
+      text-indent: 20px;
+      height: 28px;
+      line-height: 28px; }
+    span.formInput > form span.nested > input {
+      text-indent: 20px;
+      height: 34px;
+      line-height: 34px; }
+    span.formInput > form span.nested div > div > div.Select-control {
+      text-indent: 0px; }
+    span.formInput > form span.nested label, span.formInput > form span.nested input, span.formInput > form span.nested div > div > div.Select-control {
+      width: 100%;
+      font-weight: 600;
+      font-size: 12px;
+      padding: 0px;
+      text-align: left;
+      text-align: -webkit-left;
+      outline: none;
+      border: 1px solid #f2f2f2;
+      border-radius: 0px; }
+      span.formInput > form span.nested label span.Select-multi-value-wrapper, span.formInput > form span.nested input span.Select-multi-value-wrapper, span.formInput > form span.nested div > div > div.Select-control span.Select-multi-value-wrapper {
+        display: block;
+        width: 100%; }
+        span.formInput > form span.nested label span.Select-multi-value-wrapper div.Select-input, span.formInput > form span.nested input span.Select-multi-value-wrapper div.Select-input, span.formInput > form span.nested div > div > div.Select-control span.Select-multi-value-wrapper div.Select-input {
+          display: block;
+          width: 100%;
+          padding: 0px;
+          height: 34px;
+          border-radius: 0px; }
+          span.formInput > form span.nested label span.Select-multi-value-wrapper div.Select-input input, span.formInput > form span.nested input span.Select-multi-value-wrapper div.Select-input input, span.formInput > form span.nested div > div > div.Select-control span.Select-multi-value-wrapper div.Select-input input {
+            width: 100%;
+            display: block;
+            border: 0px;
+            height: 34px;
+            line-height: 34px;
+            margin-left: 20px; }
+        span.formInput > form span.nested label span.Select-multi-value-wrapper div.Select-value, span.formInput > form span.nested input span.Select-multi-value-wrapper div.Select-value, span.formInput > form span.nested div > div > div.Select-control span.Select-multi-value-wrapper div.Select-value {
+          padding-left: 20px; }
+    span.formInput > form span.nested label {
+      display: block;
+      font-weight: 600;
+      margin-top: 20px;
+      margin-bottom: -1px;
+      background: #f9fbff;
+      text-indent: 20px; }
+    span.formInput > form span.nested input[type="submit"] {
+      margin-top: 20px;
+      text-indent: 0px;
+      border: 0px;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-weight: 600;
+      text-align: center;
+      text-align: -webkit-center;
+      background: #f9fbff;
+      background: #e8efef;
+      height: 28px;
+      line-height: 28px; }
+      span.formInput > form span.nested input[type="submit"]:hover {
+        background: #118848;
+        background: #f9fbff;
+        color: black; }
+
+div.welcomeMessage {
+  font-size: 14px;
+  text-align: center;
+  line-height: 30px;
+  font-weight: 600;
+  margin-top: 20px; }
+
+div.Select.Select--single.is-focused.is-searchable.has-value {
+  box-shadow: none;
+  border-color: #f2f2f2; }
+  div.Select.Select--single.is-focused.is-searchable.has-value div.Select-control {
+    box-shadow: none;
+    border-color: #f2f2f2; }
+
+div.Select-menu-outer {
+  border: 1px solid #f2f2f2;
+  overflow: visible;
+  padding: 0px;
+  font-size: 12px;
+  border-radius: 0px; }
+
+a.react-datepicker__navigation.react-datepicker__navigation--previous, a.react-datepicker__navigation.react-datepicker__navigation--next {
+  background: none; }
+  a.react-datepicker__navigation.react-datepicker__navigation--previous:hover, a.react-datepicker__navigation.react-datepicker__navigation--next:hover {
+    background: none; }
+
+div.react-datepicker-wrapper div input {
+  margin-top: 4px;
+  width: 250px;
+  height: 38px;
+  outline: none;
+  font-size: 13px;
+  background: #f7f9fc;
+  padding-left: 10px; }
+
+div.goodAfternoon {
+  display: block;
+  text-align: center;
+  padding-top: 40px;
+  line-height: 50px;
+  font-size: 13px;
+  font-weight: 600; }
+
+nav {
+  position: fixed;
+  width: 375px;
+  height: 50px;
+  background: #f9fbff;
+  bottom: 0px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  z-index: 100; }
+  nav div {
+    position: relative;
+    display: inline-flex;
+    overflow: visible; }
+    nav div a {
+      padding: 0 12px;
+      display: block;
+      line-height: 50px;
+      font-weight: 400;
+      color: black;
+      font-size: 14px;
+      overflow: visible; }
+      nav div a:hover {
+        color: grey; }
+
+span.notificationBubble {
+  position: absolute;
+  top: 5px;
+  right: 3px;
+  width: 17px;
+  height: 17px;
+  display: inline-block;
+  background: green;
+  color: white;
+  text-align: center;
+  font-size: 10px;
+  opacity: 0.9;
+  overflow: visible; }
+  span.notificationBubble.home {
+    position: absolute;
+    background: none;
+    color: white;
+    right: 35px;
+    top: 7px;
+    font-weight: 600;
+    width: 18px;
+    height: 18px;
+    font-size: 13px; }
+  span.notificationBubble.dot {
+    width: 5px;
+    height: 5px;
+    font-size: 0px;
+    top: 23px;
+    right: 59px;
+    z-index: 100; }
+  span.notificationBubble.homedot {
+    background: green;
+    top: 14px;
+    right: 79px; }
+  span.notificationBubble div {
+    position: absolute;
+    right: 6px;
+    top: -6px; }
