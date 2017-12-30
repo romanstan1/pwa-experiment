@@ -41,7 +41,7 @@ self.addEventListener('install', function(event) {
                 "/",
                 assets["main.js"]
               ]
-              cache.addAll(urlsToCache)
+              return cache.addAll(urlsToCache)
               console.log('cached');
             })
         })
