@@ -28,7 +28,7 @@ self.addEventListener('install', function(event) {
         .then(function(cache) {
           // Get the assets manifest so we can see what our js file is named
           // This is because webpack hashes it
-          fetch("assets-manifest.json")
+          fetch("asset-manifest.json")
             .then(response => {
               return response.json()
             })
@@ -41,7 +41,7 @@ self.addEventListener('install', function(event) {
                 "/",
                 assets["main.js"]
               ]
-              return cache.addAll(urlsToCache)
+              cache.addAll(urlsToCache)
               console.log('cached');
             }).catch(function() {
               console.log("error caught here")
@@ -51,6 +51,16 @@ self.addEventListener('install', function(event) {
         });
     );
   }
+});
+
+self.addEventListener('install', function(e) {
+  console.log('[ServiceWorker] Install');
+  e.waitUntil(
+    caches.open(cacheName).then(function(cache) {
+      console.log('[ServiceWorker] Caching app shell');
+      return cache.addAll(filesToCache);
+    })
+  );
 });
 
 // When the webpage goes to fetch files, we intercept that request and serve up the matching files
