@@ -46,9 +46,7 @@ self.addEventListener('install', function(event) {
             }).catch(function() {
               console.log("error caught here")
             });
-        }).catch(function() {
-          console.log("error caught here finally")
-        });
+        })
     );
   }
 });
