@@ -550,7 +550,43 @@ div.gmap-wrap { // wrap for both components
   }
 }
 
+div.webcam {
+  height: calc(100vh - 70px);
+  font-size: 0;
+  div.webcamWrap {
+    height: calc(100% - 80px);
+    background: grey;
+    overflow: hidden;
+    position: relative;
+    video {
+      zoom: 100%;
+      object-fit:cover;
+    }
+  }
+  div.capture, a {
+    font-size: 14px;
+    padding: 12px;
+    display: block;
+    background: $navy;
+    color: white;
+    text-align: center;
+    font-weight: 600;
+  }
+  div.capture {
+    background: $green;
+  }
+}
 
+a.scanQRCode {
+  display: block;
+  text-align: center;
+  background: $navy;
+  height: 50px;
+  line-height: 50px;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+}
 
 
 div.profileName{
@@ -592,7 +628,7 @@ div.miniTicket {
     text-align: left;
     background: $lightGrey;
     position: relative;
-    padding-bottom: 8px;
+    padding-bottom: 0px;
     > span {
       display: block;
       text-transform: uppercase;

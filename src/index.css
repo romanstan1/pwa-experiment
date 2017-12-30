@@ -428,6 +428,38 @@ div.gmap-wrap {
         div.gmap-wrap div.gmap-search-wrap div#PlacesAutocomplete__root div.my-autocomplete-container div#PlacesAutocomplete__google-logo {
           display: none; }
 
+div.webcam {
+  height: calc(100vh - 70px);
+  font-size: 0; }
+  div.webcam div.webcamWrap {
+    height: calc(100% - 80px);
+    background: grey;
+    overflow: hidden;
+    position: relative; }
+    div.webcam div.webcamWrap video {
+      zoom: 100%;
+      object-fit: cover; }
+  div.webcam div.capture, div.webcam a {
+    font-size: 14px;
+    padding: 12px;
+    display: block;
+    background: #102233;
+    color: white;
+    text-align: center;
+    font-weight: 600; }
+  div.webcam div.capture {
+    background: #159936; }
+
+a.scanQRCode {
+  display: block;
+  text-align: center;
+  background: #102233;
+  height: 50px;
+  line-height: 50px;
+  color: white;
+  font-weight: 600;
+  font-size: 16px; }
+
 div.profileName {
   text-align: center;
   padding: 20px;
@@ -460,7 +492,7 @@ div.miniTicket {
     text-align: left;
     background: #fcfcfc;
     position: relative;
-    padding-bottom: 8px; }
+    padding-bottom: 0px; }
     div.miniTicket div.miniTicketInnerWrap > span {
       display: block;
       text-transform: uppercase;

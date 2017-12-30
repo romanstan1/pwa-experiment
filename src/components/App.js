@@ -9,6 +9,7 @@ import ErrorPage from './ErrorPage'
 import LoginPage from './LoginPage'
 import ShopPage from './ShopPage'
 import ServicesPage from './ServicesPage'
+import Webcam from './Webcam'
 
 import HomeReel from './myPages/HomeReel'
 import MyAppointments from './myPages/MyAppointments'
@@ -53,6 +54,7 @@ class App extends Component {
                 <Route exact path="/updateperscription" component={UpdatePerscription} />
                 <Route exact path="/updatedetails" component={UpdateDetails} />
                 <Route exact path="/updateaccount" component={UpdateAccount} />
+                <Route exact path="/webcam" component={Webcam} />
 
                 <Route exact path="/homereel" component={HomeReel} />
                 <Route exact path="/myappointments" component={MyAppointments} />

@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import Ticket from './modules/Ticket'
 import MiniTicket from './modules/MiniTicket'
 import Card from './modules/Card'
-// import LinkButton from './modules/LinkButton'
+import { Link } from 'react-router-dom'
+
 
 export default class ShopPage extends Component {
 
@@ -10,17 +11,13 @@ export default class ShopPage extends Component {
     return (
       <span >
         <Ticket title="Shop">
+          <MiniTicket>
+            <Link className='scanQRCode' to='webcam'>Scan QR Code</Link>
+          </MiniTicket>
           <MiniTicket title="Recommendations">
             <br/>
             <Card>
               Recommendations here
-            </Card>
-            <br/><br/>
-          </MiniTicket>
-          <MiniTicket title="Favourites">
-            <br/>
-            <Card>
-              Favourites Here
             </Card>
             <br/><br/>
           </MiniTicket>
