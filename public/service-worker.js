@@ -43,8 +43,12 @@ self.addEventListener('install', function(event) {
               ]
               return cache.addAll(urlsToCache)
               console.log('cached');
-            })
-        })
+            }).catch(function() {
+              console.log("error caught here")
+            });
+        }).catch(function() {
+          console.log("error caught here finally")
+        });
     );
   }
 });
