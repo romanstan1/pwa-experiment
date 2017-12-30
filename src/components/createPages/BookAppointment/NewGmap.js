@@ -2,6 +2,7 @@ import React, { Component, PureComponent} from 'react';
 import GoogleMap from 'google-map-react';
 import {connect} from 'react-redux'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
+import {HomeIcon, MarkerIcon} from '../../../content/icons/MapIcons'
 
 const cssClasses = {
     root: 'form-group',
@@ -34,16 +35,25 @@ class AutoComplete extends Component {
   }
 }
 
-const HomeMarker = ({ text }) => <div className='gmapsMarker home'>{text}</div>
+const HomeMarker = ({ text }) =>
+  <div className='gmapsMarker home'>
+    <HomeIcon/>
+  </div>
+
 const StoreMarker = ({ text , selectedStoreId, placeId}) =>
-<div className={selectedStoreId === placeId? 'gmapsMarker store selected' : 'gmapsMarker store'}>{text}</div>
+  <div className={selectedStoreId === placeId? 'gmapsMarker store selected' : 'gmapsMarker store'}>
+    <MarkerIcon/>
+  </div>
+
+
+
 
 class NewGmap extends Component {
 
   state = {
-    defaultCenter: {lat: 51.5074, lng: 0.1278},
-    center:{lat:0, lng:0},
-    zoom: 11
+    defaultCenter: {lat:51.4067679, lng: -0.2402061999999887},
+    center:null,
+    zoom: 10
   }
 
   onInputChanged = center => {
@@ -54,20 +64,19 @@ class NewGmap extends Component {
   render() {
     const {center,defaultCenter,zoom} = this.state
     const {availableStores,selectedStoreId} = this.props
-
     return (
       <div className='gmap-wrap'>
         <div id='gmap-attach'></div>
         <GoogleMap
           bootstrapURLKeys={{key: "AIzaSyD9T-reTt6UeEjRbwGNBWkH3mB2d21F7rs&v=3"}}
-          center={defaultCenter}
+          center={!!center? center: defaultCenter}
           defaultZoom={zoom}
         >
-          <HomeMarker
+          {!!center? <HomeMarker
             lat={center.lat}
             lng={center.lng}
             text={'Home'}
-          />
+          /> : null}
           {!!availableStores? availableStores.map((store,index) =>
             <StoreMarker
               key={index}

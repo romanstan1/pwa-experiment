@@ -10,10 +10,17 @@ html, body {
   overflow: hidden; }
 
 * {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent; }
+
+::-webkit-scrollbar {
+  position: relative;
+  width: 0px;
+  /* remove scrollbar space */
+  background: transparent; }
 
 body {
-  max-width: 375px;
+  width: 100%;
   height: calc(100%);
   margin: 0px auto;
   -webkit-box-shadow: 0px 1px 26px 2px rgba(0, 0, 0, 0.2);
@@ -95,7 +102,8 @@ div.button {
 
 div.content-image {
   display: block;
-  padding: 10px; }
+  margin: 20px 10px;
+  background: white; }
   div.content-image div.imageBox {
     display: block;
     height: 215px;
@@ -104,31 +112,31 @@ div.content-image {
       overflow-y: hidden;
       width: calc(100%); }
   div.content-image div.textBox {
+    font-size: 15px;
+    font-weight: 600;
     display: block;
-    height: 30px;
-    line-height: 30px;
-    font-weight: 400;
-    padding: 10px 0 40px 5px; }
+    height: 100px;
+    line-height: 100px;
+    text-indent: 20px; }
 
 span.linkButton, span.logOutButton {
   display: flex;
   justify-content: center;
   align-items: center;
   background: inherit;
-  padding: 8px;
+  padding: 12px 0;
   position: relative; }
   span.linkButton a, span.linkButton span, span.logOutButton a, span.logOutButton span {
     text-align: center;
     cursor: pointer;
     font-weight: 600;
-    margin: 0 10px;
-    padding: 4px;
+    padding: 10px;
     width: 100%;
     line-height: 20px;
-    font-size: 12px;
+    font-size: 14px;
     background: #f9fbff;
     background: #e8efef;
-    text-transform: uppercase;
+    text-transform: capitalize;
     -webkit-box-shadow: 0px 1px 6px 2px rgba(0, 0, 0, 0.03);
     -moz-box-shadow: 0px 1px 2px 2px rgba(0, 0, 0, 0.03);
     box-shadow: 0px 1px 6px 2px rgba(0, 0, 0, 0.03);
@@ -138,7 +146,7 @@ span.linkButton, span.logOutButton {
       background: #f9fbff; }
   span.linkButton a, span.logOutButton a {
     opacity: 0.9;
-    background: #118848;
+    background: #159936;
     color: white; }
     span.linkButton a:hover, span.logOutButton a:hover {
       background: #42af85; }
@@ -173,63 +181,70 @@ div.confirmAppointmentPopUp {
   div.confirmAppointmentPopUp span {
     font-size: 22px;
     font-weight: 600;
-    color: #118848; }
+    color: #159936; }
 
 div.Collapsible {
-  margin: 10px;
   position: relative;
-  background: #f2f2f2;
-  line-height: 30px; }
+  line-height: 45px;
+  margin: 0 10px;
+  border-radius: 0;
+  border-top: 1px solid white; }
   div.Collapsible span.Collapsible__trigger {
-    padding-left: 5px;
     cursor: pointer;
     display: block;
     position: absolute;
     display: inline-block;
-    height: 30px;
-    line-height: 30px;
+    height: 45px;
+    line-height: 45px;
     display: inline-block;
-    width: 200px;
-    right: 0px; }
+    width: 100%;
+    right: 0px;
+    border-radius: 0; }
     div.Collapsible span.Collapsible__trigger:after {
       content: '';
+      position: absolute;
       display: inline-block;
       margin: 2px;
-      margin-left: 170px;
-      margin-top: 9px;
+      top: 10px;
+      right: 1px;
       width: 10px;
       height: 10px;
-      border-top: 2px solid #333;
-      border-right: 2px solid #333;
-      -webkit-transform: rotate(45deg);
-      transform: rotate(45deg); }
+      border-top: 4px solid white;
+      border-right: 4px solid white;
+      -webkit-transform: rotate(135deg);
+      transform: rotate(135deg); }
     div.Collapsible span.Collapsible__trigger.is-open:after {
-      margin-top: 5px;
-      transform: rotate(135deg);
-      -webkit-transform: rotate(135deg); }
+      top: 15px;
+      transform: rotate(-45deg);
+      -webkit-transform: rotate(-45deg); }
   div.Collapsible span.titleCollapse {
-    padding-left: 20px;
-    text-transform: uppercase;
-    font-size: 12px;
-    font-weight: 600; }
+    text-transform: capitalize;
+    font-size: 15px;
+    font-weight: 600;
+    color: white; }
   div.Collapsible div.Collapsible__contentInner p {
     position: relative;
     background: white;
     line-height: 30px;
-    border: 1px solid #f2f2f2;
+    border: 0px solid red;
     padding: 0px;
     padding-left: 20px;
     margin: 0px;
     margin-top: -1px; }
 
+div.notificationCard {
+  background: #102233;
+  margin: 10px; }
+
 span.chatIntercomWrap {
-  font-size: 12px; }
+  font-size: 12px;
+  z-index: 1000; }
   span.chatIntercomWrap div.chatDialog {
     background: white;
     position: fixed;
     width: 355px;
-    height: 90%;
-    bottom: 50px;
+    height: 85%;
+    bottom: 70px;
     opacity: 1;
     margin-left: 10px; }
     span.chatIntercomWrap div.chatDialog > div {
@@ -324,30 +339,35 @@ div.headerBar {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #118848; }
+  background: #159936; }
   div.headerBar span {
     padding: 10px; }
     div.headerBar span img {
       border-radius: 40px; }
 
 div.gmapsMarker {
-  width: 60px;
-  height: 15px;
+  width: 0px;
+  height: 0px;
   text-align: center;
-  opacity: 0.8;
-  transition: 0.2s ease; }
+  transition: 0.2s ease;
+  position: relative;
+  opacity: 0.9; }
   div.gmapsMarker.home {
-    background: tomato; }
+    opacity: 0.8; }
   div.gmapsMarker.store {
-    background: dodgerblue;
-    z-index: 1; }
+    z-index: 1;
+    background: red; }
+    div.gmapsMarker.store svg {
+      transition: 0.2s ease;
+      transform: translate(-50%, -100%);
+      height: 35px;
+      fill: #102233; }
     div.gmapsMarker.store.selected {
-      background: blue;
-      opacity: 1;
-      font-size: 14px;
-      width: 80px;
-      height: 30px;
       z-index: 100; }
+      div.gmapsMarker.store.selected svg {
+        fill: #159936;
+        width: 80px;
+        height: 65px; }
 
 div.gmap-wrap {
   width: 100%;
@@ -378,10 +398,10 @@ div.gmap-wrap {
         padding: 0px;
         outline: none;
         width: 100%;
-        line-height: 34px;
+        line-height: 42px;
         text-indent: 15px;
         border-radius: 2px;
-        opacity: 0.95;
+        opacity: 0.85;
         outline: none; }
         div.gmap-wrap div.gmap-search-wrap div#PlacesAutocomplete__root input:focus {
           outline: none;
@@ -415,12 +435,15 @@ div.profileName {
 
 div.ticket {
   width: 100%;
-  background: white; }
+  background: white;
+  background: #f9fbff;
+  background: #f2f2f2; }
   div.ticket div.ticketTitle {
     background: #f9fbff;
+    background: white;
     text-align: center;
-    padding-top: 15px;
-    line-height: 30px; }
+    padding-top: 20px;
+    line-height: 45px; }
 
 div.miniTicket {
   padding: 10px;
@@ -467,6 +490,73 @@ div.cardStyle {
   background: white; }
   div.cardStyle div {
     font-size: 12px; }
+
+div.orderAndAppointments {
+  color: white;
+  line-height: 30px;
+  font-size: 15px;
+  padding-bottom: 10px; }
+
+div.appointmentCard {
+  color: white; }
+  div.appointmentCard span {
+    display: block; }
+  div.appointmentCard > div {
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between; }
+    div.appointmentCard > div > div {
+      text-align: center;
+      justify-content: center;
+      flex-direction: column;
+      display: flex;
+      width: 30%;
+      height: 100px;
+      background: #283c4e;
+      padding: 20px 0 6px 0; }
+      div.appointmentCard > div > div h3 {
+        line-height: 40px;
+        display: block;
+        margin: 0;
+        padding: 0;
+        align-self: center;
+        font-size: 12px;
+        font-weight: 400; }
+      div.appointmentCard > div > div svg {
+        align-self: center;
+        fill: white; }
+
+div.orderCard {
+  display: flex;
+  color: white;
+  flex-direction: row;
+  background: #283c4e;
+  margin: 10px 0;
+  padding: 10px; }
+  div.orderCard:last-of-type {
+    margin-bottom: 0; }
+  div.orderCard:nth-of-type(2) {
+    margin-top: 0px; }
+  div.orderCard div.index {
+    width: 30%;
+    font-size: 40px;
+    font-weight: 700;
+    text-align: center; }
+  div.orderCard div.titles {
+    width: 30%; }
+    div.orderCard div.titles h2 {
+      margin: 0;
+      padding: 0;
+      font-size: 13px;
+      line-height: 20px; }
+  div.orderCard div.items {
+    width: 40%; }
+    div.orderCard div.items h3 {
+      line-height: 20px;
+      margin: 0;
+      padding: 0;
+      font-size: 13px;
+      font-weight: 300; }
 
 span.close {
   position: absolute;
@@ -674,16 +764,18 @@ span.formInput {
       height: 28px;
       line-height: 28px; }
       span.formInput > form span.nested input[type="submit"]:hover {
-        background: #118848;
+        background: #159936;
         background: #f9fbff;
         color: black; }
 
 div.welcomeMessage {
   font-size: 14px;
-  text-align: center;
+  text-align: left;
   line-height: 30px;
-  font-weight: 600;
-  margin-top: 20px; }
+  font-weight: 400;
+  margin-top: 20px;
+  color: white;
+  padding: 10px 10px; }
 
 div.Select.Select--single.is-focused.is-searchable.has-value {
   box-shadow: none;
@@ -723,9 +815,10 @@ div.goodAfternoon {
 
 nav {
   position: fixed;
-  width: 375px;
-  height: 50px;
-  background: #f9fbff;
+  width: 100%;
+  height: 70px;
+  background: white;
+  border-top: 1px solid #d4d5d6;
   bottom: 0px;
   display: flex;
   justify-content: center;
@@ -736,12 +829,13 @@ nav {
     display: inline-flex;
     overflow: visible; }
     nav div a {
+      text-transform: uppercase;
       padding: 0 12px;
       display: block;
-      line-height: 50px;
-      font-weight: 400;
+      line-height: 70px;
+      font-weight: 600;
       color: black;
-      font-size: 14px;
+      font-size: 13px;
       overflow: visible; }
       nav div a:hover {
         color: grey; }
@@ -753,10 +847,10 @@ span.notificationBubble {
   width: 17px;
   height: 17px;
   display: inline-block;
-  background: green;
+  background: #159936;
   color: white;
   text-align: center;
-  font-size: 10px;
+  font-size: 12px;
   opacity: 0.9;
   overflow: visible; }
   span.notificationBubble.home {
@@ -770,17 +864,22 @@ span.notificationBubble {
     height: 18px;
     font-size: 13px; }
   span.notificationBubble.dot {
-    width: 5px;
-    height: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
     font-size: 0px;
-    top: 23px;
-    right: 59px;
+    top: 30px;
+    right: 65px;
     z-index: 100; }
   span.notificationBubble.homedot {
-    background: green;
-    top: 14px;
-    right: 79px; }
+    width: 12px;
+    height: 12px;
+    border-radius: 10px;
+    background: #159936;
+    top: 16px;
+    right: 85px; }
   span.notificationBubble div {
     position: absolute;
-    right: 6px;
-    top: -6px; }
+    right: 2px;
+    font-size: 16px;
+    top: -7px; }

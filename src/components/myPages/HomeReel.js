@@ -8,6 +8,7 @@ import Card from '../modules/Card'
 import Collapsible from 'react-collapsible';
 import {clickedOnNotifications} from '../../store/modules/actions'
 import ChatIntercom from '../modules/ChatIntercom'
+import {AppointmentCard, OrderCard} from '../modules/Card'
 import LinkButton from '../modules/LinkButton'
 import specsImage1 from '../../content/images/specs_image_1.jpg'
 import specsImage2 from '../../content/images/childrens-eye-health.jpg'
@@ -31,30 +32,33 @@ class CollapsibleParent extends Component {
 
 const MultipleAppointments = ({currentUser}) => {
   const upcomingAppointments = currentUser.appointments.filter(app => moment(app.date,'MMMDDYYYY') >= moment())
-  return (<span>
+  return (<span> <div className='orderAndAppointments'>My eye tests</div>
     {upcomingAppointments.sort((a,b)=> new Date(b.date) - new Date(a.date))
       .map((appointment,index)=>(
-        <Card key={index} index={index}>
-          Location: {appointment.location} <br/>
-          Date: {(addSeven(appointment.date))} <br/>
-          Time: {appointment.time} <br/>
-          Appointment Type: {appointment.type} <br/>
-        </Card>
+        <AppointmentCard
+          key={index}
+          location={appointment.location}
+          date={(addSeven(appointment.date))}
+          time={appointment.time}
+        />
+
       ))}
     </span>)
 }
 
 const MultipleOrders = ({currentUser}) => {
   const upcomingOrders = currentUser.orders.filter(order => order.status === 'Processing'|| order.status ==='Out for delivery')
-  return (<span>
+  return (<span> <div className='orderAndAppointments'>My orders</div>
     {upcomingOrders.sort((a,b)=> new Date(b.purchase_date) - new Date(a.purchase_date))
       .map((order,index)=>(
-        <Card key={index} index={index}>
-          Delivery On: {(addSeven(order.purchase_date))} <br/>
-          Brand: {order.brand} <br/>
-          Lense Type: {order.type} <br/>
-          Status: {order.status} <br/>
-        </Card>
+        <OrderCard
+          key={index}
+          index={index}
+          delivery={(addSeven(order.purchase_date))}
+          brand={order.brand}
+          lense={order.type}
+          status={order.status}
+        />
       ))}
     </span>)
 }
@@ -69,24 +73,26 @@ class HomeReel extends Component {
     return (
       <span>
         <Ticket title="Home">
-          <div className='welcomeMessage'> Good morning, {currentUser.first_name}</div>
-          <CollapsibleParent
-            clickedOnNotifications={this.clickedOnNotifications}
-            numberOfEntities={appointments}
-            numberOfNotifications={clickedAppointments}
-            name='Appointments'>
-            <MultipleAppointments currentUser={currentUser}/>
-            <LinkButton to='/myappointments'> My Appointments</LinkButton>
-          </CollapsibleParent>
+          <div className='notificationCard'>
+            <div className='welcomeMessage'> Good morning, {currentUser.first_name}</div>
+            <CollapsibleParent
+              clickedOnNotifications={this.clickedOnNotifications}
+              numberOfEntities={appointments}
+              numberOfNotifications={clickedAppointments}
+              name='Appointments'>
+              <MultipleAppointments currentUser={currentUser}/>
+              <LinkButton to='/myappointments'> My Appointments</LinkButton>
+            </CollapsibleParent>
 
-          <CollapsibleParent
-            clickedOnNotifications={this.clickedOnNotifications}
-            numberOfEntities={orders}
-            numberOfNotifications={clickedOrders}
-            name='Orders'>
-            <MultipleOrders currentUser={currentUser}/>
-            <LinkButton to='/myorders'> My Orders</LinkButton>
-          </CollapsibleParent>
+            <CollapsibleParent
+              clickedOnNotifications={this.clickedOnNotifications}
+              numberOfEntities={orders}
+              numberOfNotifications={clickedOrders}
+              name='Orders'>
+              <MultipleOrders currentUser={currentUser}/>
+              <LinkButton to='/myorders'> My Orders</LinkButton>
+            </CollapsibleParent>
+          </div>
 
           <div className='content-image'>
             <div className='imageBox'><img src={specsImage1} alt="Content"/></div>
@@ -97,6 +103,7 @@ class HomeReel extends Component {
             <div className='imageBox'><img src={specsImage2} alt="Content"/></div>
             <div className='textBox'> Childrens Eye Care </div>
           </div>
+          <br/>
 
         </Ticket>
       <ChatIntercom/>
