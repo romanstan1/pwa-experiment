@@ -8,27 +8,11 @@ import Card from '../modules/Card'
 import Collapsible from 'react-collapsible';
 import {clickedOnNotifications} from '../../store/modules/actions'
 import ChatIntercom from '../modules/ChatIntercom'
+import CollapsibleParent from '../modules/CollapsibleParent'
 import {AppointmentCard, OrderCard} from '../modules/Card'
 import LinkButton from '../modules/LinkButton'
 import specsImage1 from '../../content/images/specs_image_1.jpg'
 import specsImage2 from '../../content/images/childrens-eye-health.jpg'
-
-class CollapsibleParent extends Component {
-  onOpen = () => {
-    const {clickedOnNotifications,name} = this.props
-    clickedOnNotifications(name.toLowerCase())
-  }
-  render () {
-    const {numberOfNotifications,numberOfEntities,children,name} = this.props
-    return (
-      <Collapsible onOpen={this.onOpen} triggerSibling={()=><span className='titleCollapse'> Upcoming {name}</span>} transitionTime={100} trigger=" ">
-      <span className='notificationBubble home'><div>{numberOfEntities}</div></span>
-      {numberOfNotifications > 0? <span className='notificationBubble home dot homedot'><div></div></span> :null}
-        {children}
-      </Collapsible>
-    )
-  }
-}
 
 const MultipleAppointments = ({currentUser}) => {
   const upcomingAppointments = currentUser.appointments.filter(app => moment(app.date,'MMMDDYYYY') >= moment())
@@ -65,7 +49,10 @@ const MultipleOrders = ({currentUser}) => {
 
 class HomeReel extends Component {
 
-  clickedOnNotifications = (notificationType) => this.props.dispatch(clickedOnNotifications(notificationType))
+  clickedOnNotifications = (notificationType) => {
+    // console.log("clickedOnNotifications",notificationType)
+    this.props.dispatch(clickedOnNotifications(notificationType))
+  }
   render () {
     const {currentUser} = this.props
     const {orders, appointments} = currentUser.notifications
@@ -73,7 +60,7 @@ class HomeReel extends Component {
     return (
       <span>
         <Ticket title="Home">
-          <div className='notificationCard'>
+          <div className='notificationCard topBorder'>
             <div className='welcomeMessage'> Good morning, {currentUser.first_name}</div>
             <CollapsibleParent
               clickedOnNotifications={this.clickedOnNotifications}
@@ -93,6 +80,8 @@ class HomeReel extends Component {
               <LinkButton to='/myorders'> My Orders</LinkButton>
             </CollapsibleParent>
           </div>
+
+          <LinkButton extraClass='alone' to='/bookappointment'> Book a new Appointment</LinkButton>
 
           <div className='content-image'>
             <div className='imageBox'><img src={specsImage1} alt="Content"/></div>

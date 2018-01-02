@@ -15,29 +15,48 @@ export default class Card extends Component {
   }
 }
 
+export const AppointmentCard = ({location, date, time, optician, children}) =>
+  <div className='appointmentCard'>
+    <div className='firstRow'>
+      <div><EventIcon/><h3>{date}</h3></div>
+      <div><MarkerIcon/><h3>{location}</h3></div>
+      <div><InfoIcon/> <h3>{time}</h3></div>
+    </div>
+    {!!optician?<div className='optician'><h2>Optician</h2> <span>-</span> <h3>{optician}</h3></div>: null}
+    {children}
+  </div>
 
-export const AppointmentCard = ({location, date, time}) =>
-<div className='appointmentCard'>
-  <div>
-    <div><MarkerIcon/><h3>{location}</h3></div>
-    <div><EventIcon/><h3>{date}</h3></div>
-    <div><InfoIcon/> <h3>{location}</h3></div>
-  </div>
-</div>
 
-export const OrderCard = ({index, delivery, brand, lense, status}) =>
-<div className='orderCard'>
-  <div className='index'>{index + 1}</div>
-  <div className='titles'>
-    <h2>Delivery</h2>
-    <h2>Brand</h2>
-    <h2>Lense Type</h2>
-    <h2>Status</h2>
+export const OrderCard = ({index, delivery, brand, lense, status,   children,   orderType, perscription, orderedOn}) =>
+<span>
+  <div className='orderCard'>
+    <div className="firstRow">
+      <div className='index'>{index + 1}</div>
+      <div className='titles'>
+        <h2>Delivery On</h2>
+        {!!orderedOn?    <h2>Ordered On</h2>: null}
+
+        <h2>Brand</h2>
+        <h2>Lense Type</h2>
+
+        {!!orderType?    <h2>Order Type</h2>: null}
+        {!!perscription? <h2>Perscription</h2>: null}
+        <h2>Status</h2>
+      </div>
+      <div className='items'>
+        <h3>{delivery}</h3>
+        {!!orderedOn?    <h3>{orderedOn}</h3>: null}
+
+        <h3>{brand}</h3>
+        <h3>{lense}</h3>
+
+        {!!orderType?    <h3>{orderType}</h3>: null}
+        {!!perscription? <h3>{perscription}</h3>: null}
+        <h3>{status}</h3>
+      </div>
+    </div>
+    <div className='secondaryButtons'>
+      {children}
+    </div>
   </div>
-  <div className='items'>
-    <h3>{delivery}</h3>
-    <h3>{brand}</h3>
-    <h3>{lense}</h3>
-    <h3>{status}</h3>
-  </div>
-</div>
+</span>

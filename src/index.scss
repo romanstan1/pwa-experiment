@@ -97,29 +97,28 @@ input.googleMapsInput {
 }
 
 div.button {
-  font-size: 12px;
+  font-size: 13px;
+  color: white;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   background: inherit;
-  margin: 10px;
-  padding: 4px;
+  margin: 10px 0;
+  padding: 9px;
+  border: 1px solid $green;
   position: relative;
   font-weight: 600;
   line-height: 20px;
   background: $greyBlue;
   background: #e8efef;
-  text-transform: uppercase;
-  -webkit-box-shadow: 0px 1px 6px 2px rgba(0,0,0,0.03);
-  -moz-box-shadow: 0px 1px 2px 2px rgba(0,0,0,0.03);
-  box-shadow: 0px 1px 6px 2px rgba(0,0,0,0.03);
-  transition: 0.1s ease;
+  background: transparent;
+  // text-transform: uppercase;
+  // -webkit-box-shadow: 0px 1px 6px 2px rgba(0,0,0,0.03);
+  // -moz-box-shadow: 0px 1px 2px 2px rgba(0,0,0,0.03);
+  // box-shadow: 0px 1px 6px 2px rgba(0,0,0,0.03);
+  // transition: 0.1s ease;
   text-align: center;
-  &:hover{
-    background: #e8efef;
-    background: $greyBlue;
-  }
   a {
     // background: $green;
     width: 100%;
@@ -157,6 +156,11 @@ span.linkButton, span.logOutButton {
   background: inherit;
   padding: 12px 0;
   position: relative;
+  margin: 10px 0;
+  &.alone {
+    margin: 10px 10px 0 10px;
+    padding-bottom: 4px;
+  }
   a,span {
     text-align: center;
     cursor: pointer;
@@ -237,7 +241,7 @@ div.Collapsible {
   line-height: 45px;
   margin: 0 10px;
   border-radius: 0;
-  border-top: 1px solid white;
+  z-index: 100;
   span.Collapsible__trigger{
     // padding-left: 5px;
     cursor: pointer;
@@ -297,6 +301,17 @@ div.Collapsible {
 div.notificationCard {
   background:$navy;
   margin: 10px;
+  div.Collapsible {
+    border-top: 1px solid white !important;
+    // margin-bottom: 10px !important;
+  }
+
+  // &.topBorder {
+  //   div.Collapsible {
+  //     border-top: 1px solid white !important;
+  //     // margin-bottom: 10px !important;
+  //   }
+  // }
 }
 span.chatIntercomWrap {
   font-size: 12px;
@@ -304,11 +319,11 @@ span.chatIntercomWrap {
   div.chatDialog {
     background: white;
     position: fixed;
-    width: 355px;
-    height: 85%;
+    width: 100%;
+    height: calc(100% - 70px);
     bottom: 70px;
     opacity: 1;
-    margin-left: 10px;
+    // margin-left: 10px;
     > div {
       padding: 10px;
       height: 100%;
@@ -402,14 +417,14 @@ span.chatIntercomWrap {
     height: 60px;
     border-radius: 40px;
     position: fixed;
-    bottom: 72px;
-    // right: 5px;
+    bottom: 78px;
+    right: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     opacity: 0.95;
-    margin-left: 300px;
+    // margin-left: 300px;
     span {
       text-transform: uppercase;
       font-weight: 600;
@@ -616,10 +631,11 @@ div.miniTicket {
   padding: 10px;
   padding-bottom: 0px;
   &:last-of-type{
-    padding-bottom: 80px;
+    padding-bottom: 0px;
   }
   position: relative;
   background: #f2f2f2;
+  // background: $navy;
   line-height: 20px;
   div.miniTicketInnerWrap {
     -webkit-box-shadow: 0px 1px 6px 2px rgba(0,0,0,0.03);
@@ -627,8 +643,9 @@ div.miniTicket {
     box-shadow: 0px 1px 6px 2px rgba(0,0,0,0.03);
     text-align: left;
     background: $lightGrey;
+    // background: $navy;
     position: relative;
-    padding-bottom: 0px;
+    padding-bottom: 10px;
     > span {
       display: block;
       text-transform: uppercase;
@@ -639,22 +656,6 @@ div.miniTicket {
   }
   div.miniTicketBody {
     text-align: left;
-  }
-  &.fixed {
-    opacity: 0.9;
-    padding: 0px;
-    position: fixed;
-    bottom: 50px;
-    width:375px;
-    z-index: 400;
-    background: $grey;
-    div.miniTicketInnerWrap {
-      -webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
-      -moz-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
-      box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
-      padding: 10px 0px;
-      background: $grey;
-    }
   }
 }
 
@@ -677,10 +678,10 @@ div.orderAndAppointments {
 
 div.appointmentCard {
   color:white;
-  span {
+  > span {
     display: block;
   }
-  > div {
+  > div.firstRow {
     flex-direction: row;
     display: flex;
     justify-content:space-between;
@@ -708,41 +709,73 @@ div.appointmentCard {
       }
     }
   }
+  div.optician {
+    display: flex;
+    justify-content: center;
+    background: $lightNavy;
+    // height: 40px;
+    margin: 10px 0;
+    margin-bottom: 30px;
+    h2,h3,span {
+      // height: 10px;
+      display: inline-block;
+      min-width: 20px;
+      font-size: 14px;
+      align-items: center;
+      height: 100%;
+      padding: 0px 0;
+      margin: 0;
+      font-weight: 400;
+    }
+    span { padding: 0 10px;}
+    h2 { font-weight: 600;}
+  }
+  &:last-of-type div.optician {
+    margin-bottom: 10px;
+  }
 }
 
 div.orderCard {
   display: flex;
-  color: white;
-  flex-direction: row;
+  flex-direction: column;
   background: $lightNavy;
   margin: 10px 0;
-  padding: 10px;
-  &:last-of-type { margin-bottom: 0;}
-  &:nth-of-type(2) { margin-top: 0px; }
-  div.index {
-    width: 30%;
-    font-size: 40px;
-    font-weight: 700;
-    text-align: center;
-  }
-  div.titles {
-    width: 30%;
-    h2 {
-      margin: 0;
-      padding: 0;
-      font-size: 13px;
-      line-height: 20px;
+  div.firstRow {
+    display: flex;
+    color: white;
+    flex-direction: row;
+    background: $lightNavy;
+    padding: 10px;
+    // &:last-of-type { margin-bottom: 0;}
+    &:nth-of-type(2) { margin-top: 0px; }
+    div.index {
+      width: 30%;
+      font-size: 40px;
+      font-weight: 700;
+      text-align: center;
+    }
+    div.titles {
+      width: 30%;
+      h2 {
+        margin: 0;
+        padding: 0;
+        font-size: 13px;
+        line-height: 20px;
+      }
+    }
+    div.items {
+      width: 40%;
+      h3 {
+        line-height: 20px;
+        margin: 0;
+        padding: 0;
+        font-size: 13px;
+        font-weight: 300;
+      }
     }
   }
-  div.items {
-    width: 40%;
-    h3 {
-      line-height: 20px;
-      margin: 0;
-      padding: 0;
-      font-size: 13px;
-      font-weight: 300;
-    }
+  div.secondaryButtons {
+    padding: 0 10px;
   }
 }
 
@@ -1140,7 +1173,7 @@ span.notificationBubble {
   // padding-top: 1px;
   opacity: 0.9;
   overflow: visible;
-  // z-index: 100;
+  z-index: -1;
   &.home {
     position: absolute;
     background: none;

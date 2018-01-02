@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom'
 
 export default class LinkButton extends Component {
   render () {
-    const {to,children} = this.props
+    const {to,children, extraClass} = this.props
+    const className = extraClass || ''
     return (
-      <span className='linkButton'>
+      <span className={`linkButton ${className}`}>
         <Link to={to} >{children}</Link>
       </span>)
   }

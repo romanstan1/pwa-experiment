@@ -74,28 +74,23 @@ input.googleMapsInput {
     color: black; }
 
 div.button {
-  font-size: 12px;
+  font-size: 13px;
+  color: white;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   background: inherit;
-  margin: 10px;
-  padding: 4px;
+  margin: 10px 0;
+  padding: 9px;
+  border: 1px solid #159936;
   position: relative;
   font-weight: 600;
   line-height: 20px;
   background: #f9fbff;
   background: #e8efef;
-  text-transform: uppercase;
-  -webkit-box-shadow: 0px 1px 6px 2px rgba(0, 0, 0, 0.03);
-  -moz-box-shadow: 0px 1px 2px 2px rgba(0, 0, 0, 0.03);
-  box-shadow: 0px 1px 6px 2px rgba(0, 0, 0, 0.03);
-  transition: 0.1s ease;
+  background: transparent;
   text-align: center; }
-  div.button:hover {
-    background: #e8efef;
-    background: #f9fbff; }
   div.button a {
     width: 100%;
     height: 100%; }
@@ -125,7 +120,11 @@ span.linkButton, span.logOutButton {
   align-items: center;
   background: inherit;
   padding: 12px 0;
-  position: relative; }
+  position: relative;
+  margin: 10px 0; }
+  span.linkButton.alone, span.logOutButton.alone {
+    margin: 10px 10px 0 10px;
+    padding-bottom: 4px; }
   span.linkButton a, span.linkButton span, span.logOutButton a, span.logOutButton span {
     text-align: center;
     cursor: pointer;
@@ -188,7 +187,7 @@ div.Collapsible {
   line-height: 45px;
   margin: 0 10px;
   border-radius: 0;
-  border-top: 1px solid white; }
+  z-index: 100; }
   div.Collapsible span.Collapsible__trigger {
     cursor: pointer;
     display: block;
@@ -235,6 +234,8 @@ div.Collapsible {
 div.notificationCard {
   background: #102233;
   margin: 10px; }
+  div.notificationCard div.Collapsible {
+    border-top: 1px solid white !important; }
 
 span.chatIntercomWrap {
   font-size: 12px;
@@ -242,11 +243,10 @@ span.chatIntercomWrap {
   span.chatIntercomWrap div.chatDialog {
     background: white;
     position: fixed;
-    width: 355px;
-    height: 85%;
+    width: 100%;
+    height: calc(100% - 70px);
     bottom: 70px;
-    opacity: 1;
-    margin-left: 10px; }
+    opacity: 1; }
     span.chatIntercomWrap div.chatDialog > div {
       padding: 10px;
       height: 100%; }
@@ -319,13 +319,13 @@ span.chatIntercomWrap {
     height: 60px;
     border-radius: 40px;
     position: fixed;
-    bottom: 72px;
+    bottom: 78px;
+    right: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    opacity: 0.95;
-    margin-left: 300px; }
+    opacity: 0.95; }
     span.chatIntercomWrap span.chatIntercom span {
       text-transform: uppercase;
       font-weight: 600;
@@ -484,7 +484,7 @@ div.miniTicket {
   background: #f2f2f2;
   line-height: 20px; }
   div.miniTicket:last-of-type {
-    padding-bottom: 80px; }
+    padding-bottom: 0px; }
   div.miniTicket div.miniTicketInnerWrap {
     -webkit-box-shadow: 0px 1px 6px 2px rgba(0, 0, 0, 0.03);
     -moz-box-shadow: 0px 1px 2px 2px transparent;
@@ -492,7 +492,7 @@ div.miniTicket {
     text-align: left;
     background: #fcfcfc;
     position: relative;
-    padding-bottom: 0px; }
+    padding-bottom: 10px; }
     div.miniTicket div.miniTicketInnerWrap > span {
       display: block;
       text-transform: uppercase;
@@ -501,20 +501,6 @@ div.miniTicket {
       padding: 15px 0 4px 15px; }
   div.miniTicket div.miniTicketBody {
     text-align: left; }
-  div.miniTicket.fixed {
-    opacity: 0.9;
-    padding: 0px;
-    position: fixed;
-    bottom: 50px;
-    width: 375px;
-    z-index: 400;
-    background: #f2f2f2; }
-    div.miniTicket.fixed div.miniTicketInnerWrap {
-      -webkit-box-shadow: 0px 0px 0px 0px transparent;
-      -moz-box-shadow: 0px 0px 0px 0px transparent;
-      box-shadow: 0px 0px 0px 0px transparent;
-      padding: 10px 0px;
-      background: #f2f2f2; }
 
 div.cardStyle {
   padding: 5px;
@@ -531,13 +517,13 @@ div.orderAndAppointments {
 
 div.appointmentCard {
   color: white; }
-  div.appointmentCard span {
+  div.appointmentCard > span {
     display: block; }
-  div.appointmentCard > div {
+  div.appointmentCard > div.firstRow {
     flex-direction: row;
     display: flex;
     justify-content: space-between; }
-    div.appointmentCard > div > div {
+    div.appointmentCard > div.firstRow > div {
       text-align: center;
       justify-content: center;
       flex-direction: column;
@@ -546,7 +532,7 @@ div.appointmentCard {
       height: 100px;
       background: #283c4e;
       padding: 20px 0 6px 0; }
-      div.appointmentCard > div > div h3 {
+      div.appointmentCard > div.firstRow > div h3 {
         line-height: 40px;
         display: block;
         margin: 0;
@@ -554,41 +540,66 @@ div.appointmentCard {
         align-self: center;
         font-size: 12px;
         font-weight: 400; }
-      div.appointmentCard > div > div svg {
+      div.appointmentCard > div.firstRow > div svg {
         align-self: center;
         fill: white; }
+  div.appointmentCard div.optician {
+    display: flex;
+    justify-content: center;
+    background: #283c4e;
+    margin: 10px 0;
+    margin-bottom: 30px; }
+    div.appointmentCard div.optician h2, div.appointmentCard div.optician h3, div.appointmentCard div.optician span {
+      display: inline-block;
+      min-width: 20px;
+      font-size: 14px;
+      align-items: center;
+      height: 100%;
+      padding: 0px 0;
+      margin: 0;
+      font-weight: 400; }
+    div.appointmentCard div.optician span {
+      padding: 0 10px; }
+    div.appointmentCard div.optician h2 {
+      font-weight: 600; }
+  div.appointmentCard:last-of-type div.optician {
+    margin-bottom: 10px; }
 
 div.orderCard {
   display: flex;
-  color: white;
-  flex-direction: row;
+  flex-direction: column;
   background: #283c4e;
-  margin: 10px 0;
-  padding: 10px; }
-  div.orderCard:last-of-type {
-    margin-bottom: 0; }
-  div.orderCard:nth-of-type(2) {
-    margin-top: 0px; }
-  div.orderCard div.index {
-    width: 30%;
-    font-size: 40px;
-    font-weight: 700;
-    text-align: center; }
-  div.orderCard div.titles {
-    width: 30%; }
-    div.orderCard div.titles h2 {
-      margin: 0;
-      padding: 0;
-      font-size: 13px;
-      line-height: 20px; }
-  div.orderCard div.items {
-    width: 40%; }
-    div.orderCard div.items h3 {
-      line-height: 20px;
-      margin: 0;
-      padding: 0;
-      font-size: 13px;
-      font-weight: 300; }
+  margin: 10px 0; }
+  div.orderCard div.firstRow {
+    display: flex;
+    color: white;
+    flex-direction: row;
+    background: #283c4e;
+    padding: 10px; }
+    div.orderCard div.firstRow:nth-of-type(2) {
+      margin-top: 0px; }
+    div.orderCard div.firstRow div.index {
+      width: 30%;
+      font-size: 40px;
+      font-weight: 700;
+      text-align: center; }
+    div.orderCard div.firstRow div.titles {
+      width: 30%; }
+      div.orderCard div.firstRow div.titles h2 {
+        margin: 0;
+        padding: 0;
+        font-size: 13px;
+        line-height: 20px; }
+    div.orderCard div.firstRow div.items {
+      width: 40%; }
+      div.orderCard div.firstRow div.items h3 {
+        line-height: 20px;
+        margin: 0;
+        padding: 0;
+        font-size: 13px;
+        font-weight: 300; }
+  div.orderCard div.secondaryButtons {
+    padding: 0 10px; }
 
 span.close {
   position: absolute;
@@ -884,7 +895,8 @@ span.notificationBubble {
   text-align: center;
   font-size: 12px;
   opacity: 0.9;
-  overflow: visible; }
+  overflow: visible;
+  z-index: -1; }
   span.notificationBubble.home {
     position: absolute;
     background: none;

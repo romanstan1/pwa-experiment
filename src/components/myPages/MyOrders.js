@@ -5,9 +5,35 @@ import {cancelOrder,delayOrder} from '../../store/modules/actions'
 import Ticket from '../modules/Ticket'
 import MiniTicket from '../modules/MiniTicket'
 import Card from '../modules/Card'
+import {OrderCard} from '../modules/Card'
+import CollapsibleParent from '../modules/CollapsibleParent'
+
 import LinkButton from '../modules/LinkButton'
 
 const weight = value => <span style={{color:'black', fontWeight:600}}> {value} <br/> </span>
+
+const MultipleOrders = ({orders, upcoming, children}) => {
+  return (<span>
+    {orders.sort((a,b)=> new Date(b.purchase_date) - new Date(a.purchase_date))
+      .map((order,index)=>(
+        <OrderCard
+          key={index}
+          index={index}
+          delivery={(addSeven(order.purchase_date))}
+          brand={order.brand}
+          lense={order.type}
+          status={order.status}
+
+          orderType={order.order_type}
+          // perscription={order}
+          orderedOn={order.purchase_date}
+        >
+          {children}
+      </OrderCard>
+      ))}
+    </span>)
+}
+
 
 class MyOrders extends Component {
   cancelOrder = event => this.props.dispatch(cancelOrder(parseInt(event.target.id,10)))
@@ -22,51 +48,38 @@ class MyOrders extends Component {
 
     return (<span>
       <Ticket title="Upcoming Orders">
-        <MiniTicket title="Upcoming Orders">
-          {upcomingOrders.sort((a,b)=> new Date(b.purchase_date) - new Date(a.purchase_date))
-            .map((order,index)=>(
-              <Card key={index} index={index}>
-                Order Placed On: {weight(order.purchase_date)}
-                Delivery Expected On: {weight(addSeven(order.purchase_date))}
-                <br/>
-                Brand: {weight(order.brand)}
-                Lense Type: {weight(order.type)}
-                Order Type: {weight(order.order_type)}
-                <br/>
-                Left Eye: {weight(order.left_eye)}
-                Right Eye: {weight(order.right_eye)}
-                <br/>
-                Status: {weight(order.status)}
-                <br/>
+        <div className="notificationCard">
+          <div className='welcomeMessage'>My Orders</div>
+          <CollapsibleParent
+             name='Upcoming Orders'
+             numberOfEntities={upcomingOrders.length}>
+            {upcomingOrders.sort((a,b)=> new Date(b.purchase_date) - new Date(a.purchase_date))
+              .map((order,index)=>(
+                <OrderCard
+                  key={index}
+                  index={index}
+                  delivery={(addSeven(order.purchase_date))}
+                  brand={order.brand}
+                  lense={order.type}
+                  status={order.status}
+
+                  orderType={order.order_type}
+                  // perscription={order}
+                  orderedOn={order.purchase_date}
+                >
                 <div id={order.id} className='button' onClick={this.cancelOrder}>Cancel Order</div>
-              {order.status ==='Out for delivery'? null:<div id={order.id} className='button' onClick={this.delayOrder}>Delay 7 Days</div>}
-              </Card>
-            ))}
-        </MiniTicket>
-        <MiniTicket className='fixed'>
-          <LinkButton to='/neworder'>New Order </LinkButton>
-        </MiniTicket>
-        <MiniTicket title="Past Orders">
-          {orderHistory
-            .sort((a,b)=> new Date(b.purchase_date) - new Date(a.purchase_date))
-            .map((order,index)=>(
-              <Card key={index} index={index}>
-                Order Placed On: {weight(order.purchase_date)}
-                { order.status ==='Cancelled'? null:
-                    <span> Delivered On:{weight(addSeven(order.purchase_date))}</span>
-                }
-                <br/>
-                Brand: {weight(order.brand)}
-                Lense Type: {weight(order.type)}
-                Order Type: {weight(order.order_type)}
-                <br/>
-                Left Eye: {weight(order.left_eye)}
-                Right Eye: {weight(order.right_eye)}
-                <br/>
-                Status: {weight(order.status)}
-              </Card>
-            ))}
-        </MiniTicket>
+                {order.status ==='Out for delivery'? null:<div id={order.id} className='button' onClick={this.delayOrder}>Delay 7 Days</div>}
+              </OrderCard>
+              ))}
+            </CollapsibleParent>
+            <CollapsibleParent
+              name='Past Orders'
+              numberOfEntities={orderHistory.length}>
+              <MultipleOrders orders={orderHistory}/>
+            </CollapsibleParent>
+          </div>
+        <LinkButton extraClass='alone' to='/neworder'>New Order </LinkButton>
+        <br/><br/><br/>
       </Ticket>
     </span>)
   }
