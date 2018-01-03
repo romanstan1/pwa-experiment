@@ -616,6 +616,23 @@ div.webcam {
       transform: translate(0,calc(-50% - 60px));
     }
 
+    div.result{
+      // background: red;
+      // margin: 30px;
+      left: 25px;
+      width: calc(100vw - 50px);
+      position: absolute;
+      top: 5px;
+      height: 25px;
+      opacity: 0.8;
+      background: white;
+      color: black;
+      font-size: 13px;
+      line-height: 25px;
+      text-align: center;
+    }
+
+
     video {
       zoom: 100%;
       object-fit:cover;

@@ -466,6 +466,18 @@ div.webcam {
       border: 7px solid tomato;
       top: 50vh;
       transform: translate(0, calc(-50% - 60px)); }
+    div.webcam div.webcamWrap div.result {
+      left: 25px;
+      width: calc(100vw - 50px);
+      position: absolute;
+      top: 5px;
+      height: 25px;
+      opacity: 0.8;
+      background: white;
+      color: black;
+      font-size: 13px;
+      line-height: 25px;
+      text-align: center; }
     div.webcam div.webcamWrap video {
       zoom: 100%;
       object-fit: cover; }

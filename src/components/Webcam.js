@@ -9,44 +9,22 @@ import QrReader from 'react-qr-reader'
 
 export default class WebcamComponent extends Component {
 
-  constructor(props){
-    super(props)
-    this.state = {
-      delay: 300,
-      result: 'No result',
-    }
-    this.handleScan = this.handleScan.bind(this)
+  state = {
+    delay: 300,
+    result: null,
   }
-  handleScan(data){
-    console.log("data",data)
-    if(data){
-      this.setState({
-        result: data,
-      })
-    }
+  handleScan = (data) => {
+    if(!!data) this.setState({ result: data})
+    // else this.setState({ result: null})
   }
-  handleError(err){
-    console.error(err)
-  }
+
+  handleError = (err) => console.error(err)
+
   render() {
-    const width = window.innerWidth
-    const height = window.innerHeight
+    const {result} = this.state
     return (
       <div className='webcam'>
         <div className='webcamWrap'>
-          {/* <Webcam
-            width={width}
-            height={height - 70 - 80}
-            audio={false}/> */}
-
-            {/* <Camera
-              // style={style.preview}
-              // ref={(cam) => {
-              //   this.camera = cam;
-              // }}
-            >
-            </Camera> */}
-
             <div className='viewfinder'></div>
             <QrReader
               delay={this.state.delay}
@@ -55,6 +33,7 @@ export default class WebcamComponent extends Component {
               showViewFinder={false}
               style={{ width: '100%'}}
               />
+            {!!result? <div className='result'> {result}</div>: null}
         </div>
         <div className='capture'>Capture</div>
         <Link to='ShopPage'>Back to shop</Link>
