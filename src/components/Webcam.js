@@ -35,7 +35,6 @@ export default class WebcamComponent extends Component {
               />
             {!!result? <div className='result'> {result}</div>: null}
         </div>
-        <div className='capture'>Capture</div>
         <Link to='ShopPage'>Back to shop</Link>
       </div>
     )

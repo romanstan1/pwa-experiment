@@ -445,7 +445,7 @@ div.gmap-wrap {
           display: none; }
 
 div.webcam {
-  height: calc(100vh - 70px);
+  height: calc(100vh - 30px);
   font-size: 0; }
   div.webcam div.webcamWrap {
     height: calc(100% - 80px);
@@ -465,7 +465,7 @@ div.webcam {
       z-index: 3000;
       border: 7px solid tomato;
       top: 50vh;
-      transform: translate(0, calc(-50% - 60px)); }
+      transform: translate(0, calc(-50% - 20px)); }
     div.webcam div.webcamWrap div.result {
       left: 25px;
       width: calc(100vw - 50px);
@@ -481,16 +481,14 @@ div.webcam {
     div.webcam div.webcamWrap video {
       zoom: 100%;
       object-fit: cover; }
-  div.webcam div.capture, div.webcam a {
+  div.webcam a {
     font-size: 14px;
-    padding: 12px;
+    line-height: 40px;
     display: block;
     background: #102233;
     color: white;
     text-align: center;
     font-weight: 600; }
-  div.webcam div.capture {
-    background: #159936; }
 
 a.scanQRCode {
   display: block;

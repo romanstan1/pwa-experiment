@@ -588,7 +588,7 @@ div.gmap-wrap { // wrap for both components
 }
 
 div.webcam {
-  height: calc(100vh - 70px);
+  height: calc(100vh - 30px);
   font-size: 0;
   div.webcamWrap {
     height: calc(100% - 80px);
@@ -613,7 +613,7 @@ div.webcam {
       z-index: 3000;
       border: 7px solid tomato;
       top: 50vh;
-      transform: translate(0,calc(-50% - 60px));
+      transform: translate(0,calc(-50% - 20px));
     }
 
     div.result{
@@ -639,17 +639,14 @@ div.webcam {
       // opacity: 0.9;
     }
   }
-  div.capture, a {
+  a {
     font-size: 14px;
-    padding: 12px;
+    line-height: 40px;
     display: block;
     background: $navy;
     color: white;
     text-align: center;
     font-weight: 600;
-  }
-  div.capture {
-    background: $green;
   }
 }
 
