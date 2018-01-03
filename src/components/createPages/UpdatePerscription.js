@@ -31,7 +31,6 @@ class UpdatePerscription extends Component {
               valueOne={currentUser.left_eye}
               valueTwo={currentUser.right_eye}
               submitName='Update Perscription'/>
-              <LinkButton to='/myspecsavers'> Go to - My Specsavers </LinkButton>
           </MiniTicket>
         </Ticket>
       </span>)

@@ -36,8 +36,7 @@ class NewOrder extends Component {
               valueOne={valueOne}
               valueTwo={valueTwo}
               submitName='Place Order'/>
-            <br/>
-            <LinkButton to='/myorders'> Go to - My Orders </LinkButton>
+              <br/>
           </MiniTicket>
         </Ticket>
       </span>)

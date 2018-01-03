@@ -26,8 +26,7 @@ class AddCard extends Component {
             inputOne='Select Card Type'
             inputTwo='Input Card Number'
             submitName='Add Card'/>
-          <br/>
-          <LinkButton to='/myspecsavers'> Go to - My Specsavers </LinkButton>
+            <br/>
         </Ticket>
       </span>)
   }

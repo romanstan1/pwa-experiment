@@ -31,9 +31,10 @@ class UpdateAccount extends Component {
               valueOne={currentUser.username}
               valueTwo={currentUser.password}
               submitName='Update Account Details'/>
-              <LinkButton to='/myspecsavers'> Go to - My Specsavers </LinkButton>
+              <br/>
           </MiniTicket>
         </Ticket>
+        <br/><br/>
       </span>)
   }
 }

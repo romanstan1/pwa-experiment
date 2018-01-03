@@ -34,8 +34,6 @@ class UpdateSubscription extends Component {
               valueTwo={currentUser.subscription.next_arrival_date}
               valueThree={currentUser.subscription.type}
               submitName='Update Subscription'/>
-            <br/>
-            <LinkButton to='/myspecsavers'> Go to - My Specsavers </LinkButton>
           </MiniTicket>
         </Ticket>
       </span>)

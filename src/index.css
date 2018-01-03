@@ -452,6 +452,8 @@ div.webcam {
     background: grey;
     overflow: hidden;
     position: relative; }
+    div.webcam div.webcamWrap div {
+      height: 100%; }
     div.webcam div.webcamWrap video {
       zoom: 100%;
       object-fit: cover; }

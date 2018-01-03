@@ -45,9 +45,10 @@ class UpdateDetails extends Component {
               valueSix={currentUser.dob}
 
               submitName='Update Personal Details'/>
-              <LinkButton to='/myspecsavers'> Go to - My Specsavers </LinkButton>
+              <br/>
           </MiniTicket>
         </Ticket>
+        <br/><br/>
       </span>)
   }
 }
