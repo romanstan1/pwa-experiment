@@ -595,12 +595,31 @@ div.webcam {
     background: grey;
     overflow: hidden;
     position: relative;
-    div {
+    > section {
       height: 100%;
+      section {
+        padding: 0;
+        height: 100%;
+
+      }
     }
+    div.viewfinder{
+      // background: red;
+      // margin: 30px;
+      width: calc(100vw - 50px);
+      height: calc(100vw - 50px);
+      position: absolute;
+      left: 25px;
+      z-index: 3000;
+      border: 7px solid tomato;
+      top: 50vh;
+      transform: translate(0,calc(-50% - 60px));
+    }
+
     video {
       zoom: 100%;
       object-fit:cover;
+      // opacity: 0.9;
     }
   }
   div.capture, a {
