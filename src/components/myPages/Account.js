@@ -22,30 +22,31 @@ class Account extends Component {
     return (
       <span>
         <Ticket title="Account Details">
-          <MiniTicket>
-            <div className='profileName'>{currentUser.first_name} {currentUser.last_name}</div>
+          <div className="notificationCard">
+            <div className='welcomeMessage'>My Account</div>
             <div className='headerBar'>
-              <span><img src={imagePic} alt="Profile" height="76" width="76"/></span>
+              <div className='profileName'>
+                {currentUser.first_name} <br/>
+                {currentUser.last_name}
+              </div>
+              <span><img src={imagePic} alt="Profile"/></span>
             </div>
-            <br/>
-            <br/>
-
             <Collapsible triggerSibling={()=><span className='titleCollapse'> My Perscription</span>} transitionTime={100} trigger=" ">
               <p>Left eye: {currentUser.left_eye}</p>
               <p>Right eye: {currentUser.right_eye}</p>
-              <LinkButton to='/updateperscription'> Go to - Update Perscription</LinkButton>
+              <LinkButton extraClass='secondary' to='/updateperscription'> Go to - Update Perscription</LinkButton>
             </Collapsible>
             <Collapsible triggerSibling={()=><span className='titleCollapse'> My Account Details</span>} transitionTime={100} trigger=" ">
               <p>Username: {currentUser.username}</p>
               <p>Password: {currentUser.password}</p>
-              <LinkButton to='/updateaccount'> Go to - Update Account Details</LinkButton>
+              <LinkButton extraClass='secondary'  to='/updateaccount'> Go to - Update Account Details</LinkButton>
             </Collapsible>
             <Collapsible triggerSibling={()=><span className='titleCollapse'> My Payment Details</span>} transitionTime={100} trigger=" ">
 
               {currentUser.payment_cards.map((card, index) =>
                   <p key={index}> {card.type} - {card.number} <span id={index} className='close' onClick={this.deleteCard} style={{cursor:'pointer'}}></span></p>
               )}
-              <LinkButton to='/addcard'> Go to - Add Card</LinkButton>
+              <LinkButton extraClass='secondary'  to='/addcard'> Go to - Add Card</LinkButton>
             </Collapsible>
             <Collapsible triggerSibling={()=><span className='titleCollapse'> My Personal Details</span>} transitionTime={100} trigger=" ">
               <p>Title: {currentUser.title}</p>
@@ -54,20 +55,18 @@ class Account extends Component {
               <p>Address: {currentUser.address}</p>
               <p>Postcode: {currentUser.postcode}</p>
               <p>Date of birth: {currentUser.dob}</p>
-                <LinkButton to='/updatedetails'> Go to - Update Personal Details</LinkButton>
+                <LinkButton extraClass='secondary' to='/updatedetails'> Go to - Update Personal Details</LinkButton>
             </Collapsible>
             <Collapsible triggerSibling={()=><span className='titleCollapse'> My Subscription</span>} transitionTime={100} trigger=" ">
               <p>Brand: {currentUser.subscription.brand}</p>
               <p>Next Scheduled Order Date:{currentUser.subscription.next_arrival_date}</p>
               <p>Lense Type: {currentUser.subscription.type}</p>
               <p>Postcode: {currentUser.postcode}</p>
-                <LinkButton to='/updatesubscription'> Go to - Update Subscription</LinkButton>
+                <LinkButton extraClass='secondary' to='/updatesubscription'> Go to - Update Subscription</LinkButton>
             </Collapsible>
-            <br/>
-            <br/>
-            <br/>
-          </MiniTicket>
+          </div>
         </Ticket>
+        <br/>
         <ChatIntercom/>
       </span>)
   }

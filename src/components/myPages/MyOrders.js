@@ -25,7 +25,8 @@ const MultipleOrders = ({orders, upcoming, children}) => {
           status={order.status}
 
           orderType={order.order_type}
-          // perscription={order}
+          leftEye= {order.left_eye}
+          rightEye= {order.right_eye}
           orderedOn={order.purchase_date}
         >
           {children}
@@ -64,7 +65,8 @@ class MyOrders extends Component {
                   status={order.status}
 
                   orderType={order.order_type}
-                  // perscription={order}
+                  leftEye= {order.left_eye}
+                  rightEye= {order.right_eye}
                   orderedOn={order.purchase_date}
                 >
                 <div id={order.id} className='button' onClick={this.cancelOrder}>Cancel Order</div>

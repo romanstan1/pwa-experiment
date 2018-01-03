@@ -125,6 +125,13 @@ span.linkButton, span.logOutButton {
   span.linkButton.alone, span.logOutButton.alone {
     margin: 10px 10px 0 10px;
     padding-bottom: 4px; }
+  span.linkButton.secondary, span.logOutButton.secondary {
+    border: 1px solid #159936;
+    color: white; }
+    span.linkButton.secondary a, span.logOutButton.secondary a {
+      padding: 0;
+      background: transparent;
+      line-height: 15px; }
   span.linkButton a, span.linkButton span, span.logOutButton a, span.logOutButton span {
     text-align: center;
     cursor: pointer;
@@ -223,13 +230,13 @@ div.Collapsible {
     color: white; }
   div.Collapsible div.Collapsible__contentInner p {
     position: relative;
-    background: white;
+    background: #283c4e;
     line-height: 30px;
     border: 0px solid red;
     padding: 0px;
     padding-left: 20px;
     margin: 0px;
-    margin-top: -1px; }
+    color: white; }
 
 div.notificationCard {
   background: #102233;
@@ -338,12 +345,21 @@ span.chatIntercomWrap {
 div.headerBar {
   display: flex;
   align-items: center;
-  justify-content: center;
-  background: #159936; }
+  justify-content: space-between;
+  flex-direction: row;
+  margin-bottom: 25px; }
+  div.headerBar div.profileName {
+    text-align: left;
+    padding: 10px;
+    font-weight: 600;
+    color: white;
+    font-size: 16px; }
   div.headerBar span {
-    padding: 10px; }
+    padding-right: 20px; }
     div.headerBar span img {
-      border-radius: 40px; }
+      border-radius: 80px;
+      height: 90px;
+      width: 90px; }
 
 div.gmapsMarker {
   width: 0px;
@@ -388,11 +404,11 @@ div.gmap-wrap {
     div.gmap-wrap div.gmap-search-wrap div#PlacesAutocomplete__root {
       line-height: 25px;
       height: 25px;
-      width: 364px;
+      width: calc(100% - 20px);
       height: 34px;
       position: absolute;
       top: 7px;
-      right: 6px; }
+      right: 10px; }
       div.gmap-wrap div.gmap-search-wrap div#PlacesAutocomplete__root input {
         border: 0px;
         padding: 0px;
@@ -460,11 +476,6 @@ a.scanQRCode {
   font-weight: 600;
   font-size: 16px; }
 
-div.profileName {
-  text-align: center;
-  padding: 20px;
-  font-weight: 600; }
-
 div.ticket {
   width: 100%;
   background: white;
@@ -492,7 +503,7 @@ div.miniTicket {
     text-align: left;
     background: #fcfcfc;
     position: relative;
-    padding-bottom: 10px; }
+    padding-bottom: 0px; }
     div.miniTicket div.miniTicketInnerWrap > span {
       display: block;
       text-transform: uppercase;
@@ -812,8 +823,9 @@ span.formInput {
         color: black; }
 
 div.welcomeMessage {
-  font-size: 14px;
-  text-align: left;
+  font-size: 15px;
+  font-style: italic;
+  text-align: center;
   line-height: 30px;
   font-weight: 400;
   margin-top: 20px;

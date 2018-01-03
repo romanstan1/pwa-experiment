@@ -13,10 +13,10 @@ export const brandNames = [
   { value: 'Soczewki FreshLook', label: 'Soczewki FreshLook'}
 ]
 export const opticianNames = [
-  { value: 'Carol Vordaman', label: 'Carol Vordaman'},
-  { value: 'Enid Blyton', label: 'Enid Blyton'},
-  { value: 'Roger Moore', label: 'Roger Moore'},
-  { value: 'William Hague', label: 'William Hague'},
+  { value: 'Ben Thornley', label: 'Ben Thornley'},
+  { value: 'Andy Cole', label: 'Andy Cole'},
+  { value: 'Nicky Butt', label: 'Nicky Butt'},
+  { value: 'David Seaman', label: 'David Seaman'},
   { value: 'Sven Goran Erikson', label: 'Sven Goran Erikson'}
 ]
 export const lenseTypes = [
@@ -152,7 +152,7 @@ export const initialState = {
         {
           location: 'Wimbledon',
           date: beforeDate(31),
-          optician:'Richard Head',
+          optician:'John Barnes',
           time:'11.30am',
           id:809861,
           type:'Eye test',
@@ -162,7 +162,7 @@ export const initialState = {
         {
           location: 'Liverpool Street',
           date: beforeDate(131),
-          optician:'Jimminy Cricket',
+          optician:'David Seaman',
           time:'9.00am',
           id:219295,
           type:'Eye test',
@@ -170,9 +170,9 @@ export const initialState = {
           additional:'No additional info',
         },
         {
-          location: 'The Tundra',
+          location: 'Putney Bridge',
           date: afterDate(21),
-          optician:'Johnny Frostbite',
+          optician:'Teddy Sherringham',
           time:'2.30pm',
           id:819290,
           type:'Eye test',

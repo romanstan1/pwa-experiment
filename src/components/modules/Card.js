@@ -27,7 +27,7 @@ export const AppointmentCard = ({location, date, time, optician, children}) =>
   </div>
 
 
-export const OrderCard = ({index, delivery, brand, lense, status,   children,   orderType, perscription, orderedOn}) =>
+export const OrderCard = ({index, delivery, brand, lense, status,   children,   orderType, leftEye, rightEye, orderedOn}) =>
 <span>
   <div className='orderCard'>
     <div className="firstRow">
@@ -40,7 +40,7 @@ export const OrderCard = ({index, delivery, brand, lense, status,   children,   
         <h2>Lense Type</h2>
 
         {!!orderType?    <h2>Order Type</h2>: null}
-        {!!perscription? <h2>Perscription</h2>: null}
+        {!!leftEye && !!rightEye? <h2>Perscription</h2>: null}
         <h2>Status</h2>
       </div>
       <div className='items'>
@@ -51,7 +51,8 @@ export const OrderCard = ({index, delivery, brand, lense, status,   children,   
         <h3>{lense}</h3>
 
         {!!orderType?    <h3>{orderType}</h3>: null}
-        {!!perscription? <h3>{perscription}</h3>: null}
+        {!!leftEye && !!rightEye? <h3>Left: {leftEye} | Right: {rightEye}</h3>: null}
+
         <h3>{status}</h3>
       </div>
     </div>

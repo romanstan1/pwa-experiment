@@ -161,6 +161,17 @@ span.linkButton, span.logOutButton {
     margin: 10px 10px 0 10px;
     padding-bottom: 4px;
   }
+  &.secondary {
+    // margin: 10px 10px 0 10px;
+    // padding-bottom: 4px;
+    border: 1px solid $green;
+    color: white;
+    a {
+      padding: 0;
+      background: transparent;
+      line-height: 15px;
+    }
+  }
   a,span {
     text-align: center;
     cursor: pointer;
@@ -288,13 +299,13 @@ div.Collapsible {
   }
   div.Collapsible__contentInner{
     p{position: relative;
-      background: white;
+      background: $lightNavy;
       line-height: 30px;
       border: 0px solid red;
       padding: 0px;
       padding-left: 20px;
       margin: 0px;
-      margin-top: -1px;
+      color: white;
     }
   }
 }
@@ -442,12 +453,23 @@ span.chatIntercomWrap {
 div.headerBar {
   display: flex;
   align-items: center;
-  justify-content: center;
-  background: $green;
-  span{
+  justify-content:space-between;
+  // background: $green;
+  flex-direction: row;
+  margin-bottom: 25px;
+  div.profileName{
+    text-align: left;
     padding: 10px;
+    font-weight: 600;
+    color: white;
+    font-size: 16px;
+  }
+  span{
+    padding-right: 20px;
     img {
-      border-radius: 40px;
+      border-radius: 80px;
+      height:90px;
+      width:90px;
     }
   }
 }
@@ -512,11 +534,11 @@ div.gmap-wrap { // wrap for both components
     div#PlacesAutocomplete__root{ // gmap root button
       line-height: 25px;
       height: 25px;
-      width: 364px;
+      width: calc(100% - 20px);
       height: 34px;
       position: absolute;
       top: 7px;
-      right: 6px;
+      right: 10px;
       input {
         border: 0px;
         padding: 0px;
@@ -603,13 +625,6 @@ a.scanQRCode {
   font-size: 16px;
 }
 
-
-div.profileName{
-  text-align: center;
-  padding: 20px;
-  font-weight: 600;
-}
-
 div.ticket {
   width: 100%;
   background: white;
@@ -623,7 +638,9 @@ div.ticket {
     line-height: 45px;
   }
   div.ticketBody {
-
+    // padding-bottom: 90px;
+    // margin-bottom: 90px;
+    // margin-bottom: 10px;
   }
 }
 
@@ -645,7 +662,7 @@ div.miniTicket {
     background: $lightGrey;
     // background: $navy;
     position: relative;
-    padding-bottom: 10px;
+    padding-bottom: 0px;
     > span {
       display: block;
       text-transform: uppercase;
@@ -1074,8 +1091,9 @@ span.formInput {
 }
 
 div.welcomeMessage {
-  font-size: 14px;
-  text-align: left;
+  font-size: 15px;
+  font-style: italic;
+  text-align: center;
   line-height: 30px;
   font-weight: 400;
   margin-top: 20px;
