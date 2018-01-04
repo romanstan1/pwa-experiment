@@ -622,6 +622,35 @@ div.react-add-to-calendar__dropdown {
         color: #159936;
         top: -1px; }
 
+div.ReactModalPortal {
+  z-index: 9999; }
+  div.ReactModalPortal div.ReactModal__Overlay {
+    z-index: 9999; }
+    div.ReactModalPortal div.ReactModal__Overlay div.ReactModal__Content {
+      height: 60%;
+      margin-top: 20%;
+      border: 0px !important;
+      border-radius: 0px !important;
+      background: #102233 !important;
+      color: white; }
+      div.ReactModalPortal div.ReactModal__Overlay div.ReactModal__Content * {
+        padding: 0;
+        margin: 0; }
+      div.ReactModalPortal div.ReactModal__Overlay div.ReactModal__Content h4 {
+        font-size: 15px;
+        text-align: center;
+        padding: 30px 0; }
+      div.ReactModalPortal div.ReactModal__Overlay div.ReactModal__Content div {
+        margin-bottom: 5px; }
+        div.ReactModalPortal div.ReactModal__Overlay div.ReactModal__Content div h2 {
+          font-size: 13px;
+          display: inline-block;
+          padding-right: 10px; }
+        div.ReactModalPortal div.ReactModal__Overlay div.ReactModal__Content div h3 {
+          font-size: 13px;
+          font-weight: 400;
+          display: inline-block; }
+
 div.appointmentCard {
   color: white; }
   div.appointmentCard > span {

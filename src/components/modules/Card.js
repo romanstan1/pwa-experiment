@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {EventIcon, InfoIcon, MarkerIcon} from '../../content/icons/AppointmentIcons'
 import AddToCalendar from 'react-add-to-calendar';
 import moment from 'moment'
+import Modal from 'react-modal';
 
 
 export default class Card extends Component {
@@ -18,7 +19,81 @@ export default class Card extends Component {
   }
 }
 
-export const AppointmentCard = ({extraClass, appointment, children}) => {
+const customStyles = {
+  content : {
+    // top                   : '50%',
+    // left                  : '50%',
+    // right                 : 'auto',
+    // bottom                : 'auto',
+    // marginRight           : '-50%',
+    // transform             : 'translate(-50%, -50%)',
+    // zIndex : 999999
+  }
+};
+
+
+export class AppointmentCard extends Component {
+  state = { modalIsOpen: false}
+  openModal = () => {
+    this.setState({modalIsOpen: true});
+  }
+
+  closeModal = () => {
+    this.setState({modalIsOpen: false});
+  }
+
+  render () {
+    const {extraClass, appointment, children} = this.props
+
+    const time24 = moment(appointment.time, 'HHmm A').format('HH:mm:ss')
+    const date = moment(appointment.date, 'MMMDDYYYY').format('YYYY-MM-DD')
+    const event = {
+      title: 'Eye Test',
+      location:  appointment.address,
+      startTime: moment(date + 'T' + time24),
+      description: appointment.location + ' | ' + appointment.optician,
+      endTime: moment(date + 'T' + time24).add(30, 'minutes')
+    }
+    return (
+    <div className='appointmentCard'>
+
+      <Modal
+        isOpen={this.state.modalIsOpen}
+        onRequestClose={this.closeModal}
+        contentLabel="Appointment Info"
+        >
+          <h4>Appointment Info</h4>
+          <div><h2>Store - </h2><h3>{appointment.location}</h3></div>
+          <div><h2>Address - </h2><h3>{appointment.address}</h3></div>
+          <div><h2>Time - </h2><h3>{appointment.time}</h3></div>
+          <div><h2>Optician - </h2><h3>{appointment.optician}</h3></div>
+          <div><h2>Additional Info - </h2><h3>{appointment.addional}</h3></div>
+          <div><h2>Store Phone Number - </h2><h3>{appointment.phoneNumber}</h3></div>
+      </Modal>
+
+      <div className='firstRow'>
+        <div className='calendar'>
+          <EventIcon/>
+          <AddToCalendar
+            buttonLabel={appointment.date}
+            event={event}
+          />
+        </div>
+        <a target="_blank"
+          href={`https://www.google.co.uk/maps/dir/specsavers ${appointment.address.substr(appointment.address.length - 12)}/${appointment.homeLocation.lat},${appointment.homeLocation.lng}`}>
+          <MarkerIcon/><h3>{appointment.location}</h3>
+        </a>
+        <div onClick={this.openModal}><InfoIcon/> <h3>{appointment.time}</h3></div>
+      </div>
+      {!!appointment.optician?<div className='optician'><h2>Optician</h2> <span>-</span> <h3>{appointment.optician}</h3></div>: null}
+      {children}
+    </div>
+    )
+  }
+}
+
+
+export const AppointmentCardDEP = ({extraClass, appointment, children}) => {
   const time24 = moment(appointment.time, 'HHmm A').format('HH:mm:ss')
   const date = moment(appointment.date, 'MMMDDYYYY').format('YYYY-MM-DD')
   const event = {
