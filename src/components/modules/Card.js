@@ -68,7 +68,7 @@ export class AppointmentCard extends Component {
           <div><h2>Time - </h2><h3>{appointment.time}</h3></div>
           <div><h2>Optician - </h2><h3>{appointment.optician}</h3></div>
           <div><h2>Additional Info - </h2><h3>{appointment.addional}</h3></div>
-          <div><h2>Store Phone Number - </h2><h3>{appointment.phoneNumber}</h3></div>
+          <div><h2>Store Phone Number - </h2><a href={`tel:${appointment.phoneNumber}`}><h3>{appointment.phoneNumber}</h3></a></div>
       </Modal>
 
       <div className='firstRow'>
