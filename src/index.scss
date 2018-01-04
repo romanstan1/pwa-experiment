@@ -261,7 +261,7 @@ div.confirmAppointmentPopUp {
   visibility: hidden;
   position: absolute;
   height: 100vh;
-  width:375px;
+  width:100%;
   background: white;
   display: flex;
   align-items: center;
@@ -286,7 +286,7 @@ div.Collapsible {
   line-height: 45px;
   margin: 0 10px;
   border-radius: 0;
-  z-index: 100;
+  z-index: 50;
   span.Collapsible__trigger{
     // padding-left: 5px;
     cursor: pointer;
@@ -348,15 +348,7 @@ div.notificationCard {
   margin: 10px;
   div.Collapsible {
     border-top: 1px solid white !important;
-    // margin-bottom: 10px !important;
   }
-
-  // &.topBorder {
-  //   div.Collapsible {
-  //     border-top: 1px solid white !important;
-  //     // margin-bottom: 10px !important;
-  //   }
-  // }
 }
 span.chatIntercomWrap {
   font-size: 12px;
@@ -769,6 +761,49 @@ div.orderAndAppointments {
   font-size: 15px;
   padding-bottom: 10px;
 }
+div.react-add-to-calendar__dropdown {
+  position: absolute;
+  background: transparent;
+  z-index: 1000;
+  color: black;
+  text-align: left;
+  top: -10px;
+  width: 220px;
+  left: 45vw;
+  height: 100px;
+  transform: translate(-50%,0%);
+  ul {
+    z-index: 1000;
+    padding: 0;
+    margin: 0;
+    background: white;
+    -webkit-box-shadow: 10px 10px 104px 24px rgba(0,0,0,0.53);
+    -moz-box-shadow: 10px 10px 104px 24px rgba(0,0,0,0.53);
+    box-shadow: 10px 10px 104px 24px rgba(0,0,0,0.53);
+    a {
+      text-indent: 20px;
+      text-align: left;
+      z-index: 1000;
+      padding: 0px;
+      color: white;
+      color: $navy;
+      border-top: 1px solid $navy;
+      border-bottom: 1px solid $navy;
+      background: $lightNavy;
+      background: white;
+      position: relative;
+      &::after {
+        content: '+';
+        position: absolute;
+        right: 15px;
+        font-size: 20px;
+        font-weight: 600;
+        color:$green;
+        top:-1px;
+      }
+    }
+  }
+}
 
 div.appointmentCard {
   color:white;
@@ -779,7 +814,7 @@ div.appointmentCard {
     flex-direction: row;
     display: flex;
     justify-content:space-between;
-    > div {
+    > div, > a {
       text-align: center;
       justify-content:center;
       flex-direction: column;
@@ -803,6 +838,40 @@ div.appointmentCard {
         align-self: center;
         fill:white;
         padding-bottom: 9px;
+      }
+      &.calendar {
+        position: relative;
+        // background: red;
+        svg {
+          position: absolute;
+          top: 20px;
+        }
+        div.react-add-to-calendar {
+          position: absolute;
+          text-align: center;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          div {
+            height: 100%;
+            a {
+              height: 100%;
+              display: block;
+              position: relative;
+              span {
+                width: 100%;
+                position: absolute;
+                bottom: 17px;
+                left: 0px;
+                font-size: 12px;
+                height: 15px;
+                line-height: 15px;
+                // padding: 10px 0;
+                margin: 0;
+              }
+            }
+          }
+        }
       }
     }
   }

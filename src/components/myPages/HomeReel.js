@@ -18,11 +18,8 @@ const MultipleAppointments = ({currentUser}) => {
       .map((appointment,index)=>(
         <AppointmentCard
           key={index}
-          location={appointment.location}
-          date={(addSeven(appointment.date))}
-          time={appointment.time}
+          appointment={appointment}
         />
-
       ))}
     </span>)
 }

@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
 import {EventIcon, InfoIcon, MarkerIcon} from '../../content/icons/AppointmentIcons'
+import AddToCalendar from 'react-add-to-calendar';
+import moment from 'moment'
+
 
 export default class Card extends Component {
   render () {
@@ -15,16 +18,35 @@ export default class Card extends Component {
   }
 }
 
-export const AppointmentCard = ({extraClass,location, date, time, optician, children}) =>
-  <div className='appointmentCard'>
+export const AppointmentCard = ({extraClass, appointment, children}) => {
+  const time24 = moment(appointment.time, 'HHmm A').format('HH:mm:ss')
+  const date = moment(appointment.date, 'MMMDDYYYY').format('YYYY-MM-DD')
+  const event = {
+    title: 'Eye Test',
+    location:  appointment.address,
+    startTime: moment(date + 'T' + time24),
+    description: appointment.location + ' | ' + appointment.optician,
+    endTime: moment(date + 'T' + time24).add(30, 'minutes')
+  }
+  return <div className='appointmentCard'>
     <div className='firstRow'>
-      <div><EventIcon/><h3>{date}</h3></div>
-      <div><MarkerIcon/><h3>{location}</h3></div>
-      <div><InfoIcon/> <h3>{time}</h3></div>
-    </div>
-    {!!optician?<div className='optician'><h2>Optician</h2> <span>-</span> <h3>{optician}</h3></div>: null}
-    {children}
+      <div className='calendar'>
+        <EventIcon/>
+        <AddToCalendar
+          buttonLabel={appointment.date}
+          event={event}
+        />
+      </div>
+      <a target="_blank"
+        href={`https://www.google.co.uk/maps/dir/specsavers ${appointment.address.substr(appointment.address.length - 12)}/${appointment.homeLocation.lat},${appointment.homeLocation.lng}`}>
+        <MarkerIcon/><h3>{appointment.location}</h3>
+      </a>
+      <div><InfoIcon/> <h3>{appointment.time}</h3></div>
   </div>
+  {!!appointment.optician?<div className='optician'><h2>Optician</h2> <span>-</span> <h3>{appointment.optician}</h3></div>: null}
+  {children}
+</div>
+}
 
 
 export const OrderCard = ({index, delivery, brand, lense, status,   children,   orderType, leftEye, rightEye, orderedOn}) =>

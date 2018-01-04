@@ -5,9 +5,6 @@ export const afterDate = days => moment().add(days, 'days').format('ll')
 export const addSeven = date => moment(date, 'MMMDDYYYY').add(7, 'days').format('ll')
 export const random = list => list.map(item=>item.value)[Math.floor((Math.random()*list.length))]
 
-
-console.log("DATE --- ",moment('Nov 9, 2017', 'MMM DD YYYY').format('llll').slice(0, -22))
-
 export const brandNames = [
   { value: 'Biofinity', label: 'Biofinity'},
   { value: 'Biofinity toric', label: 'Biofinity toric'},
@@ -80,7 +77,9 @@ export const initialState = {
       ],
       appointments: [
         {
-          location: 'Wimbledon',
+          location: 'London - Wimbledon',
+          address: '38 The Broadway, Wimbledon, London SW19 1RQ, UK',
+          homeLocation: {lat: "51.4149653", lng: "-0.2402061999999887"},
           date: beforeDate(31),
           optician:'John Barnes',
           time:'11.30am',
@@ -88,26 +87,35 @@ export const initialState = {
           type:'Eye test',
           for: 'Myself',
           additional:'No additional info',
+          phoneNumber: "020 8542 4434",
         },
         {
-          location: 'Liverpool Street',
+          location: 'Surbiton',
           date: beforeDate(131),
+          address: '2 Surbiton Parade, Surbiton KT6 4RB, UK',
           optician:'David Seaman',
+          homeLocation: {lat: "51.4149653", lng: "-0.2402061999999887"},
+          phoneNumber: "020 8339 8900",
           time:'9.00am',
+          secondPerson: {},
           id:219295,
           type:'Eye test',
           for: 'Myself',
           additional:'No additional info',
         },
         {
-          location: 'Putney Bridge',
+          location: 'London - Wimbledon',
+          address: '38 The Broadway, Wimbledon, London SW19 1RQ, UK',
+          homeLocation: {lat: "51.4149653", lng: "-0.2402061999999887"},
           date: afterDate(21),
+          phoneNumber: "020 8542 4434",
           optician:'Teddy Sherringham',
           time:'2.30pm',
           id:819290,
           type:'Eye test',
-          for: 'Someone else',
-          additional:'For my son',
+          for: 'Myself',
+          additional:"I require disabled access",
+          secondPerson:{}
         }
       ],
       orders:[
