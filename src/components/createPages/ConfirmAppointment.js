@@ -49,13 +49,9 @@ class ConfirmAppointment extends Component {
 
             <br/>
             {!!appointment?
-
             <AppointmentCard
               extraClass='confirmation'
-              location={appointment.location}
-              date={(addSeven(appointment.date))}
-              time={appointment.time}
-              optician={appointment.optician}
+              appointment={appointment}
             >
               <div className='children'>
 

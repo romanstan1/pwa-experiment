@@ -24,7 +24,13 @@ import CollapsibleParent from '../modules/CollapsibleParent'
 //     </span>)
 // }
 
-
+{/* <AppointmentCard
+  key={index}
+  location={appointment.location}
+  date={(addSeven(appointment.date))}
+  time={appointment.time}
+  optician={appointment.optician}
+> */}
 class MyAppointments extends Component {
   deleteAppointment = (event, prop, value) => {
     this.props.dispatch(deleteAppointment(parseInt(event.target.id,10)))
@@ -46,10 +52,7 @@ class MyAppointments extends Component {
                .map((appointment,index)=>(
                  <AppointmentCard
                    key={index}
-                   location={appointment.location}
-                   date={(addSeven(appointment.date))}
-                   time={appointment.time}
-                   optician={appointment.optician}
+                   appointment={appointment}
                  >
                 <div id={appointment.id} className='button cancel' onClick={this.deleteAppointment}> Cancel Appointment</div>
                 </AppointmentCard>
@@ -61,12 +64,16 @@ class MyAppointments extends Component {
              numberOfEntities={pastAppointments.length}>
              {pastAppointments.sort((a,b)=> new Date(b.date) - new Date(a.date))
                .map((appointment,index)=>(
+                 // <AppointmentCard
+                 //   key={index}
+                 //   location={appointment.location}
+                 //   date={(addSeven(appointment.date))}
+                 //   time={appointment.time}
+                 //   optician={appointment.optician}
+                 // />
                  <AppointmentCard
                    key={index}
-                   location={appointment.location}
-                   date={(addSeven(appointment.date))}
-                   time={appointment.time}
-                   optician={appointment.optician}
+                   appointment={appointment}
                  />
                ))}
             </CollapsibleParent>

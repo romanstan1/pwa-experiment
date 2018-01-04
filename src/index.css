@@ -588,7 +588,7 @@ div.react-add-to-calendar__dropdown {
   z-index: 1000;
   color: black;
   text-align: left;
-  top: -10px;
+  top: 0px;
   width: 220px;
   left: 45vw;
   height: 100px;
@@ -606,13 +606,12 @@ div.react-add-to-calendar__dropdown {
       text-align: left;
       z-index: 1000;
       padding: 0px;
-      color: white;
       color: #102233;
       border-top: 1px solid #102233;
       border-bottom: 1px solid #102233;
-      background: #283c4e;
       background: white;
-      position: relative; }
+      position: relative;
+      line-height: 38px; }
       div.react-add-to-calendar__dropdown ul a::after {
         content: '+';
         position: absolute;
