@@ -1,11 +1,6 @@
 import React, {Component} from 'react';
-import Webcam from 'react-webcam';
 import { Link } from 'react-router-dom'
-import LinkButton from './modules/LinkButton'
-import Camera from 'react-camera';
-
 import QrReader from 'react-qr-reader'
-
 
 export default class WebcamComponent extends Component {
 
@@ -15,7 +10,6 @@ export default class WebcamComponent extends Component {
   }
   handleScan = (data) => {
     if(!!data) this.setState({ result: data})
-    // else this.setState({ result: null})
   }
 
   handleError = (err) => console.error(err)

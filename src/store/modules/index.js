@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
-import data, {appointmentsReducer} from './reducers'
+import data, {appointmentsReducer, selectNavReducer} from './reducers'
 
 export default combineReducers({
   routing: routerReducer,
   data,
-  appointments: appointmentsReducer
+  appointments: appointmentsReducer,
+  selected: selectNavReducer
 })

@@ -6,13 +6,15 @@ import LinkButton from './modules/LinkButton'
 import {logout,login} from '../store/modules/actions'
 
 class NotLoggedIn extends Component {
-  fingerprint = () => this.props.dispatch(login('tomoconnor', ''))
+  fingerprint = () => {
+    this.props.dispatch(login('tomoconnor', ''))
+  }
   render () {
     return (
       <span>
         <br/><br/>
-        <LinkButton to='/loginpage'>Go to - Log In</LinkButton><br/>
-        <span className='logOutButton' onClick={this.fingerprint}>
+        <LinkButton extraClass='alone' to='/loginpage'>Log In</LinkButton><br/>
+        <span className='logOutButton alone secondary' onClick={this.fingerprint}>
           <span>Use Fingerprint</span>
         </span><br/>
       </span>)
@@ -28,19 +30,25 @@ class LoggedIn extends Component {
         <span className='logOutButton' onClick={this.logOut}>
           <span> Log Out </span>
         </span><br/>
-        <LinkButton to='/homereel'>Go to - Home</LinkButton>
+        <LinkButton to='/homereel'>Go Home</LinkButton>
       </span>)
   }
 }
 
 class Homepage extends Component {
 
+  componentDidUpdate() {
+    const {currentUser,history} = this.props
+    if(!!currentUser) history.push('/homereel')
+  }
+
   render () {
     const {currentUser,dispatch} = this.props
     return (
       <span>
         <Ticket title='Log In'>
-          <MiniTicket>
+          <MiniTicket title='Log In'>
+
           {currentUser?
             <LoggedIn dispatch={dispatch} currentUser={currentUser}/> :
             <NotLoggedIn dispatch={dispatch} />}

@@ -3,14 +3,9 @@ import {connect} from 'react-redux'
 import {addSeven} from '../../store/modules/seed'
 import {cancelOrder,delayOrder} from '../../store/modules/actions'
 import Ticket from '../modules/Ticket'
-import MiniTicket from '../modules/MiniTicket'
-import Card from '../modules/Card'
 import {OrderCard} from '../modules/Card'
 import CollapsibleParent from '../modules/CollapsibleParent'
-
 import LinkButton from '../modules/LinkButton'
-
-const weight = value => <span style={{color:'black', fontWeight:600}}> {value} <br/> </span>
 
 const MultipleOrders = ({orders, upcoming, children}) => {
   return (<span>

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import Ticket from '../../modules/Ticket'
-import {BookSomeoneElse, DefineSelectStrip, NoAppointments,SelectAppointmentType,
+import {BookSomeoneElse, DefineSelectStrip,SelectAppointmentType,
   SelectWhoAppointmentIsFor,AdditionalInfo, getAvailableTimes} from './AppointmentModules'
 import NewGmap from './NewGmap'
 import LinkButton from '../../modules/LinkButton'
@@ -9,6 +9,7 @@ import {bookAppointment,availableStoresAtLocation} from '../../../store/modules/
 import underscore from 'underscore'
 import {fetchNearbyPlaces} from '../../../api/google'
 import {fetchAppointmentsData} from '../../../api/appointments'
+import MiniTicket from '../../modules/MiniTicket'
 
 class BookAppointment extends Component {
 
@@ -61,7 +62,7 @@ class BookAppointment extends Component {
   }
 
   render () {
-    const {selectedStore,appointmentFor,availableDates,appointmentDate,appointmentTime,selectedStoreId} = this.state
+    const {appointmentFor,availableDates,appointmentDate,appointmentTime,selectedStoreId} = this.state
     const {availableStores} = this.props
     if(!!availableDates && availableDates.length > 0) {
       var availableTimes = getAvailableTimes(appointmentDate, availableDates)
@@ -69,49 +70,53 @@ class BookAppointment extends Component {
     return (
       <span className='newWrap bookAppointment'>
         <Ticket title="Book an Appointment">
-          <NewGmap selectedStoreId={selectedStoreId} fetchNearbyPlaces={this.searchForNearbyPlaces}/>
+          <div className='welcomeMessage inverted'> Book a New Appointment </div>
+            <NewGmap selectedStoreId={selectedStoreId} fetchNearbyPlaces={this.searchForNearbyPlaces}/>
+            <div style={{padding:'0 10px'}}>
+              {!!availableStores && !!availableStores[0]?
+                <DefineSelectStrip
+                  name="selectedStore"
+                  giveSelections={this.getSelections}
+                  items={availableStores}/> :null }
 
-          {!!availableStores && !!availableStores[0]?
-            <DefineSelectStrip
-              name="selectedStore"
-              giveSelections={this.getSelections}
-              items={availableStores}/> :null }
+              {!!availableDates && !!availableDates.length?
+                <DefineSelectStrip
+                  name="appointmentDate"
+                  value={this.state.appointmentDate}
+                  giveSelections={this.getSelections}
+                  items={availableDates}/> :null }
 
-          {!!availableDates && !!availableDates.length?
-            <DefineSelectStrip
-              name="appointmentDate"
-              value={this.state.appointmentDate}
-              giveSelections={this.getSelections}
-              items={availableDates}/> :null }
+              {!!availableTimes && !!availableTimes.length?
+                <DefineSelectStrip
+                  noScroll value={this.state.appointmentTime}
+                  name="appointmentTime"
+                  giveSelections={this.getSelections}
+                  items={availableTimes}/> : null}
 
-          {!!availableTimes && !!availableTimes.length?
-            <DefineSelectStrip
-              noScroll value={this.state.appointmentTime}
-              name="appointmentTime"
-              giveSelections={this.getSelections}
-              items={availableTimes}/> : null}
+              {appointmentTime !== ''?
+              <span>
+                <SelectAppointmentType
+                  appointmentType={this.state.appointmentType}
+                  handleTypeChange={this.handleTypeChange}/>
 
-          {appointmentTime !== ''?
-          <span>
-            <SelectAppointmentType
-              appointmentType={this.state.appointmentType}
-              handleTypeChange={this.handleTypeChange}/>
+                <SelectWhoAppointmentIsFor
+                  appointmentFor={this.state.appointmentFor}
+                  handleAppointmentFor={this.handleAppointmentFor}/>
 
-            <SelectWhoAppointmentIsFor
-              appointmentFor={this.state.appointmentFor}
-              handleAppointmentFor={this.handleAppointmentFor}/>
+                { appointmentFor ==='Someone else'?
+                <BookSomeoneElse handleSecondPerson={this.handleSecondPerson}/>
+                : null}
 
-            { appointmentFor ==='Someone else'?
-            <BookSomeoneElse handleSecondPerson={this.handleSecondPerson}/>
-            : null}
+                <AdditionalInfo handleAdditionalInfo={this.handleAdditionalInfo}/><br/>
+                <div onClick={this.handleBookAppointment} className='button primary'> Book Appointment</div><br/>
+              </span>
+              : null }
 
-            <AdditionalInfo handleAdditionalInfo={this.handleAdditionalInfo}/><br/>
-            <div onClick={this.handleBookAppointment} className='button'> Book Appointment</div><br/>
-          </span>
-          : null }
-
-          <LinkButton to='/myappointments'> Go to - My Appointments </LinkButton><br/>
+            <LinkButton extraClass='secondary appointment' to='/myappointments'> Back to my Appointments </LinkButton><br/>
+          </div>
+          <br/>
         </Ticket>
+          <br/>
       </span>)
   }
 }

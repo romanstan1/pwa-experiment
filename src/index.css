@@ -94,6 +94,13 @@ div.button {
   div.button a {
     width: 100%;
     height: 100%; }
+  div.button.primary {
+    background: #159936 !important;
+    color: white; }
+  div.button.cancel {
+    color: red !important; }
+  div.button.directions {
+    text-transform: uppercase; }
 
 div.content-image {
   display: block;
@@ -114,7 +121,22 @@ div.content-image {
     line-height: 100px;
     text-indent: 20px; }
 
-span.linkButton, span.logOutButton {
+span.logOutButton {
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 40px; }
+  span.logOutButton.secondary {
+    border: 1px solid #159936;
+    color: white; }
+    span.logOutButton.secondary a {
+      width: 100%;
+      padding: 0;
+      background: transparent;
+      line-height: 15px; }
+
+span.linkButton {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -122,17 +144,22 @@ span.linkButton, span.logOutButton {
   padding: 12px 0;
   position: relative;
   margin: 10px 0; }
-  span.linkButton.alone, span.logOutButton.alone {
+  span.linkButton.alone {
     margin: 10px 10px 0 10px;
     padding-bottom: 4px; }
-  span.linkButton.secondary, span.logOutButton.secondary {
+  span.linkButton.blue a {
+    background: #102233; }
+  span.linkButton.secondary {
     border: 1px solid #159936;
     color: white; }
-    span.linkButton.secondary a, span.logOutButton.secondary a {
+    span.linkButton.secondary a {
       padding: 0;
       background: transparent;
       line-height: 15px; }
-  span.linkButton a, span.linkButton span, span.logOutButton a, span.logOutButton span {
+  span.linkButton.appointment {
+    background: #102233;
+    border: 0px; }
+  span.linkButton a, span.linkButton span {
     text-align: center;
     cursor: pointer;
     font-weight: 600;
@@ -147,22 +174,22 @@ span.linkButton, span.logOutButton {
     -moz-box-shadow: 0px 1px 2px 2px rgba(0, 0, 0, 0.03);
     box-shadow: 0px 1px 6px 2px rgba(0, 0, 0, 0.03);
     transition: 0.1s ease; }
-    span.linkButton a:hover, span.linkButton span:hover, span.logOutButton a:hover, span.logOutButton span:hover {
+    span.linkButton a:hover, span.linkButton span:hover {
       background: #e8efef;
       background: #f9fbff; }
-  span.linkButton a, span.logOutButton a {
+  span.linkButton a {
     opacity: 0.9;
     background: #159936;
     color: white; }
-    span.linkButton a:hover, span.logOutButton a:hover {
+    span.linkButton a:hover {
       background: #42af85; }
-  span.linkButton.big a, span.logOutButton.big a {
+  span.linkButton.big a {
     margin: 20px 0 15px 0;
     line-height: 70px;
     background: #142119;
     background: linear-gradient(-90deg, #09562d, #101110);
     transition: 0.3s ease-out; }
-    span.linkButton.big a:hover, span.logOutButton.big a:hover {
+    span.linkButton.big a:hover {
       opacity: 0.4; }
 
 div.confirmAppointmentPopUp {
@@ -502,11 +529,8 @@ a.scanQRCode {
 
 div.ticket {
   width: 100%;
-  background: white;
-  background: #f9fbff;
   background: #f2f2f2; }
   div.ticket div.ticketTitle {
-    background: #f9fbff;
     background: white;
     text-align: center;
     padding-top: 20px;
@@ -526,23 +550,31 @@ div.miniTicket {
     box-shadow: 0px 1px 6px 2px rgba(0, 0, 0, 0.03);
     text-align: left;
     background: #fcfcfc;
+    background: #102233;
     position: relative;
     padding-bottom: 0px; }
     div.miniTicket div.miniTicketInnerWrap > span {
+      color: white;
       display: block;
-      text-transform: uppercase;
-      font-weight: 600;
-      font-size: 13px;
-      padding: 15px 0 4px 15px; }
+      font-weight: 400;
+      text-align: center;
+      font-style: italic;
+      font-size: 14px;
+      padding: 15px 0 4px 0px; }
   div.miniTicket div.miniTicketBody {
-    text-align: left; }
+    text-align: left;
+    padding: 0 10px; }
 
 div.cardStyle {
-  padding: 5px;
-  margin: 5px 15px;
-  background: white; }
+  margin: 5px 0; }
   div.cardStyle div {
-    font-size: 12px; }
+    text-align: center;
+    color: white;
+    text-transform: uppercase;
+    font-size: 16px;
+    line-height: 230px;
+    padding: 20px 0;
+    font-weight: 600; }
 
 div.orderAndAppointments {
   color: white;
@@ -566,7 +598,7 @@ div.appointmentCard {
       width: 30%;
       height: 100px;
       background: #283c4e;
-      padding: 20px 0 6px 0; }
+      padding: 15px 0 6px 0; }
       div.appointmentCard > div.firstRow > div h3 {
         line-height: 40px;
         display: block;
@@ -574,15 +606,20 @@ div.appointmentCard {
         padding: 0;
         align-self: center;
         font-size: 12px;
-        font-weight: 400; }
+        font-weight: 400;
+        height: 25px;
+        line-height: 15px; }
       div.appointmentCard > div.firstRow > div svg {
         align-self: center;
-        fill: white; }
+        fill: white;
+        padding-bottom: 9px; }
   div.appointmentCard div.optician {
     display: flex;
-    justify-content: center;
-    background: #283c4e;
+    justify-content: start;
+    padding-left: 10px;
     margin: 10px 0;
+    line-height: 40px;
+    height: 40px;
     margin-bottom: 30px; }
     div.appointmentCard div.optician h2, div.appointmentCard div.optician h3, div.appointmentCard div.optician span {
       display: inline-block;
@@ -599,6 +636,30 @@ div.appointmentCard {
       font-weight: 600; }
   div.appointmentCard:last-of-type div.optician {
     margin-bottom: 10px; }
+  div.appointmentCard div.children {
+    padding-bottom: 1px; }
+    div.appointmentCard div.children h2, div.appointmentCard div.children h3 {
+      font-size: 14px;
+      display: inline-block;
+      padding: 0;
+      margin: 0; }
+    div.appointmentCard div.children h3 {
+      font-weight: 400;
+      padding-left: 10px; }
+    div.appointmentCard div.children > div {
+      background: #283c4e;
+      padding: 10px;
+      margin: 10px 0; }
+      div.appointmentCard div.children > div.someoneElse > div {
+        padding-left: 10px; }
+        div.appointmentCard div.children > div.someoneElse > div:first-of-type {
+          padding-left: 0px;
+          margin-bottom: 10px; }
+    div.appointmentCard div.children div.extras {
+      background: transparent !important; }
+    div.appointmentCard div.children div.button {
+      background: transparent;
+      margin: 15px 10px; }
 
 div.orderCard {
   display: flex;
@@ -671,12 +732,13 @@ div.noAppointments {
 
 div.selectStrip {
   display: flex;
-  margin: 0px 10px;
-  border: 1px solid #f2f2f2;
   flex-direction: row;
   overflow-x: scroll;
-  padding: 10px 0;
-  background: white; }
+  padding: 0;
+  padding-top: 15px;
+  margin-bottom: 5px;
+  background: #d4d5d6;
+  background: #102233; }
   div.selectStrip > span.stripItem {
     display: inline-flex;
     align-self: center;
@@ -689,6 +751,7 @@ div.selectStrip {
     z-index: 15;
     cursor: pointer; }
     div.selectStrip > span.stripItem span {
+      background: white;
       position: relative;
       text-align: center;
       padding: 5px;
@@ -696,25 +759,42 @@ div.selectStrip {
       display: flex;
       justify-content: center;
       z-index: 5;
-      border: 1px solid #f2f2f2;
-      font-size: 11.5px;
-      text-transform: uppercase;
+      font-size: 13px;
       flex-direction: column; }
       div.selectStrip > span.stripItem span div {
         align-self: center;
         width: 100%;
         align-content: stretch; }
         div.selectStrip > span.stripItem span div.distance {
-          width: 100px; }
+          width: 100px;
+          margin-top: 5px; }
+        div.selectStrip > span.stripItem span div.item {
+          font-weight: 600; }
     div.selectStrip > span.stripItem.date {
       height: 120px; }
+      div.selectStrip > span.stripItem.date div {
+        background: inherit; }
+        div.selectStrip > span.stripItem.date div span {
+          background: inherit;
+          padding: 0 !important;
+          margin: 0 !important;
+          width: 100%;
+          height: 30px;
+          font-size: 15px; }
+          div.selectStrip > span.stripItem.date div span.day {
+            text-transform: uppercase;
+            font-size: 19px;
+            font-weight: 600; }
     div.selectStrip > span.stripItem.store {
       height: 110px;
       width: 110px; }
       div.selectStrip > span.stripItem.store span {
         width: 100px; }
     div.selectStrip > span.stripItem.time {
-      height: 40px; }
+      height: 60px; }
+      div.selectStrip > span.stripItem.time div {
+        font-size: 14px;
+        font-weight: 600; }
     div.selectStrip > span.stripItem > div {
       position: absolute;
       top: 0;
@@ -723,8 +803,6 @@ div.selectStrip {
       bottom: 0;
       height: 100%;
       z-index: 10; }
-    div.selectStrip > span.stripItem:hover span {
-      border: 1px solid #d4d5d6; }
   div.selectStrip.noScroll {
     display: flex;
     height: auto;
@@ -737,21 +815,20 @@ div.selectStrip {
       margin: 5px 0 5px 0; }
 
 span.appointmentInput {
-  padding: 5px 10px 0 10px;
+  padding: 15px 0px 0 0px;
   display: block;
   width: 100%;
   text-align: left; }
   span.appointmentInput label {
-    height: 28px;
-    line-height: 28px;
+    height: 42px;
+    line-height: 42px;
     display: block;
     font-weight: 600;
     margin-top: 5px;
-    margin-bottom: -1px;
-    background: #f9fbff;
+    background: #283c4e;
+    color: white;
     text-indent: 20px;
-    font-size: 12px;
-    border: 1px solid #f2f2f2; }
+    font-size: 14px; }
   span.appointmentInput input, span.appointmentInput textarea {
     width: 100%;
     font-weight: 600;
@@ -760,7 +837,6 @@ span.appointmentInput {
     text-align: left;
     text-align: -webkit-left;
     outline: none;
-    border: 1px solid #f2f2f2;
     border-radius: 0px;
     line-height: 34px;
     text-indent: 20px; }
@@ -779,14 +855,14 @@ span.formInput {
   justify-content: center;
   align-items: center; }
   span.formInput > form {
-    padding: 10px;
+    padding: 10px 0;
     display: block;
     width: 100%;
     text-align: left; }
     span.formInput > form span.nested label {
       text-indent: 20px;
-      height: 28px;
-      line-height: 28px; }
+      height: 42px;
+      line-height: 42px; }
     span.formInput > form span.nested > input {
       text-indent: 20px;
       height: 34px;
@@ -796,12 +872,12 @@ span.formInput {
     span.formInput > form span.nested label, span.formInput > form span.nested input, span.formInput > form span.nested div > div > div.Select-control {
       width: 100%;
       font-weight: 600;
-      font-size: 12px;
+      font-size: 13px;
       padding: 0px;
       text-align: left;
       text-align: -webkit-left;
       outline: none;
-      border: 1px solid #f2f2f2;
+      border: 0px solid #f2f2f2;
       border-radius: 0px; }
       span.formInput > form span.nested label span.Select-multi-value-wrapper, span.formInput > form span.nested input span.Select-multi-value-wrapper, span.formInput > form span.nested div > div > div.Select-control span.Select-multi-value-wrapper {
         display: block;
@@ -825,9 +901,9 @@ span.formInput {
       display: block;
       font-weight: 600;
       margin-top: 20px;
-      margin-bottom: -1px;
-      background: #f9fbff;
-      text-indent: 20px; }
+      background: #283c4e;
+      text-indent: 20px;
+      color: white; }
     span.formInput > form span.nested input[type="submit"] {
       margin-top: 20px;
       text-indent: 0px;
@@ -838,13 +914,11 @@ span.formInput {
       text-align: center;
       text-align: -webkit-center;
       background: #f9fbff;
-      background: #e8efef;
-      height: 28px;
-      line-height: 28px; }
-      span.formInput > form span.nested input[type="submit"]:hover {
-        background: #159936;
-        background: #f9fbff;
-        color: black; }
+      background: #102233;
+      height: 42px;
+      line-height: 42px;
+      border: 1px solid #159936;
+      color: white; }
 
 div.welcomeMessage {
   font-size: 15px;
@@ -855,6 +929,11 @@ div.welcomeMessage {
   margin-top: 20px;
   color: white;
   padding: 10px 10px; }
+  div.welcomeMessage.inverted {
+    margin-top: 0px;
+    padding: 15px 10px;
+    background: #102233;
+    font-weight: 400; }
 
 div.Select.Select--single.is-focused.is-searchable.has-value {
   box-shadow: none;
@@ -884,21 +963,22 @@ div.react-datepicker-wrapper div input {
   background: #f7f9fc;
   padding-left: 10px; }
 
-div.goodAfternoon {
+div.goodAfternoon, div.pagenotfound {
   display: block;
   text-align: center;
-  padding-top: 40px;
-  line-height: 50px;
-  font-size: 13px;
-  font-weight: 600; }
+  padding-top: 30px;
+  line-height: 40px;
+  font-size: 14px;
+  color: white; }
 
 nav {
   position: fixed;
   width: 100%;
   height: 70px;
   background: white;
-  border-top: 1px solid #d4d5d6;
+  border-top: 2px solid #d4d5d6;
   bottom: 0px;
+  padding-bottom: 3px;
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -908,16 +988,17 @@ nav {
     display: inline-flex;
     overflow: visible; }
     nav div a {
-      text-transform: uppercase;
+      text-transform: capitalize;
       padding: 0 12px;
       display: block;
-      line-height: 70px;
+      line-height: 66px;
       font-weight: 600;
       color: black;
-      font-size: 13px;
-      overflow: visible; }
-      nav div a:hover {
-        color: grey; }
+      font-size: 14.5px;
+      overflow: visible;
+      color: #102233; }
+    nav div.active a {
+      color: #159936; }
 
 span.notificationBubble {
   position: absolute;

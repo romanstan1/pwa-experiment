@@ -82,6 +82,13 @@ export const updateAccountDetails = (username, password) => {
 
 // Misc Actions - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+export const selectNav = (selected) => {
+  return dispatch => dispatch({
+    type: 'SELECT_NAV',
+    payload: selected
+  })
+}
+
 export const delayOrder = (id) => {
   return dispatch => dispatch({
     type: 'DELAY_ORDER',
@@ -121,6 +128,7 @@ export const clearAppointmentCache = () => {
     type: 'CLEAR_APPOINTMENT_CACHE'
   })
 }
+
 // Delete Actions - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 export const deleteAppointment = (id) => {

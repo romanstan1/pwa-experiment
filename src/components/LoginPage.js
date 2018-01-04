@@ -17,16 +17,15 @@ class LoginPage extends Component {
 
   componentDidUpdate = () => {
     const {currentUser, history} = this.props
-    if(currentUser) history.push('/myspecsavers')
+    if(currentUser) history.push('/homereel')
   }
 
   render () {
     return (
       <span>
         <Ticket title='Log In'>
-          <MiniTicket>
+          <MiniTicket title='Log In'>
             <div className='goodAfternoon'>Good afternoon. Please log in</div>
-            <br/>
             <FormInput
               handleForm={this.handleForm}
               inputOne='Username'

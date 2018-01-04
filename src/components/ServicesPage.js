@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import Ticket from './modules/Ticket'
-import MiniTicket from './modules/MiniTicket'
-import {BigButton} from './modules/LinkButton'
+import LinkButton from './modules/LinkButton'
 
 export default class ServicesPage extends Component {
 
@@ -9,15 +8,9 @@ export default class ServicesPage extends Component {
     return (
       <span >
         <Ticket title="Services">
-          <MiniTicket>
-            <BigButton to='/neworder'> Go to - Place a New Order</BigButton>
-          </MiniTicket>
-          <MiniTicket>
-            <BigButton to='/bookappointment'> Go to - Book a New Appointment</BigButton>
-          </MiniTicket>
-          <MiniTicket>
-            <BigButton to='/myspecsavers'> Go to - Create a New Subscription</BigButton>
-          </MiniTicket>
+          <LinkButton extraClass='alone blue' to='/neworder'>Place a new order</LinkButton>
+          <LinkButton extraClass='alone' to='/bookappointment'>Book a new appointment</LinkButton>
+          <LinkButton extraClass='alone blue' to='/webcam'>Update your subscription</LinkButton>
         </Ticket>
       </span>
     )

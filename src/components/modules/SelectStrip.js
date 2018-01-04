@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
+import moment from 'moment'
 
-const specsaverGreen = '#118848'
+const specsaverGreen = '#159936'
 const mapObjectToArray =  items => items.map(item=>{
   if(!!item.name) return item.name
   else return item.date
@@ -36,11 +37,19 @@ class StripNonStoreItem extends Component {
   }
   render() {
     const {item,placeId,selectedValue,name} = this.props
+    console.log("item",item)
     return (
     <span className={name === 'appointmentDate'? 'stripItem date':'stripItem time'}>
       <div data-value={item} data-place={placeId} onClick={this.onClick}>
       </div>
-      <span style={selectedValue === item? {background:specsaverGreen,color:'white'} : null}><div>{item}</div></span>
+      <span style={selectedValue === item? {background:specsaverGreen,color:'white'} : null}>
+        {name === 'appointmentDate'?
+        <div>
+          <span className='day'>{moment(item, 'MMM DD YYYY').format('llll').slice(0, 3)}</span>
+          <span>{moment(item, 'MMM DD YYYY').format('ll').slice(0, -6)}</span>
+        </div>
+        :<div>{item}</div>}
+      </span>
     </span>)
   }
 }

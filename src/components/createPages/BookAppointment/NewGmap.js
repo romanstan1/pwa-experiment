@@ -1,4 +1,4 @@
-import React, { Component, PureComponent} from 'react';
+import React, { Component } from 'react';
 import GoogleMap from 'google-map-react';
 import {connect} from 'react-redux'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'

@@ -124,6 +124,16 @@ div.button {
     width: 100%;
     height: 100%;
   }
+  &.primary {
+    background: $green !important;
+    color:white;
+  }
+  &.cancel {
+    color:red !important;
+  }
+  &.directions {
+    text-transform: uppercase;
+  }
 }
 div.content-image {
   display: block;
@@ -149,7 +159,27 @@ div.content-image {
   }
 }
 
-span.linkButton, span.logOutButton {
+
+span.logOutButton {
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 40px;
+  &.secondary {
+    border: 1px solid $green;
+    color: white;
+    a {
+      width: 100%;
+      padding: 0;
+      background: transparent;
+      line-height: 15px;
+    }
+  }
+
+}
+
+span.linkButton {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -161,9 +191,10 @@ span.linkButton, span.logOutButton {
     margin: 10px 10px 0 10px;
     padding-bottom: 4px;
   }
+  &.blue a {
+    background: $navy;
+  }
   &.secondary {
-    // margin: 10px 10px 0 10px;
-    // padding-bottom: 4px;
     border: 1px solid $green;
     color: white;
     a {
@@ -172,11 +203,14 @@ span.linkButton, span.logOutButton {
       line-height: 15px;
     }
   }
+  &.appointment {
+    background: $navy;
+    border: 0px;
+  }
   a,span {
     text-align: center;
     cursor: pointer;
     font-weight: 600;
-    // margin: 0 10px;
     padding: 10px;
     width: 100%;
     line-height: 20px;
@@ -663,11 +697,8 @@ a.scanQRCode {
 
 div.ticket {
   width: 100%;
-  background: white;
-  background: #f9fbff;
   background: #f2f2f2;
   div.ticketTitle {
-    background: #f9fbff;
     background: white;
     text-align: center;
     padding-top: 20px;
@@ -696,29 +727,39 @@ div.miniTicket {
     box-shadow: 0px 1px 6px 2px rgba(0,0,0,0.03);
     text-align: left;
     background: $lightGrey;
-    // background: $navy;
+    background: $navy;
     position: relative;
     padding-bottom: 0px;
     > span {
+      color: white;
       display: block;
-      text-transform: uppercase;
-      font-weight: 600;
-      font-size: 13px;
-      padding:15px 0 4px 15px;
+      // text-transform: uppercase;
+      font-weight: 400;
+      text-align: center;
+      font-style: italic;
+      font-size: 14px;
+      padding:15px 0 4px 0px;
     }
   }
   div.miniTicketBody {
     text-align: left;
+    padding: 0 10px;
   }
 }
 
 div.cardStyle {
-  padding: 5px;
-  margin: 5px 15px;
+  // padding: 15px;
+  margin: 5px 0;
   // border: 1px $slate solid;
-  background: white;
+  // background: white;
   div {
-    font-size: 12px;
+    text-align: center;
+    color: white;
+    text-transform: uppercase;
+    font-size: 16px;
+    line-height: 230px;
+    padding: 20px 0;
+    font-weight: 600;
   }
 }
 
@@ -746,7 +787,7 @@ div.appointmentCard {
       width: 30%;
       height: 100px;
       background: $lightNavy;
-      padding: 20px 0 6px 0;
+      padding: 15px 0 6px 0;
       h3 {
         line-height: 40px;
         display: block;
@@ -755,19 +796,25 @@ div.appointmentCard {
         align-self: center;
         font-size: 12px;
         font-weight: 400;
+        height: 25px;
+        line-height: 15px;
       }
       svg {
         align-self: center;
         fill:white;
+        padding-bottom: 9px;
       }
     }
   }
   div.optician {
     display: flex;
-    justify-content: center;
-    background: $lightNavy;
+    justify-content: start;
+    // background: $lightNavy;
     // height: 40px;
+    padding-left: 10px;
     margin: 10px 0;
+    line-height: 40px;
+    height: 40px;
     margin-bottom: 30px;
     h2,h3,span {
       // height: 10px;
@@ -785,6 +832,39 @@ div.appointmentCard {
   }
   &:last-of-type div.optician {
     margin-bottom: 10px;
+  }
+  div.children {
+    padding-bottom: 1px;
+    h2,h3 {
+      font-size: 14px;
+      display: inline-block;
+      padding: 0;
+      margin: 0;
+    }
+    h3 {font-weight: 400; padding-left: 10px;}
+    > div {
+      background: $lightNavy;
+      padding: 10px;
+      margin: 10px 0;
+      &.someoneElse {
+        > div {
+          // background: red;
+          padding-left: 10px;
+         &:first-of-type {
+            // background: green;
+            padding-left: 0px;
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+    div.extras,  {
+      background: transparent !important;
+    }
+    div.button {
+      background: transparent;
+      margin: 15px 10px;
+    }
   }
 }
 
@@ -896,13 +976,16 @@ div.noAppointments {
 
 div.selectStrip {
   display: flex;
-  margin: 0px 10px;
-  border: 1px solid $grey;
+  // margin: 0px 10px;
+  // border: 1px solid $grey;
   flex-direction: row;
   overflow-x: scroll;
   // height: 100px;
-  padding: 10px 0;
-  background: white;
+  padding: 0;
+  padding-top: 15px ;
+  margin-bottom: 5px;
+  background: $slate;
+  background: $navy;
   > span.stripItem{
     display:inline-flex;
     align-self: center;
@@ -914,6 +997,7 @@ div.selectStrip {
     color: black;
     z-index: 15;
     span {
+      background: white;
       position: relative;
       // align-self: center;
       text-align: center;
@@ -925,10 +1009,10 @@ div.selectStrip {
       // background: red;
       z-index: 5;
       // border-radius: 5px;
-      border: 1px solid $grey;
+      // border: 1px solid $grey;
       // height: 0px;
-      font-size: 11.5px;
-      text-transform: uppercase;
+      font-size: 13px;
+      // text-transform: uppercase;
       flex-direction: column;
       div {
         align-self: center;
@@ -939,14 +1023,32 @@ div.selectStrip {
           // background: tomato;
           width: 100px;
           // position: relative;
+          margin-top: 5px;
         }
         &.item {
+          font-weight: 600;
           // background: red;
         }
       }
     }
     &.date {
       height: 120px;
+      div {
+        background: inherit;
+        span {
+            background: inherit;
+          padding: 0 !important;
+          margin: 0 !important;
+          width: 100%;
+          height: 30px;
+          font-size: 15px;
+          &.day {
+            text-transform: uppercase;
+            font-size: 19px;
+            font-weight: 600;
+          }
+        }
+      }
     }
     &.store {
       height: 110px;
@@ -957,7 +1059,11 @@ div.selectStrip {
       }
     }
     &.time {
-      height: 40px;
+      height: 60px;
+      div {
+        font-size: 14px;
+        font-weight: 600;
+      }
     }
     cursor: pointer;
     // &:last-of-type {
@@ -977,7 +1083,7 @@ div.selectStrip {
     }
     &:hover {
       span {
-        border: 1px solid $slate;
+        // border: 1px solid $slate;
       }
     }
   }
@@ -996,21 +1102,20 @@ div.selectStrip {
 }
 
 span.appointmentInput {
-  padding: 5px 10px 0 10px;
+  padding: 15px 0px 0 0px;
   display: block;
   width:100%;
   text-align: left;
   label {
-    height: 28px;
-    line-height: 28px;
+    height: 42px;
+    line-height: 42px;
     display: block;
     font-weight: 600;
     margin-top: 5px;
-    margin-bottom: -1px;
-    background: $greyBlue;
+    background: $lightNavy;
+    color: white;
     text-indent: 20px;
-    font-size:12px;
-    border: 1px solid $grey;
+    font-size:14px;
   }
   input,textarea {
     width: 100%;
@@ -1020,7 +1125,6 @@ span.appointmentInput {
     text-align: left;
     text-align:-webkit-left;
     outline: none;
-    border: 1px solid $grey;
     border-radius: 0px;
     line-height: 34px;
     text-indent: 20px;
@@ -1043,15 +1147,15 @@ span.formInput {
   justify-content:center;
   align-items:center;
   > form {
-    padding: 10px;
+    padding: 10px 0;
     display: block;
     width:100%;
     text-align: left;
     span.nested {
       label {
         text-indent: 20px;
-        height: 28px;
-        line-height: 28px;
+        height: 42px;
+        line-height: 42px;
       }
       > input {
         text-indent: 20px;
@@ -1064,12 +1168,12 @@ span.formInput {
       label, input, div > div > div.Select-control{
         width: 100%;
         font-weight:600;
-        font-size:12px;
+        font-size:13px;
         padding: 0px;
         text-align: left;
         text-align:-webkit-left;
         outline: none;
-        border: 1px solid $grey;
+        border: 0px solid $grey;
         border-radius: 0px;
         span.Select-multi-value-wrapper {
           display: block;
@@ -1099,9 +1203,9 @@ span.formInput {
         display: block;
         font-weight: 600;
         margin-top: 20px;
-        margin-bottom: -1px;
-        background: $greyBlue;
+        background: $lightNavy;
         text-indent: 20px;
+        color: white;
       }
       input[type="submit"] {
         margin-top: 20px;
@@ -1113,14 +1217,11 @@ span.formInput {
         text-align: center;
         text-align:-webkit-center;
         background: $greyBlue;
-        background: #e8efef;
-        height: 28px;
-        line-height: 28px;
-        &:hover {
-          background: $green;
-          background: $greyBlue;
-          color:black;
-        }
+        background: $navy;
+        height: 42px;
+        line-height: 42px;
+        border: 1px solid $green;
+        color: white;
       }
     }
   }
@@ -1135,6 +1236,12 @@ div.welcomeMessage {
   margin-top: 20px;
   color: white;
   padding: 10px 10px;
+  &.inverted {
+    margin-top: 0px;
+    padding: 15px 10px;
+    background: $navy;
+    font-weight: 400;
+  }
 }
 div.Select.Select--single.is-focused.is-searchable.has-value {
   box-shadow:none;
@@ -1173,13 +1280,14 @@ div.react-datepicker-wrapper {
     }
   }
 }
-div.goodAfternoon {
+
+div.goodAfternoon, div.pagenotfound {
   display: block;
   text-align: center;
-  padding-top: 40px;
-  line-height: 50px;
-  font-size: 13px;
-  font-weight: 600;
+  padding-top: 30px;
+  line-height: 40px;
+  font-size: 14px;
+  color: white;
 }
 
 nav {
@@ -1187,8 +1295,9 @@ nav {
   width: 100%;
   height: 70px;
   background:white;
-  border-top: 1px solid $slate;
+  border-top: 2px solid $slate;
   bottom: 0px;
+  padding-bottom: 3px;
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -1198,17 +1307,19 @@ nav {
     display: inline-flex;
     overflow: visible;
     a {
-      text-transform: uppercase;
+      text-transform: capitalize;
       padding: 0 12px;
       display: block;
-      line-height: 70px;
+      line-height: 66px;
       font-weight: 600;
       color: black;
-      font-size: 13px;
+      font-size: 14.5px;
+      // padding-top:5px;
       overflow: visible;
-      &:hover {
-        color: grey;
-      }
+      color: $navy;
+    }
+    &.active a{
+      color: $green;
     }
   }
 }

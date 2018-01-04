@@ -3,10 +3,8 @@ import {connect} from 'react-redux'
 import imagePic from '../../content/images/tomoconner.jpg'
 import {deleteCard} from '../../store/modules/actions'
 import Collapsible from 'react-collapsible';
-
 import LinkButton from '../modules/LinkButton'
 import Ticket from '../modules/Ticket'
-import MiniTicket from '../modules/MiniTicket'
 import ChatIntercom from '../modules/ChatIntercom'
 
 // const objectFilter = (obj, predicate) => // returns a filtered object

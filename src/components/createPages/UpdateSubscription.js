@@ -1,11 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-
 import Ticket from '../modules/Ticket'
 import MiniTicket from '../modules/MiniTicket'
 import FormInput from '../modules/FormInput'
-import LinkButton from '../modules/LinkButton'
-
 import {updateSubscription} from '../../store/modules/actions'
 
 class UpdateSubscription extends Component {

@@ -1,11 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-
 import Ticket from '../modules/Ticket'
 import MiniTicket from '../modules/MiniTicket'
 import FormInput from '../modules/FormInput'
-import LinkButton from '../modules/LinkButton'
-
 import {updateAccountDetails} from '../../store/modules/actions'
 
 class UpdateAccount extends Component {
@@ -23,7 +20,7 @@ class UpdateAccount extends Component {
     return (
       <span>
         <Ticket title="Update My Personal Details">
-          <MiniTicket>
+          <MiniTicket title="Update My Personal Details">
             <FormInput
               handleForm={this.handleForm}
               inputOne='Username'

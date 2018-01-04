@@ -15,7 +15,7 @@ export default class Card extends Component {
   }
 }
 
-export const AppointmentCard = ({location, date, time, optician, children}) =>
+export const AppointmentCard = ({extraClass,location, date, time, optician, children}) =>
   <div className='appointmentCard'>
     <div className='firstRow'>
       <div><EventIcon/><h3>{date}</h3></div>

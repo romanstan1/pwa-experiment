@@ -13,6 +13,13 @@ export const appointmentsReducer = (state='', action) =>{
   }
 }
 
+export const selectNavReducer = (state='', action) =>{
+  switch(action.type){
+    case 'SELECT_NAV': return action.payload
+    default: return state
+  }
+}
+
 export default (state=initialState, action)=>{
   switch(action.type){
     case 'LOGIN': return {

@@ -1,10 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-
+import MiniTicket from '../modules/MiniTicket'
 import Ticket from '../modules/Ticket'
 import FormInput from '../modules/FormInput'
-import LinkButton from '../modules/LinkButton'
-
 import {addCard} from '../../store/modules/actions'
 
 class AddCard extends Component {
@@ -21,12 +19,14 @@ class AddCard extends Component {
     return (
       <span>
         <Ticket title="Add a Payment Card">
-          <FormInput
-            handleForm={this.handleForm}
-            inputOne='Select Card Type'
-            inputTwo='Input Card Number'
-            submitName='Add Card'/>
-            <br/>
+          <MiniTicket title="Add a Payment Card">
+            <FormInput
+              handleForm={this.handleForm}
+              inputOne='Select Card Type'
+              inputTwo='Input Card Number'
+              submitName='Add Card'/>
+              <br/>
+          </MiniTicket>
         </Ticket>
       </span>)
   }

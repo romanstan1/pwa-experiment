@@ -1,11 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-
 import Ticket from '../modules/Ticket'
 import MiniTicket from '../modules/MiniTicket'
 import FormInput from '../modules/FormInput'
-import LinkButton from '../modules/LinkButton'
-
 import {updatePerscription} from '../../store/modules/actions'
 
 class UpdatePerscription extends Component {
@@ -23,7 +20,7 @@ class UpdatePerscription extends Component {
     return (
       <span>
         <Ticket title="Update My Perscription">
-          <MiniTicket>
+          <MiniTicket title="Update My Perscription">
             <FormInput
               handleForm={this.handleForm}
               inputOne='Left Eye'

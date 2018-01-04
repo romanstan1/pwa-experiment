@@ -2,8 +2,6 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import moment from 'moment'
 import Ticket from '../modules/Ticket'
-import MiniTicket from '../modules/MiniTicket'
-import Card from '../modules/Card'
 import LinkButton from '../modules/LinkButton'
 import {deleteAppointment} from '../../store/modules/actions'
 import {addSeven} from '../../store/modules/seed'
@@ -11,20 +9,20 @@ import {AppointmentCard} from '../modules/Card'
 import CollapsibleParent from '../modules/CollapsibleParent'
 
 
-const MultipleAppointments = ({currentUser}) => {
-  const upcomingAppointments = currentUser.appointments.filter(app => moment(app.date,'MMMDDYYYY') >= moment())
-  return (<span> <div className='orderAndAppointments'>My eye tests</div>
-    {upcomingAppointments.sort((a,b)=> new Date(b.date) - new Date(a.date))
-      .map((appointment,index)=>(
-        <AppointmentCard
-          key={index}
-          location={appointment.location}
-          date={(addSeven(appointment.date))}
-          time={appointment.time}
-        />
-      ))}
-    </span>)
-}
+// const MultipleAppointments = ({currentUser}) => {
+//   const upcomingAppointments = currentUser.appointments.filter(app => moment(app.date,'MMMDDYYYY') >= moment())
+//   return (<span> <div className='orderAndAppointments'>My eye tests</div>
+//     {upcomingAppointments.sort((a,b)=> new Date(b.date) - new Date(a.date))
+//       .map((appointment,index)=>(
+//         <AppointmentCard
+//           key={index}
+//           location={appointment.location}
+//           date={(addSeven(appointment.date))}
+//           time={appointment.time}
+//         />
+//       ))}
+//     </span>)
+// }
 
 
 class MyAppointments extends Component {
@@ -53,7 +51,7 @@ class MyAppointments extends Component {
                    time={appointment.time}
                    optician={appointment.optician}
                  >
-                <div id={appointment.id} className='button' onClick={this.deleteAppointment}> Cancel Appointment</div>
+                <div id={appointment.id} className='button cancel' onClick={this.deleteAppointment}> Cancel Appointment</div>
                 </AppointmentCard>
               ))}
           </CollapsibleParent>
@@ -74,7 +72,7 @@ class MyAppointments extends Component {
             </CollapsibleParent>
         </div>
 
-        <LinkButton extraClass='alone' to='/bookappointment'>Find Appointment </LinkButton>
+        <LinkButton extraClass='alone' to='/bookappointment'>Book a New Appointment </LinkButton>
         <br/><br/><br/>
       </Ticket>
     </span>)

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Route,Router,Switch} from 'react-router-dom'
 import {connect} from 'react-redux'
-import createBrowserHistory from 'history/createBrowserHistory'
 import Header from './modules/Header'
 
 import HomePage from './HomePage'
@@ -24,8 +23,7 @@ import UpdateSubscription from './createPages/UpdateSubscription'
 import UpdatePerscription from './createPages/UpdatePerscription'
 import UpdateDetails from './createPages/UpdateDetails'
 import UpdateAccount from './createPages/UpdateAccount'
-
-const history = createBrowserHistory()
+import {history} from '../store'
 
 class App extends Component {
   render() {
@@ -38,7 +36,8 @@ class App extends Component {
                 <Route exact path="/" component={HomePage} />
                 <Route exact path="/loginpage" component={LoginPage} />
                 <Route component={HomePage}/>
-              </Switch> :
+              </Switch>
+              :
               <Switch>
                 <Route exact path="/" component={HomePage} />
                 <Route exact path="/loginpage" component={LoginPage} />
@@ -63,12 +62,13 @@ class App extends Component {
 
                 <Route component={ErrorPage}/>
               </Switch>
-            }
-            <Header/>
+             }
+             <Header/>
         </div>
-      </Router>)
+      </Router>
+    )
   }
 }
-  export default connect(state => ({
-    currentUser: state.data.currentUser
-  }))(App)
+export default connect(state => ({
+  currentUser: state.data.currentUser
+}))(App)
