@@ -61,8 +61,18 @@ export const initialState = {
       first_name: 'Tom',
       last_name: "O'Connor",
       dob: beforeDate(12775),
-      left_eye: -7.3,
-      right_eye: -6.8,
+      prescription: {
+        left_eye: {
+          'D': '+3.25',
+          'BC': '8.5',
+          'DIA': '14.2'
+        },
+        right_eye: {
+          'D': '+3.75',
+          'BC': '8.0',
+          'DIA': '14.6'
+        }
+      },
       address:'21 Kingston Road, London',
       postcode:'SW20 9BT',
       payment_cards: [
@@ -123,8 +133,18 @@ export const initialState = {
           purchase_date: beforeDate(4),
           brand: random(brandNames),
           type: random(lenseTypes),
-          left_eye: -2.3,
-          right_eye: -2.8,
+          prescription: {
+            left_eye: {
+              'D': '+3.25',
+              'BC': '8.5',
+              'DIA': '14.2'
+            },
+            right_eye: {
+              'D': '+3.75',
+              'BC': '8.0',
+              'DIA': '14.6'
+            }
+          },
           order_type:'Individual',
           status: 'Processing',
           id:831629
@@ -133,8 +153,18 @@ export const initialState = {
           purchase_date: beforeDate(80),
           brand: random(brandNames),
           type: random(lenseTypes),
-          left_eye: -7.0,
-          right_eye: -6.6,
+          prescription: {
+            left_eye: {
+              'D': '+3.25',
+              'BC': '8.5',
+              'DIA': '14.2'
+            },
+            right_eye: {
+              'D': '+3.75',
+              'BC': '8.0',
+              'DIA': '14.6'
+            }
+          },
           order_type:'Individual',
           status: 'Completed',
           id:231621

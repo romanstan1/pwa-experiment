@@ -1066,6 +1066,47 @@ a.react-datepicker__navigation.react-datepicker__navigation--previous, a.react-d
   a.react-datepicker__navigation.react-datepicker__navigation--previous:hover, a.react-datepicker__navigation.react-datepicker__navigation--next:hover {
     background: none; }
 
+div.prescriptionGrid {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  line-height: 30px;
+  text-indent: 10px;
+  border: 1px solid white; }
+  div.prescriptionGrid.order {
+    margin: 10px;
+    line-height: 23px; }
+    div.prescriptionGrid.order h2 {
+      margin: 0;
+      font-size: 13px;
+      line-height: 28px;
+      border: 1px solid white; }
+    div.prescriptionGrid.order div.top {
+      font-weight: 400;
+      font-size: 12px !important; }
+    div.prescriptionGrid.order div.cell {
+      padding: 0 12px !important; }
+    div.prescriptionGrid.order div.bottom {
+      font-size: 12px !important; }
+  div.prescriptionGrid div.top {
+    width: 100%;
+    font-weight: 600;
+    border: 1px solid white;
+    font-size: 14px;
+    text-indent: 20px;
+    background: #283c4e; }
+  div.prescriptionGrid div.bottom {
+    border: 1px solid white;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; }
+    div.prescriptionGrid div.bottom div.cell {
+      padding: 0 12px; }
+      div.prescriptionGrid div.bottom div.cell span.bold {
+        font-weight: 600;
+        padding-right: 5px; }
+
 div.react-datepicker-wrapper div input {
   margin-top: 4px;
   width: 250px;

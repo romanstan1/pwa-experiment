@@ -63,8 +63,7 @@ export default (state=initialState, action)=>{
           purchase_date: moment().format('ll'),
           brand: action.brand,
           type: action.lenseType,
-          left_eye: state.currentUser.left_eye,
-          right_eye:state.currentUser.right_eye,
+          prescription: state.currentUser.prescription,
           order_type: 'Individual',
           status:'Processing',
           id:_.random(1,999999)
@@ -139,13 +138,12 @@ export default (state=initialState, action)=>{
       currentUser: {
         ...state.currentUser,
         orders: [].concat(state.currentUser.orders.map(order => ({
-            ...order,
-            status: checkDate(order.purchase_date)})), [{
+          ...order,
+          status: checkDate(order.purchase_date)})), [{
           purchase_date: state.currentUser.subscription.next_arrival_date,
           brand: state.currentUser.subscription.brand,
           type: state.currentUser.subscription.type,
-          left_eye: state.currentUser.left_eye,
-          right_eye:state.currentUser.right_eye,
+          prescription: state.currentUser.prescription,
           order_type: 'Subscription',
           status:checkDate(state.currentUser.subscription.next_arrival_date),
           id:_.random(1,999999)

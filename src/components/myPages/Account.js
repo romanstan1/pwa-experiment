@@ -5,13 +5,8 @@ import {deleteCard} from '../../store/modules/actions'
 import Collapsible from 'react-collapsible';
 import LinkButton from '../modules/LinkButton'
 import Ticket from '../modules/Ticket'
+import {PrescriptionGrid} from '../modules/Card'
 import ChatIntercom from '../modules/ChatIntercom'
-
-// const objectFilter = (obj, predicate) => // returns a filtered object
-//   Object.keys(obj).filter(key => predicate(obj[key]))
-//   .reduce((res, key) => {
-//     return res[key] = obj[key],res
-//   }, {})
 
 class Account extends Component {
   deleteCard = event => this.props.dispatch(deleteCard(parseInt(event.target.id,10)))
@@ -30,8 +25,7 @@ class Account extends Component {
               <span><img src={imagePic} alt="Profile"/></span>
             </div>
             <Collapsible triggerSibling={()=><span className='titleCollapse'> My Prescription</span>} transitionTime={100} trigger=" ">
-              <p>Left eye: {currentUser.left_eye}</p>
-              <p>Right eye: {currentUser.right_eye}</p>
+              <PrescriptionGrid prescription={currentUser.prescription}/>
               <LinkButton extraClass='' to='/QRScanner'>Scan QR code of Prescription</LinkButton>
               <LinkButton extraClass='secondary' to='/updateperscription'>Update Prescription</LinkButton>
             </Collapsible>

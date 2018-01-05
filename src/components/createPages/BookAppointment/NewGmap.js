@@ -53,12 +53,12 @@ const HomeMarker = ({ text }) =>
     <HomeIcon/>
   </div>
 
-const StoreMarker = ({ text , selectedStoreId, placeId}) =>
-  <div className={selectedStoreId === placeId? 'gmapsMarker store selected' : 'gmapsMarker store'}>
+const StoreMarker = ({selectedStoreId, placeId, store, clickStore}) => {
+  const onClick = () => clickStore(store)
+  return <div onClick={onClick} className={selectedStoreId === placeId? 'gmapsMarker store selected' : 'gmapsMarker store'}>
     <MarkerIcon/>
   </div>
-
-
+}
 
 
 class NewGmap extends Component {
@@ -73,6 +73,9 @@ class NewGmap extends Component {
   onInputChanged = center => {
     this.setState({center})
     this.props.fetchNearbyPlaces(center)
+  }
+  clickStore = (store) => {
+    this.props.clickStore(store, 'clickStore')
   }
 
   render() {
@@ -93,8 +96,10 @@ class NewGmap extends Component {
           /> : null}
           {!!availableStores? availableStores.map((store,index) =>
             <StoreMarker
+              clickStore={this.clickStore}
               key={index}
               placeId={store.place_id}
+              store={store}
               selectedStoreId={selectedStoreId}
               lat={store.geometry.location.lat}
               lng={store.geometry.location.lng}

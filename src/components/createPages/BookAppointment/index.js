@@ -34,14 +34,38 @@ class BookAppointment extends Component {
     dispatch(bookAppointment(this.state,idNumber))
     history.push(`/confirmappointment`)
   }
+
+  getAppointmentData = placeId => {
+    fetchAppointmentsData(placeId)
+    .then(res => {
+      this.setState({availableDates: res.availableDates})
+      console.log("availableDates",res.availableDates)
+    })
+  }
   getSelections = (value,name,placeId,phoneNumber,homeLocation,address) => {
-    if(name ==='selectedStore') {
-      this.setState({selectedStore: value, appointmentDate:'',appointmentTime: '',selectedStoreId:placeId,phoneNumber,homeLocation,address})
-      fetchAppointmentsData(placeId)
-      .then(res=> {
-        this.setState({availableDates: res.availableDates})
-        console.log("availableDates",res.availableDates)
+
+    if(name === 'clickStore') {
+      this.setState({
+        selectedStore: value.name,
+        appointmentDate:'',
+        appointmentTime: '',
+        selectedStoreId:value.place_id,
+        phoneNumber: value.phone_number,
+        homeLocation:value.proximity_to_location,
+        address: value.fullAddress
       })
+      this.getAppointmentData(value.place_id)
+    }
+
+    if(name ==='selectedStore') {
+      this.setState({
+        selectedStore: value,
+        appointmentDate:'',
+        appointmentTime: '',
+        selectedStoreId:placeId,
+        phoneNumber,homeLocation,address
+      })
+      this.getAppointmentData(placeId)
     }
     else if (name ==='appointmentDate') this.setState({appointmentDate:value,appointmentTime: ''})
     else this.setState({[name]:value})
@@ -71,7 +95,7 @@ class BookAppointment extends Component {
       <span className='newWrap bookAppointment'>
         <Ticket title="Book an Appointment">
           <div className='welcomeMessage inverted'> Book a New Appointment </div>
-            <NewGmap selectedStoreId={selectedStoreId} fetchNearbyPlaces={this.searchForNearbyPlaces}/>
+            <NewGmap clickStore={this.getSelections} selectedStoreId={selectedStoreId} fetchNearbyPlaces={this.searchForNearbyPlaces}/>
             <div style={{padding:'0 10px'}}>
               {!!availableStores && !!availableStores[0]?
                 <DefineSelectStrip

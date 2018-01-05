@@ -77,21 +77,40 @@ export class AppointmentCard extends Component {
     )
   }
 }
-
-// {/*
-//         <Modal
-//           isOpen={this.state.modalIsOpen}
-//           onRequestClose={this.closeModal}
-//           contentLabel="Order Info"
-//           >
-//             <h4>Order Infomation</h4>
-//             <div><h2>Delivery on - </h2><h3>{order.location}</h3></div>
-//             <div><h2>Ordered on - </h2><h3>{order.orderedOn}</h3></div>
-//             <div><h2>Brand - </h2><h3>{order.time}</h3></div>
-//             <div><h2>Order Type - </h2><h3>{order.optician}</h3></div>
-//             <div><h2>Additional Info - </h2><h3>{order.addional}</h3></div>
-//             <div><h2>Perscription - </h2><h3>{order.phoneNumber}</h3></div>
-//         </Modal> */}
+export const PrescriptionGrid = ({prescription, order}) =>
+<div className={order? 'prescriptionGrid order' : 'prescriptionGrid'}>
+  {order?<h2>Prescription</h2>: null}
+  <div className='top'>Left Eye:</div>
+  <div className='bottom'>
+    <div className='cell'>
+      <span className='bold'>D: </span>
+      <span className='text'>{prescription.left_eye.D}</span>
+    </div>
+    <div className='cell'>
+      <span className='bold'>BC: </span>
+      <span className='text'>{prescription.left_eye.BC}</span>
+    </div>
+    <div className='cell'>
+      <span className='bold'>DIA: </span>
+      <span className='text'>{prescription.left_eye.DIA}</span>
+    </div>
+  </div>
+  <div className='top'>Right Eye:</div>
+  <div className='bottom'>
+    <div className='cell'>
+      <span className='bold'>D: </span>
+      <span className='text'>{prescription.right_eye.D}</span>
+    </div>
+    <div className='cell'>
+      <span className='bold'>BC: </span>
+      <span className='text'>{prescription.right_eye.BC}</span>
+    </div>
+    <div className='cell'>
+      <span className='bold'>DIA: </span>
+      <span className='text'>{prescription.right_eye.DIA}</span>
+    </div>
+  </div>
+</div>
 
 export class OrderCard extends Component {
   state = { modalIsOpen: false}
@@ -100,7 +119,7 @@ export class OrderCard extends Component {
   // closeModal = () => this.setState({modalIsOpen: false});
 
   render () {
-    const {index, delivery, brand, lense, status, children, orderType, leftEye, rightEye, orderedOn} = this.props
+    const {index, delivery, brand, lense, status, children, orderType, prescription, orderedOn} = this.props
     return (
       <span>
 
@@ -116,7 +135,6 @@ export class OrderCard extends Component {
               <h2>Lense Type</h2>
 
               {!!orderType?    <h2>Order Type</h2>: null}
-              {!!leftEye && !!rightEye? <h2>Perscription</h2>: null}
               <h2>Status</h2>
             </div>
             <div className='items'>
@@ -127,11 +145,11 @@ export class OrderCard extends Component {
               <h3>{lense}</h3>
 
               {!!orderType?    <h3>{orderType}</h3>: null}
-              {!!leftEye && !!rightEye? <h3>Left: {leftEye} | Right: {rightEye}</h3>: null}
-
               <h3>{status}</h3>
             </div>
+
           </div>
+          { prescription?<PrescriptionGrid prescription={prescription} order={true}/> :null }
           <div className='secondaryButtons'>
             {children}
           </div>
