@@ -274,13 +274,13 @@ div.notificationCard {
 
 span.chatIntercomWrap {
   font-size: 13px;
-  z-index: 1000; }
+  z-index: 800; }
   span.chatIntercomWrap div.chatDialog {
     background: white;
     position: fixed;
     width: 100%;
-    height: calc(100% - 70px);
-    bottom: 70px;
+    height: calc(100%);
+    bottom: 0px;
     opacity: 1; }
     span.chatIntercomWrap div.chatDialog > div {
       padding: 20px;
@@ -1093,9 +1093,14 @@ nav {
   display: flex;
   justify-content: center;
   flex-direction: row;
-  z-index: 100; }
+  z-index: 1000;
+  overflow: hidden;
+  transition: height 0.2s ease, bottom 0.2s ease; }
   nav.hide {
-    display: none !important; }
+    border-top: 0px solid #d4d5d6;
+    height: 0px !important;
+    padding: 0px;
+    bottom: 70px  !important; }
   nav div {
     position: relative;
     display: inline-flex;
