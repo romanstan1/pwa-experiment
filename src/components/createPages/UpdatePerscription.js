@@ -19,15 +19,15 @@ class UpdatePerscription extends Component {
     const {currentUser} = this.props
     return (
       <span>
-        <Ticket title="Update My Perscription">
-          <MiniTicket title="Update My Perscription">
+        <Ticket title="Update My Prescription">
+          <MiniTicket title="Update My Prescription">
             <FormInput
               handleForm={this.handleForm}
               inputOne='Left Eye'
               inputTwo='Right Eye'
               valueOne={currentUser.left_eye}
               valueTwo={currentUser.right_eye}
-              submitName='Update Perscription'/>
+              submitName='Update Prescription'/>
           </MiniTicket>
         </Ticket>
       </span>)

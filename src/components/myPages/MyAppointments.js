@@ -41,13 +41,6 @@ class MyAppointments extends Component {
              numberOfEntities={pastAppointments.length}>
              {pastAppointments.sort((a,b)=> new Date(b.date) - new Date(a.date))
                .map((appointment,index)=>(
-                 // <AppointmentCard
-                 //   key={index}
-                 //   location={appointment.location}
-                 //   date={(addSeven(appointment.date))}
-                 //   time={appointment.time}
-                 //   optician={appointment.optician}
-                 // />
                  <AppointmentCard
                    key={index}
                    appointment={appointment}

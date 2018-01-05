@@ -29,11 +29,11 @@ class Account extends Component {
               </div>
               <span><img src={imagePic} alt="Profile"/></span>
             </div>
-            <Collapsible triggerSibling={()=><span className='titleCollapse'> My Perscription</span>} transitionTime={100} trigger=" ">
+            <Collapsible triggerSibling={()=><span className='titleCollapse'> My Prescription</span>} transitionTime={100} trigger=" ">
               <p>Left eye: {currentUser.left_eye}</p>
               <p>Right eye: {currentUser.right_eye}</p>
-              <LinkButton extraClass='' to='/QRScanner'>Scan QR code of Perscription</LinkButton>
-              <LinkButton extraClass='secondary' to='/updateperscription'>Update Perscription</LinkButton>
+              <LinkButton extraClass='' to='/QRScanner'>Scan QR code of Prescription</LinkButton>
+              <LinkButton extraClass='secondary' to='/updateperscription'>Update Prescription</LinkButton>
             </Collapsible>
             <Collapsible triggerSibling={()=><span className='titleCollapse'>My Account Details</span>} transitionTime={100} trigger=" ">
               <p>Username: {currentUser.username}</p>

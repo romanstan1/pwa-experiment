@@ -135,7 +135,8 @@ span.logOutButton {
       width: 100%;
       padding: 0;
       background: transparent;
-      line-height: 15px; }
+      line-height: 15px;
+      color: white; }
 
 span.linkButton {
   display: flex;
