@@ -89,6 +89,13 @@ export const selectNav = (selected) => {
   })
 }
 
+export const handleFocus = (focusedState) => {
+  return dispatch => dispatch({
+    type: 'HANDLE_FOCUS',
+    payload: focusedState
+  })
+}
+
 export const delayOrder = (id) => {
   return dispatch => dispatch({
     type: 'DELAY_ORDER',

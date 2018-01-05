@@ -3,15 +3,19 @@ import GoogleMap from 'google-map-react';
 import {connect} from 'react-redux'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import {HomeIcon, MarkerIcon} from '../../../content/icons/MapIcons'
+import {handleFocus} from '../../../store/modules/actions'
+
 
 const cssClasses = {
     root: 'form-group',
     input: 'form-control',
     autocompleteContainer: 'my-autocomplete-container'
   }
+
 class AutoComplete extends Component {
 
   state = { location: ''}
+
   onChange = (location) => this.setState({ location })
 
   handleSearch = location => {
@@ -22,15 +26,24 @@ class AutoComplete extends Component {
       .catch(error => console.error('Error', error))
   }
 
+
   render() {
     const inputProps = {
       value: this.state.location,
       onChange: this.onChange,
       placeholder: 'Enter Location...',
+      onBlur: () => this.props.focusHandler('blur'),
+      onFocus: () => this.props.focusHandler('focus'),
     }
 
     return (<div className='gmap-search-wrap'>
-        <PlacesAutocomplete classNames={cssClasses} onSelect={this.handleSearch} inputProps={inputProps} onEnterKeyDown={this.handleSearch} highlightFirstSuggestion={true} />
+        <PlacesAutocomplete
+          inputProps={inputProps}
+          classNames={cssClasses}
+          onSelect={this.handleSearch}
+          inputProps={inputProps}
+          onEnterKeyDown={this.handleSearch}
+          highlightFirstSuggestion={true} />
       </div>)
   }
 }
@@ -55,6 +68,7 @@ class NewGmap extends Component {
     center:null,
     zoom: 10
   }
+  focusHandler = (type) => this.props.dispatch(handleFocus(type))
 
   onInputChanged = center => {
     this.setState({center})
@@ -89,7 +103,7 @@ class NewGmap extends Component {
           }
 
         </GoogleMap>
-        <AutoComplete placeholder='Enter Postcode' onInputChanged={this.onInputChanged}/>
+        <AutoComplete focusHandler={this.focusHandler} placeholder='Enter Postcode' onInputChanged={this.onInputChanged}/>
       </div>
     )
   }

@@ -32,7 +32,7 @@ class Account extends Component {
             <Collapsible triggerSibling={()=><span className='titleCollapse'> My Perscription</span>} transitionTime={100} trigger=" ">
               <p>Left eye: {currentUser.left_eye}</p>
               <p>Right eye: {currentUser.right_eye}</p>
-              <LinkButton extraClass='' to='/QRScanner'>Send Picture of Perscription</LinkButton>
+              <LinkButton extraClass='' to='/QRScanner'>Scan QR code of Perscription</LinkButton>
               <LinkButton extraClass='secondary' to='/updateperscription'>Update Perscription</LinkButton>
             </Collapsible>
             <Collapsible triggerSibling={()=><span className='titleCollapse'>My Account Details</span>} transitionTime={100} trigger=" ">
@@ -61,7 +61,8 @@ class Account extends Component {
               <p>Next Scheduled Order Date:{currentUser.subscription.next_arrival_date}</p>
               <p>Lense Type: {currentUser.subscription.type}</p>
               <p>Postcode: {currentUser.postcode}</p>
-                <LinkButton extraClass='secondary' to='/updatesubscription'>Update Subscription</LinkButton>
+              <LinkButton extraClass='' to='/OCRScanner'>Send picture of new subscription</LinkButton>
+              <LinkButton extraClass='secondary' to='/updatesubscription'>Update Subscription</LinkButton>
             </Collapsible>
           </div>
         </Ticket>

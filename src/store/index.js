@@ -16,7 +16,7 @@ const logger = store => next => action => {
   else if(['DELETE_APPOINTMENT','CANCEL_ORDER'].includes(action.type)) store.dispatch(updateNotifications(true))
   else if( ['USER_STORE_UPDATE','NEW_ORDER','CONFIRM_APPOINTMENT'].includes(action.type)) store.dispatch(updateNotifications(false))
 
-  console.log("action.type",action.type, action.payload)
+  // console.log("action.type",action.type, action.payload)
   if(action.type === '@@router/LOCATION_CHANGE') store.dispatch(selectNav(action.payload.pathname.substring(1)))
 
   return result

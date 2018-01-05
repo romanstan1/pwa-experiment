@@ -20,6 +20,13 @@ export const selectNavReducer = (state='', action) =>{
   }
 }
 
+export const onFocusReducer = (state='blur', action) =>{
+  switch(action.type){
+    case 'HANDLE_FOCUS': return action.payload
+    default: return state
+  }
+}
+
 export default (state=initialState, action)=>{
   switch(action.type){
     case 'LOGIN': return {

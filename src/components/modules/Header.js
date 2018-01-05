@@ -25,10 +25,10 @@ class Header extends Component {
   }
 
   render () {
-    const {currentUser, selected} = this.props
+    const {currentUser, selected, focusedState} = this.props
     const {totalNotifications} = this.state
     return (
-      <nav>
+      <nav className={focusedState === 'focus'? 'hide': ''}>
          <NavLink selected={selected}  to='homereel' text='Home'>
            {!!currentUser && totalNotifications > 0? <span className='notificationBubble dot'>{totalNotifications}</span>:null}
          </NavLink>
@@ -42,5 +42,6 @@ class Header extends Component {
 
 export default connect(state => ({
   currentUser: state.data.currentUser,
-  selected: state.selected
+  selected: state.selected,
+  focusedState: state.focusedState
 }))(Header)

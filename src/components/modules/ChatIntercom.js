@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
 import {fetchChatBotResponse} from '../../api/chatbot.js'
+import {connect} from 'react-redux'
+import {handleFocus} from '../../store/modules/actions'
+
 
 const Replies = ({message, click}) => {
   const onClick = (e) => click('', e.target.dataset.value)
@@ -14,11 +17,15 @@ const Replies = ({message, click}) => {
 }
 
 
-export default class ChatIntercom extends Component {
+class ChatIntercom extends Component {
   state = {
     open: false,
     inputText:'',
     messages: []
+  }
+
+  focusHandler = (event) => {
+    this.props.dispatch(handleFocus(event.type))
   }
 
   handleKeyPress = (e,replyOnClick) => {
@@ -80,6 +87,8 @@ export default class ChatIntercom extends Component {
             </div>
 
             <input type="text"
+              onFocus={this.focusHandler}
+              onBlur={this.focusHandler}
               onChange={this.handleChange}
               onKeyPress={this.handleKeyPress}
               placeholder="Type message"/>
@@ -92,3 +101,7 @@ export default class ChatIntercom extends Component {
     )
   }
 }
+
+export default connect(state => ({
+  // currentUser: state.data.currentUser
+}))(ChatIntercom)

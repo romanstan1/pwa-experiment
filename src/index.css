@@ -273,7 +273,7 @@ div.notificationCard {
     border-top: 1px solid white !important; }
 
 span.chatIntercomWrap {
-  font-size: 12px;
+  font-size: 13px;
   z-index: 1000; }
   span.chatIntercomWrap div.chatDialog {
     background: white;
@@ -283,10 +283,10 @@ span.chatIntercomWrap {
     bottom: 70px;
     opacity: 1; }
     span.chatIntercomWrap div.chatDialog > div {
-      padding: 10px;
+      padding: 20px;
       height: 100%; }
       span.chatIntercomWrap div.chatDialog > div > div.title {
-        line-height: 17px;
+        line-height: 27px;
         background: #159936;
         color: white;
         font-weight: 600;
@@ -294,7 +294,7 @@ span.chatIntercomWrap {
         position: relative;
         padding: 10px; }
         span.chatIntercomWrap div.chatDialog > div > div.title span.close {
-          top: 8px;
+          top: 12px;
           width: 18px;
           height: 20px; }
           span.chatIntercomWrap div.chatDialog > div > div.title span.close::before {
@@ -304,8 +304,8 @@ span.chatIntercomWrap {
             width: 3px;
             height: 24px; }
       span.chatIntercomWrap div.chatDialog > div > div.history {
-        height: 85%;
-        border: 1px solid #f2f2f2;
+        height: 75%;
+        border: 2px solid #f2f2f2;
         padding: 5px;
         overflow-y: scroll; }
         span.chatIntercomWrap div.chatDialog > div > div.history div.message.me > div {
@@ -319,7 +319,7 @@ span.chatIntercomWrap {
           padding: 6px;
           border-radius: 8px;
           margin-left: 10%;
-          background: #118848;
+          background: #283c4e;
           color: white; }
           span.chatIntercomWrap div.chatDialog > div > div.history div.message.them > div.replies {
             margin-top: 15px;
@@ -334,20 +334,21 @@ span.chatIntercomWrap {
               display: inline-block;
               border-radius: 100px;
               text-align: center;
-              opacity: 0.7;
+              opacity: 0.98;
               margin: 2px 3px;
-              background: #551268;
+              background: #159936;
               cursor: pointer; }
               span.chatIntercomWrap div.chatDialog > div > div.history div.message.them > div.replies > span:hover {
                 opacity: 0.8; }
       span.chatIntercomWrap div.chatDialog > div > input {
-        margin-top: -1px;
-        font-size: 12px;
-        padding: 10px;
+        margin-top: -2px;
+        font-size: 15px;
+        padding: 8px;
+        line-height: 30px;
         display: block;
         outline: none;
         width: 100%;
-        border: 1px solid #f2f2f2; }
+        border: 2px solid #f2f2f2; }
   span.chatIntercomWrap span.chatIntercom {
     background: #159936;
     width: 60px;
@@ -1093,6 +1094,8 @@ nav {
   justify-content: center;
   flex-direction: row;
   z-index: 100; }
+  nav.hide {
+    display: none !important; }
   nav div {
     position: relative;
     display: inline-flex;

@@ -8,29 +8,6 @@ import {addSeven} from '../../store/modules/seed'
 import {AppointmentCard} from '../modules/Card'
 import CollapsibleParent from '../modules/CollapsibleParent'
 
-
-// const MultipleAppointments = ({currentUser}) => {
-//   const upcomingAppointments = currentUser.appointments.filter(app => moment(app.date,'MMMDDYYYY') >= moment())
-//   return (<span> <div className='orderAndAppointments'>My eye tests</div>
-//     {upcomingAppointments.sort((a,b)=> new Date(b.date) - new Date(a.date))
-//       .map((appointment,index)=>(
-//         <AppointmentCard
-//           key={index}
-//           location={appointment.location}
-//           date={(addSeven(appointment.date))}
-//           time={appointment.time}
-//         />
-//       ))}
-//     </span>)
-// }
-
-{/* <AppointmentCard
-  key={index}
-  location={appointment.location}
-  date={(addSeven(appointment.date))}
-  time={appointment.time}
-  optician={appointment.optician}
-> */}
 class MyAppointments extends Component {
   deleteAppointment = (event, prop, value) => {
     this.props.dispatch(deleteAppointment(parseInt(event.target.id,10)))

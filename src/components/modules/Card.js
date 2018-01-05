@@ -22,6 +22,10 @@ export default class Card extends Component {
 export class AppointmentCard extends Component {
   state = { modalIsOpen: false}
 
+  componentWillMount() {
+    Modal.setAppElement('body')
+  }
+
   openModal = () => this.setState({modalIsOpen: true});
   closeModal = () => this.setState({modalIsOpen: false});
 
@@ -42,7 +46,7 @@ export class AppointmentCard extends Component {
       <Modal
         isOpen={this.state.modalIsOpen}
         onRequestClose={this.closeModal}
-        contentLabel="Appointment Info"
+        contentLabel='appointment'
         >
           <h4>Appointment Info</h4>
           <div><h2>Store - </h2><h3>{appointment.location}</h3></div>
@@ -74,30 +78,32 @@ export class AppointmentCard extends Component {
   }
 }
 
+// {/*
+//         <Modal
+//           isOpen={this.state.modalIsOpen}
+//           onRequestClose={this.closeModal}
+//           contentLabel="Order Info"
+//           >
+//             <h4>Order Infomation</h4>
+//             <div><h2>Delivery on - </h2><h3>{order.location}</h3></div>
+//             <div><h2>Ordered on - </h2><h3>{order.orderedOn}</h3></div>
+//             <div><h2>Brand - </h2><h3>{order.time}</h3></div>
+//             <div><h2>Order Type - </h2><h3>{order.optician}</h3></div>
+//             <div><h2>Additional Info - </h2><h3>{order.addional}</h3></div>
+//             <div><h2>Perscription - </h2><h3>{order.phoneNumber}</h3></div>
+//         </Modal> */}
+
 export class OrderCard extends Component {
   state = { modalIsOpen: false}
 
-  openModal = () => this.setState({modalIsOpen: true});
-  closeModal = () => this.setState({modalIsOpen: false});
+  // openModal = () => this.setState({modalIsOpen: true});
+  // closeModal = () => this.setState({modalIsOpen: false});
 
   render () {
     const {index, delivery, brand, lense, status, children, orderType, leftEye, rightEye, orderedOn} = this.props
     return (
       <span>
-{/*
-        <Modal
-          isOpen={this.state.modalIsOpen}
-          onRequestClose={this.closeModal}
-          contentLabel="Order Info"
-          >
-            <h4>Order Infomation</h4>
-            <div><h2>Delivery on - </h2><h3>{order.location}</h3></div>
-            <div><h2>Ordered on - </h2><h3>{order.orderedOn}</h3></div>
-            <div><h2>Brand - </h2><h3>{order.time}</h3></div>
-            <div><h2>Order Type - </h2><h3>{order.optician}</h3></div>
-            <div><h2>Additional Info - </h2><h3>{order.addional}</h3></div>
-            <div><h2>Perscription - </h2><h3>{order.phoneNumber}</h3></div>
-        </Modal> */}
+
 
         <div className='orderCard' >
           <div className="firstRow">
