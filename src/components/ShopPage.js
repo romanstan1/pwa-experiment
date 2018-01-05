@@ -11,7 +11,7 @@ export default class ShopPage extends Component {
       <span >
         <Ticket title="Shop">
           <MiniTicket>
-            <Link className='scanQRCode' to='webcam'>Scan QR Code</Link>
+            <Link className='scanQRCode' to='OCRScanner'>Express Re-order</Link>
           </MiniTicket>
           <MiniTicket title="Recommendations">
             <br/>

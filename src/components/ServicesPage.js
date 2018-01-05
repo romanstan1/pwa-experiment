@@ -10,7 +10,9 @@ export default class ServicesPage extends Component {
         <Ticket title="Services">
           <LinkButton extraClass='alone blue' to='/neworder'>Place a new order</LinkButton>
           <LinkButton extraClass='alone' to='/bookappointment'>Book a new appointment</LinkButton>
-          <LinkButton extraClass='alone blue' to='/webcam'>Update your subscription</LinkButton>
+          <LinkButton extraClass='alone blue' to='/OCRScanner'>Update your subscription</LinkButton>
+          <LinkButton extraClass='alone blue' to='/QRScanner'>Send picture of perscription</LinkButton>
+
         </Ticket>
       </span>
     )
