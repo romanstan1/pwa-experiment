@@ -19,32 +19,14 @@ export default class Card extends Component {
   }
 }
 
-const customStyles = {
-  content : {
-    // top                   : '50%',
-    // left                  : '50%',
-    // right                 : 'auto',
-    // bottom                : 'auto',
-    // marginRight           : '-50%',
-    // transform             : 'translate(-50%, -50%)',
-    // zIndex : 999999
-  }
-};
-
-
 export class AppointmentCard extends Component {
   state = { modalIsOpen: false}
-  openModal = () => {
-    this.setState({modalIsOpen: true});
-  }
 
-  closeModal = () => {
-    this.setState({modalIsOpen: false});
-  }
+  openModal = () => this.setState({modalIsOpen: true});
+  closeModal = () => this.setState({modalIsOpen: false});
 
   render () {
     const {extraClass, appointment, children} = this.props
-
     const time24 = moment(appointment.time, 'HHmm A').format('HH:mm:ss')
     const date = moment(appointment.date, 'MMMDDYYYY').format('YYYY-MM-DD')
     const event = {
@@ -92,39 +74,69 @@ export class AppointmentCard extends Component {
   }
 }
 
+export class OrderCard extends Component {
+  state = { modalIsOpen: false}
 
-export const AppointmentCardDEP = ({extraClass, appointment, children}) => {
-  const time24 = moment(appointment.time, 'HHmm A').format('HH:mm:ss')
-  const date = moment(appointment.date, 'MMMDDYYYY').format('YYYY-MM-DD')
-  const event = {
-    title: 'Eye Test',
-    location:  appointment.address,
-    startTime: moment(date + 'T' + time24),
-    description: appointment.location + ' | ' + appointment.optician,
-    endTime: moment(date + 'T' + time24).add(30, 'minutes')
+  openModal = () => this.setState({modalIsOpen: true});
+  closeModal = () => this.setState({modalIsOpen: false});
+
+  render () {
+    const {index, delivery, brand, lense, status, children, orderType, leftEye, rightEye, orderedOn} = this.props
+    return (
+      <span>
+{/*
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onRequestClose={this.closeModal}
+          contentLabel="Order Info"
+          >
+            <h4>Order Infomation</h4>
+            <div><h2>Delivery on - </h2><h3>{order.location}</h3></div>
+            <div><h2>Ordered on - </h2><h3>{order.orderedOn}</h3></div>
+            <div><h2>Brand - </h2><h3>{order.time}</h3></div>
+            <div><h2>Order Type - </h2><h3>{order.optician}</h3></div>
+            <div><h2>Additional Info - </h2><h3>{order.addional}</h3></div>
+            <div><h2>Perscription - </h2><h3>{order.phoneNumber}</h3></div>
+        </Modal> */}
+
+        <div className='orderCard' >
+          <div className="firstRow">
+            <div className='index'>{index + 1}</div>
+            <div className='titles'>
+              <h2>Delivery On</h2>
+              {!!orderedOn?    <h2>Ordered On</h2>: null}
+
+              <h2>Brand</h2>
+              <h2>Lense Type</h2>
+
+              {!!orderType?    <h2>Order Type</h2>: null}
+              {!!leftEye && !!rightEye? <h2>Perscription</h2>: null}
+              <h2>Status</h2>
+            </div>
+            <div className='items'>
+              <h3>{delivery}</h3>
+              {!!orderedOn?    <h3>{orderedOn}</h3>: null}
+
+              <h3>{brand}</h3>
+              <h3>{lense}</h3>
+
+              {!!orderType?    <h3>{orderType}</h3>: null}
+              {!!leftEye && !!rightEye? <h3>Left: {leftEye} | Right: {rightEye}</h3>: null}
+
+              <h3>{status}</h3>
+            </div>
+          </div>
+          <div className='secondaryButtons'>
+            {children}
+          </div>
+        </div>
+      </span>
+    )
   }
-  return <div className='appointmentCard'>
-    <div className='firstRow'>
-      <div className='calendar'>
-        <EventIcon/>
-        <AddToCalendar
-          buttonLabel={appointment.date}
-          event={event}
-        />
-      </div>
-      <a target="_blank"
-        href={`https://www.google.co.uk/maps/dir/specsavers ${appointment.address.substr(appointment.address.length - 12)}/${appointment.homeLocation.lat},${appointment.homeLocation.lng}`}>
-        <MarkerIcon/><h3>{appointment.location}</h3>
-      </a>
-      <div><InfoIcon/> <h3>{appointment.time}</h3></div>
-  </div>
-  {!!appointment.optician?<div className='optician'><h2>Optician</h2> <span>-</span> <h3>{appointment.optician}</h3></div>: null}
-  {children}
-</div>
 }
 
 
-export const OrderCard = ({index, delivery, brand, lense, status,   children,   orderType, leftEye, rightEye, orderedOn}) =>
+export const OrderCardDEP = ({index, delivery, brand, lense, status, children, orderType, leftEye, rightEye, orderedOn}) =>
 <span>
   <div className='orderCard'>
     <div className="firstRow">

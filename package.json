@@ -10,6 +10,7 @@
     "moment": "^2.18.1",
     "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.1.1",
+    "prop-types": "^15.6.0",
     "proptypes": "^1.1.0",
     "react": "^16.0.0",
     "react-add-to-calendar": "^0.1.5",
@@ -32,6 +33,7 @@
     "recompose": "^0.26.0",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
+    "throttle-debounce": "^1.0.1",
     "underscore": "^1.8.3",
     "underscore.string": "^3.3.4"
   },

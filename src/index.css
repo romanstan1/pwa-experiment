@@ -287,7 +287,7 @@ span.chatIntercomWrap {
       height: 100%; }
       span.chatIntercomWrap div.chatDialog > div > div.title {
         line-height: 17px;
-        background: #118848;
+        background: #159936;
         color: white;
         font-weight: 600;
         text-align: center;
@@ -349,7 +349,7 @@ span.chatIntercomWrap {
         width: 100%;
         border: 1px solid #f2f2f2; }
   span.chatIntercomWrap span.chatIntercom {
-    background: #118848;
+    background: #159936;
     width: 60px;
     height: 60px;
     border-radius: 40px;
@@ -480,6 +480,19 @@ div.webcam {
     background: grey;
     overflow: hidden;
     position: relative; }
+    div.webcam div.webcamWrap > div {
+      height: 100%; }
+      div.webcam div.webcamWrap > div > video {
+        height: 100%; }
+      div.webcam div.webcamWrap > div button {
+        background: #159936;
+        width: 80%;
+        line-height: 38px;
+        border: 0px;
+        font-size: 14px;
+        color: white;
+        margin-bottom: -10px;
+        font-weight: 600; }
     div.webcam div.webcamWrap > section {
       height: 100%; }
       div.webcam div.webcamWrap > section section {
@@ -493,19 +506,19 @@ div.webcam {
       z-index: 3000;
       border: 7px solid tomato;
       top: 50vh;
-      transform: translate(0, calc(-50% - 20px)); }
+      transform: translate(0, calc(-50% - 40px)); }
     div.webcam div.webcamWrap div.result {
       left: 25px;
       width: calc(100vw - 50px);
       position: absolute;
       top: 5px;
-      height: 25px;
+      height: 50px;
       opacity: 0.8;
       background: white;
       color: black;
       font-size: 13px;
       line-height: 25px;
-      text-align: center; }
+      text-align: left; }
     div.webcam div.webcamWrap video {
       zoom: 100%;
       object-fit: cover; }
