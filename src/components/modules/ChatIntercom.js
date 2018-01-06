@@ -81,21 +81,25 @@ class ChatIntercom extends Component {
       this.setState({loading: false})
 
       const {fulfillment} = res.result
+
       if(fulfillment.data) {
 
         const text = fulfillment.data.facebook.text
         const replies = fulfillment.data.facebook.quick_replies.map(reply => reply.title)
         this.updateMessage("Specsaver's Chatbot", text,replies)
 
-      } else if(fulfillment.messages.speech === 'The location you have provided is invalid. Please specify another location.') {
-
-        console.log("fulfillment.messages.speech!!!!",fulfillment.messages.speech)
-
       } else if(fulfillment.messages[0].platform) {
 
         const text = fulfillment.messages[0].title
         const replies = fulfillment.messages[0].replies
         this.updateMessage("Specsaver's Chatbot", text,replies)
+
+      } else if(fulfillment.speech === "Roman") {
+        this.updateMessage("Specsaver's Chatbot", "I cannot understand that! Please re-enter your message")
+      } else if(fulfillment.speech === 'The location you have provided is invalid. Please specify another location.') {
+
+        console.log(fulfillment.speech, res.result.resolvedQuery)
+        this.fetchResponse(res.result.resolvedQuery)
 
       } else {
 
