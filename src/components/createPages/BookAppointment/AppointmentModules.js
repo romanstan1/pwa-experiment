@@ -2,6 +2,7 @@ import React from 'react'
 import {humanize} from 'underscore.string'
 import SelectStrip from '../../modules/SelectStrip'
 import DropDown from '../../modules/DropDown'
+import {brandNames, lenseTypes,cardTypes,appointmentType,appointmentFor } from '../../../store/modules/seed'
 
 export const BookSomeoneElse = ({handleSecondPerson}) => <div style={{paddingLeft:'40px'}}>
   <span className='appointmentInput'>
@@ -28,40 +29,30 @@ export const DefineSelectStrip = ({name, value, giveSelections, items, noScroll}
     <SelectStrip noScroll={noScroll} value={value} name={name} giveSelections={giveSelections} items={items}/>
   </div>
 
-export const NoAppointments = ({when}) =>
-  <div>
-    <span className='appointmentInput'><label></label></span>
-    <div className='noAppointments'>
-      There are no appointments available {when === 'date'?
-      <span> at this branch</span> : <span> at this time</span>}
+export const AppointmentText = ({text}) =>
+  <div className='noAppointments'>
+    <div>
+      {text}
     </div>
   </div>
 
-export const SelectAppointmentType = ({handleTypeChange, appointmentType}) =>
-  <span className='formInput'>
-    <form>
-      <span className='nested'>
-        <label style={{marginTop:0}}>Select Appointment Type</label>
-        <DropDown
-          handleChange={handleTypeChange}
-          inputText='Select Appointment Type'
-          value={appointmentType}/>
-        </span>
-    </form>
-  </span>
+export const SelectAppointmentType = ({handleTypeChange, selectedAppointmentType}) =>
+  <div className='selectAppointmentType'>
+    <div className='label'>Select Appointment Type</div>
+    <div className='row'>
+      {appointmentType.map((item, index) =>
+        <span className={selectedAppointmentType === item.value? 'active':''} key={index} onClick={handleTypeChange} data-value={item.value}>{item.label}</span>)}
+    </div>
+  </div>
 
-export const SelectWhoAppointmentIsFor = ({handleAppointmentFor, appointmentFor}) =>
-  <span className='formInput' style={{paddingTop:0}}>
-    <form style={{paddingTop:0,paddingBottom:0}}>
-      <span className='nested'>
-        <label style={{marginTop:0}}>Select who the appointment is for</label>
-        <DropDown
-          handleChange={handleAppointmentFor}
-          inputText='Select who the appointment is for'
-          value={appointmentFor}/>
-      </span>
-    </form>
-  </span>
+export const SelectWhoAppointmentIsFor = ({handleAppointmentFor, selectedAppointment}) =>
+  <div className='selectAppointmentType'>
+    <div className='label'>Select Who Appointment Is For</div>
+    <div className='row'>
+      {appointmentFor.map((item, index) =>
+        <span className={selectedAppointment === item.value? 'active':''} key={index} onClick={handleAppointmentFor} data-value={item.value}>{item.label}</span>)}
+    </div>
+  </div>
 
 export const AdditionalInfo = ({handleAdditionalInfo}) =>
   <span className='appointmentInput'>
@@ -69,15 +60,6 @@ export const AdditionalInfo = ({handleAdditionalInfo}) =>
     <textarea rows="4" cols="50" onChange={handleAdditionalInfo} />
   </span>
 
-
-// export const getAvailableTimes = (appointmentDate, appointmentDates) => {
-//   let appointmentTime
-//   if(!!appointmentDates) appointmentTime = appointmentDates.reduce((times, appointment) => {
-//     if(appointmentDate === appointment.date) times.push(appointment.times)
-//     return times
-//   },[])[0]
-//   return appointmentTime
-// }
 export const getAvailableTimes = (appointmentDate, availableDates) => {
   let appointmentTime
   if(!!availableDates) appointmentTime = availableDates.reduce((times, appointment) => {

@@ -3,7 +3,7 @@ export const fetchNearbyPlaces = ({lat, lng}) => {
   .then(resp => resp.json())
   .then(data => data)
   .catch(error => {
-    console.log(error)
-    return error
+    console.log('google error', error)
+    // return error
   })
 }

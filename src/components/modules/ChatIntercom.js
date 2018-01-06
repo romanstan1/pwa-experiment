@@ -2,29 +2,65 @@ import React, {Component} from 'react'
 import {fetchChatBotResponse} from '../../api/chatbot.js'
 import {connect} from 'react-redux'
 import {handleFocus} from '../../store/modules/actions'
+// import { Link, DirectLink, Element , Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
+// import smoothScroll from 'smoothscroll'
 
 
-const Replies = ({message, click}) => {
-  const onClick = (e) => click('', e.target.dataset.value)
-  if(!!message.replies) {
-    return (
+const Loading = () =>
+<div className="sk-circle">
+  <div className="sk-circle1 sk-child"></div>
+  <div className="sk-circle2 sk-child"></div>
+  <div className="sk-circle3 sk-child"></div>
+  <div className="sk-circle4 sk-child"></div>
+  <div className="sk-circle5 sk-child"></div>
+  <div className="sk-circle6 sk-child"></div>
+  <div className="sk-circle7 sk-child"></div>
+  <div className="sk-circle8 sk-child"></div>
+  <div className="sk-circle9 sk-child"></div>
+  <div className="sk-circle10 sk-child"></div>
+  <div className="sk-circle11 sk-child"></div>
+  <div className="sk-circle12 sk-child"></div>
+</div>
+
+
+class Replies extends Component {
+  state = {
+    clicked:false
+  }
+  onClick = (e) => {
+    this.setState({clicked: e.target.dataset.value})
+    this.props.click('', e.target.dataset.value)
+  }
+  render() {
+    const {message} = this.props
+    if(!!message.replies) return (
       <div className='replies'>
         {message.replies.map((reply, index) =>
-          <span data-value={reply} onClick={onClick} key={index}>{reply} </span>
+          <span key={index}
+            className={this.state.clicked === reply? 'clicked': ''}
+            data-value={reply}
+            onClick={this.onClick}>
+            {reply}
+          </span>
         )}
-      </div>
-    )
-  } else {
-    return null
+      </div>)
+    else return null
   }
 }
 
+function scrollToBottom(history) {
+  history.scrollTop = history.scrollTop + 3
+  if(history.scrollTop < history.scrollHeight - history.clientHeight) {
+    setTimeout(() => scrollToBottom(history), 5)
+  }
+}
 
 class ChatIntercom extends Component {
   state = {
     open: false,
     inputText:'',
-    messages: []
+    messages: [],
+    loading: false
   }
 
   focusHandler = (event) => {
@@ -33,40 +69,33 @@ class ChatIntercom extends Component {
   }
 
   updateMessage = (author,text,replies) => {
-
-    this.setState({ messages: this.state.messages.concat([
-      {
-        author,
-        text,
-        replies
-      }])
+    this.setState({
+      messages: this.state.messages.concat([{author,text,replies}])
     })
-
-
+    scrollToBottom(this.refs.history)
   }
 
   fetchResponse = (inputText) => {
-
+    this.setState({loading: true})
     fetchChatBotResponse(inputText).then(res => {
+      this.setState({loading: false})
+
       const {fulfillment} = res.result
-
-      console.log("res", res)
-
       if(fulfillment.data) {
 
         const text = fulfillment.data.facebook.text
         const replies = fulfillment.data.facebook.quick_replies.map(reply => reply.title)
         this.updateMessage("Specsaver's Chatbot", text,replies)
 
+      } else if(fulfillment.messages.speech === 'The location you have provided is invalid. Please specify another location.') {
+
+        console.log("fulfillment.messages.speech!!!!",fulfillment.messages.speech)
+
       } else if(fulfillment.messages[0].platform) {
 
         const text = fulfillment.messages[0].title
         const replies = fulfillment.messages[0].replies
         this.updateMessage("Specsaver's Chatbot", text,replies)
-
-      } else if(fulfillment.messages.speech) {
-
-        console.log("fulfillment.messages.speech",fulfillment.messages.speech)
 
       } else {
 
@@ -76,7 +105,6 @@ class ChatIntercom extends Component {
         this.updateMessage("Specsaver's Chatbot", text,replies)
 
       }
-
     }).catch(error => {
       console.log("error",error)
     })
@@ -87,11 +115,17 @@ class ChatIntercom extends Component {
 
   handleKeyPress = (e,replyOnClick) => {
     if (e.key === 'Enter' || !!replyOnClick) {
-      let inputText
-      if(!!replyOnClick) inputText = replyOnClick
-      else inputText = this.state.inputText
+      let inputText, me
 
-      this.updateMessage("Me", inputText.charAt(0).toUpperCase() + inputText.slice(1))
+      if(!!replyOnClick) {
+        inputText = replyOnClick;
+        me = 'Me hide';
+      } else {
+        inputText = this.state.inputText
+        me = 'Me'
+      }
+
+      this.updateMessage(me, inputText.charAt(0).toUpperCase() + inputText.slice(1))
       this.fetchResponse(inputText)
     }
   }
@@ -102,28 +136,35 @@ class ChatIntercom extends Component {
   popUp = () => this.setState({open: !this.state.open})
 
   render () {
-
     return (
       <span className ='chatIntercomWrap'>
         <span onClick={this.popUp} className ='chatIntercom'>
-          <span>
-            Chat
-          </span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M22 3v13h-6.961l-3.039 3.798-3.039-3.798h-6.961v-13h20zm2-2h-24v17h8l4 5 4-5h8v-17z"/>
+          </svg>
         </span>
         {this.state.open?
         <div className='chatDialog'>
           <div>
-            <div className='title'> Chat Bot
+            <div className='title'>Specsavers Chat Bot
               <span className='close' onClick={this.closeChat} style={{cursor:'pointer'}}></span>
             </div>
-
-            <div className='history'>
+            <div ref='history' className='history'>
               {this.state.messages.map((message, index) =>
-                 <div key={index} className = {message.author === 'Me'? 'message me': 'message them' }>
-                   <div className='text'>{message.text}</div>
-                   <Replies click={this.handleKeyPress} message={message}/>
-                 </div>
-               )}
+                <div
+                  key={index}
+                  className = {
+                    message.author === 'Me hide'? 'message me hide' :
+                    message.author === 'Me'?  'message me': 'message them' }>
+                    <div className='text'>{message.text}</div>
+                    <Replies click={this.handleKeyPress} message={message}/>
+                  </div>
+                )}
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                {this.state.loading?<Loading/>: null}
             </div>
 
             <input type="text"
@@ -131,7 +172,7 @@ class ChatIntercom extends Component {
               onBlur={this.focusHandler}
               onChange={this.handleChange}
               onKeyPress={this.handleKeyPress}
-              placeholder="Type message"/>
+              placeholder="Write a reply..."/>
 
           </div>
         </div>

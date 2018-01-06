@@ -37,7 +37,6 @@ class StripNonStoreItem extends Component {
   }
   render() {
     const {item,placeId,selectedValue,name} = this.props
-    console.log("item",item)
     return (
     <span className={name === 'appointmentDate'? 'stripItem date':'stripItem time'}>
       <div data-value={item} data-place={placeId} onClick={this.onClick}>

@@ -3,7 +3,7 @@ export const fetchAppointmentsData = (placeId) => {
   .then(resp => resp.json())
   .then(data => data )
   .catch(error => {
-    console.log(error)
-    return error
+    console.log('error', error)
+    // return error
   })
 }

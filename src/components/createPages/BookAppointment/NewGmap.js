@@ -108,7 +108,10 @@ class NewGmap extends Component {
           }
 
         </GoogleMap>
-        <AutoComplete focusHandler={this.focusHandler} placeholder='Enter Postcode' onInputChanged={this.onInputChanged}/>
+        <AutoComplete
+          focusHandler={this.focusHandler}
+          placeholder='Enter Postcode'
+          onInputChanged={this.onInputChanged}/>
       </div>
     )
   }
