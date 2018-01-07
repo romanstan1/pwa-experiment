@@ -23,11 +23,26 @@ export const BookSomeoneElse = ({handleSecondPerson}) => <div style={{paddingLef
   </span>
 </div>
 
-export const DefineSelectStrip = ({name, value, giveSelections, items, noScroll}) =>
-  <div>
+export const DefineSelectStrip = ({name, value, giveSelections, items, noScroll,newSelectedStore}) => {
+// console.log("newSelectedStore: ",newSelectedStore)
+  return <div>
     <span className='appointmentInput'><label>{humanize(name)}</label></span>
-    <SelectStrip noScroll={noScroll} value={value} name={name} giveSelections={giveSelections} items={items}/>
+    <SelectStrip newSelectedStore={newSelectedStore} noScroll={noScroll} value={value} name={name} giveSelections={giveSelections} items={items}/>
   </div>
+}
+
+export const StoreStrip = ({selectedStore, giveSelections, availableStores}) =>
+<div className='storeStrip'>
+  <span>Select Store</span>
+  <div className='strip'>
+    {availableStores.map((store, index) =>
+      <div key={index} className={selectedStore === store.name? 'store selected':'store'} onClick={() => giveSelections(store)} >
+        <span className='name'>{store.name}</span>
+        <span className='distance'>{store.proximity.distance.text}</span>
+      </div>
+    )}
+  </div>
+</div>
 
 export const AppointmentText = ({text}) =>
   <div className='noAppointments'>

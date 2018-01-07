@@ -74,6 +74,22 @@
         messagingSenderId: "790954721124"
       };
       firebase.initializeApp(config);
+
+      const messaging = firebase.messaging();
+      messaging.requestPermission()
+      .then(function() {
+        console.log("Persission granted for messaging")
+        return messaging.getToken()
+      })
+      .then(function(token) {
+        console.log("Token: ",token)
+      })
+      .catch(function(err) {
+        console.log("Messaing error: ",err)
+      })
+      messaging.onMessage(function(payload){
+        console.log("onMessage: ",payload)
+      })
     </script>
 
   </body>

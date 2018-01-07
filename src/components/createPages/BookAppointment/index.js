@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import Ticket from '../../modules/Ticket'
 import {BookSomeoneElse, DefineSelectStrip,SelectAppointmentType,
-  SelectWhoAppointmentIsFor,AdditionalInfo, getAvailableTimes, AppointmentText} from './AppointmentModules'
+  SelectWhoAppointmentIsFor,AdditionalInfo, getAvailableTimes, AppointmentText, StoreStrip} from './AppointmentModules'
 import NewGmap from './NewGmap'
 import LinkButton from '../../modules/LinkButton'
 import {bookAppointment,availableStoresAtLocation} from '../../../store/modules/actions'
@@ -38,7 +38,6 @@ class BookAppointment extends Component {
 
   getAppointmentData = placeId => {
     this.setState({availableDates: 'loader'})
-
     fetchAppointmentsData(placeId)
     .then(res => {
       console.log("availableDates",res.availableDates)
@@ -46,8 +45,21 @@ class BookAppointment extends Component {
       else this.setState({availableDates: 'none'})
     })
   }
-  getSelections = (value,name,placeId,phoneNumber,homeLocation,address) => {
 
+  handleStoreSelect = (store) => {
+    this.setState({
+      selectedStore: store.name,
+      appointmentDate:'',
+      appointmentTime: '',
+      selectedStoreId:store.place_id,
+      phoneNumber: store.phone_number,
+      homeLocation: store.proximity_to_location,
+      address:store.fullAddress
+    })
+    this.getAppointmentData(store.place_id)
+  }
+
+  getSelections = (value,name,placeId,phoneNumber,homeLocation,address) => {
     if(name === 'clickStore') {
       this.setState({
         selectedStore: value.name,
@@ -96,10 +108,11 @@ class BookAppointment extends Component {
   }
 
   render () {
-    const {searching,appointmentFor,availableDates,appointmentDate,appointmentTime,selectedStoreId} = this.state
+    const {searching,appointmentFor,availableDates,appointmentDate,appointmentTime,selectedStoreId,selectedStore} = this.state
     const {availableStores} = this.props
     if(!!availableDates && availableDates !== 'none' && availableDates !== 'loader' && availableDates.length > 0) {
       var availableTimes = getAvailableTimes(appointmentDate, availableDates)
+      console.log("availableTIMES defined ",availableDates, availableTimes, appointmentDate)
     }
     return (
       <span className='newWrap bookAppointment'>
@@ -107,22 +120,32 @@ class BookAppointment extends Component {
           <div className='welcomeMessage inverted'> Book a New Appointment </div>
             <NewGmap clickStore={this.getSelections} selectedStoreId={selectedStoreId} fetchNearbyPlaces={this.searchForNearbyPlaces}/>
             <div style={{padding:'0 10px'}}>
+
+              {/* {!!availableStores && !!availableStores[0]?
+                <StoreStrip
+                  selectedStore={selectedStore}
+                  giveSelections={this.handleStoreSelect}
+                  availableStores={availableStores}
+                />
+                :null} */}
+
               {!!availableStores && !!availableStores[0]?
                 <DefineSelectStrip
+                  newSelectedStore={selectedStore}
                   name="selectedStore"
                   giveSelections={this.getSelections}
                   items={availableStores}/> :null }
+
               {searching === 'true'? <AppointmentText text='Loading...'/> : null }
               {searching === 'error'? <AppointmentText text='No stores nearby. Check your internet connection and search again'/> : null }
 
-              {!!availableDates && availableDates !== 'none' && availableDates !== 'loader' && !!availableDates.length?
+              {/* {!!availableDates && !!availableDates.length?
                 <DefineSelectStrip
                   name="appointmentDate"
                   value={this.state.appointmentDate}
                   giveSelections={this.getSelections}
-                  items={availableDates}/> :null
-                // {this.state.selectedStoreId? null: <NoAppointments/> }
-              }
+                  items={availableDates}/> :null } */}
+
               {!!availableDates && availableDates === 'loader'? <AppointmentText text='Loading...'/>:null}
               {!!availableDates && availableDates === 'none'? <AppointmentText text='No appointments currently available at this store'/>:null}
 
@@ -160,6 +183,8 @@ class BookAppointment extends Component {
       </span>)
   }
 }
+
+
 
 export default connect(state => ({
   currentUser: state.data.currentUser,

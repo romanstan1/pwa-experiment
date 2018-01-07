@@ -69,6 +69,7 @@ class ChatIntercom extends Component {
   }
 
   updateMessage = (author,text,replies) => {
+    scrollToBottom(this.refs.history)
     this.setState({
       messages: this.state.messages.concat([{author,text,replies}])
     })

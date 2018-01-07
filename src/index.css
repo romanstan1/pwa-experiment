@@ -1257,6 +1257,47 @@ span.notificationBubble {
     font-size: 16px;
     top: -7px; }
 
+div.storeStrip {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column; }
+  div.storeStrip > span {
+    padding-left: 20px;
+    line-height: 42px;
+    color: white;
+    font-weight: 600;
+    background: #283c4e; }
+  div.storeStrip div.strip {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    background: #102233;
+    padding: 0px 5px;
+    padding-top: 15px;
+    height: 140px; }
+    div.storeStrip div.strip div.store {
+      align-self: center;
+      padding: 0;
+      margin: 0 5px;
+      height: 110px;
+      width: 100px;
+      background: white;
+      display: flex;
+      color: #102233;
+      flex-direction: column;
+      justify-content: center; }
+      div.storeStrip div.strip div.store.selected {
+        background: #159936;
+        color: white; }
+      div.storeStrip div.strip div.store span {
+        display: block;
+        width: 100px;
+        text-align: center;
+        font-size: 13px; }
+        div.storeStrip div.strip div.store span.name {
+          font-weight: 600;
+          padding: 5px; }
+
 .sk-circle {
   margin: 100px auto;
   width: 60px;
