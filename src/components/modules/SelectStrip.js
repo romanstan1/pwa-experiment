@@ -10,9 +10,8 @@ const mapObjectToArray =  items => items.map(item=>{
 class StripStoreItem extends Component {
   state = {selected: false}
   onClick = event => {
-    const {handleClick,phoneNumber,homeLocation,address,newSelectedStore} = this.props
+    const {handleClick,phoneNumber,homeLocation,address} = this.props
     handleClick(event.target.dataset.value, this.state.selected, event.target.dataset.place,phoneNumber,homeLocation,address)
-    // console.log("newSelectedStore",newSelectedStore)
     this.state.selected? this.setState({selected:false}) : this.setState({selected:true})
   }
   render() {
@@ -67,7 +66,7 @@ export default class SelectStrip extends Component {
   }
 
   render () {
-    let {items,noScroll,name,value,newSelectedStore} = this.props
+    let {items,noScroll,name} = this.props
     if(typeof items[0] ==='object') items = mapObjectToArray(items)
     const storeItems = this.props.items
     const {selected} = this.state
@@ -76,7 +75,6 @@ export default class SelectStrip extends Component {
       <div className={!!noScroll? 'selectStrip noScroll':'selectStrip'}>
         { name ==='selectedStore'? items.map((item,index) =>
           <StripStoreItem
-            newSelectedStore={newSelectedStore}
             selectedValue={selected}
             placeId={storeItems[index].place_id}
             distance={storeItems[index].proximity.distance.text}

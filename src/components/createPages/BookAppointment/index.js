@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import Ticket from '../../modules/Ticket'
-import {BookSomeoneElse, DefineSelectStrip,SelectAppointmentType,
-  SelectWhoAppointmentIsFor,AdditionalInfo, getAvailableTimes, AppointmentText, StoreStrip} from './AppointmentModules'
+import {BookSomeoneElse,SelectAppointmentType,
+  SelectWhoAppointmentIsFor,AdditionalInfo, getAvailableTimes, AppointmentText, StoreStrip, DateStrip, TimeStrip} from './AppointmentModules'
 import NewGmap from './NewGmap'
 import LinkButton from '../../modules/LinkButton'
 import {bookAppointment,availableStoresAtLocation} from '../../../store/modules/actions'
@@ -40,7 +40,7 @@ class BookAppointment extends Component {
     this.setState({availableDates: 'loader'})
     fetchAppointmentsData(placeId)
     .then(res => {
-      console.log("availableDates",res.availableDates)
+      // console.log("availableDates",res.availableDates)
       if(!!res.availableDates) this.setState({availableDates: res.availableDates})
       else this.setState({availableDates: 'none'})
     })
@@ -59,40 +59,30 @@ class BookAppointment extends Component {
     this.getAppointmentData(store.place_id)
   }
 
-  getSelections = (value,name,placeId,phoneNumber,homeLocation,address) => {
-    if(name === 'clickStore') {
-      this.setState({
-        selectedStore: value.name,
-        appointmentDate:'',
-        appointmentTime: '',
-        selectedStoreId:value.place_id,
-        phoneNumber: value.phone_number,
-        homeLocation:value.proximity_to_location,
-        address: value.fullAddress
-      })
-      this.getAppointmentData(value.place_id)
-    }
-
-    if(name ==='selectedStore') {
-      this.setState({
-        selectedStore: value,
-        appointmentDate:'',
-        appointmentTime: '',
-        selectedStoreId:placeId,
-        phoneNumber,homeLocation,address
-      })
-      this.getAppointmentData(placeId)
-    }
-    else if (name ==='appointmentDate') this.setState({appointmentDate:value,appointmentTime: ''})
-    else this.setState({[name]:value})
+  handleDateSelect = (date) => {
+    this.setState({
+      appointmentDate:date,
+      appointmentTime:''
+    })
   }
 
+  handleTimeSelect = (time) => {
+    this.setState({
+      appointmentTime:time,
+    })
+  }
+
+  // handle map center
   handleCenter = event => this.state({center:{lat:0, lng:0 }})
+
+  // extra input detail handlers
   handleTypeChange = event => this.setState({appointmentType:event.target.dataset.value})
   handleAppointmentFor = event => this.setState({appointmentFor:event.target.dataset.value})
   handleAdditionalInfo = ({target}) => this.setState({additionalInfo:target.value})
   handleSecondPerson = ({target}) => this.setState({secondPerson:{ ...this.state.secondPerson,[target.name]:target.value}})
 
+
+  // handles searches and fetches store data from google for stores on gmaps
   searchForNearbyPlaces = (value) => {
     this.setState({searching: 'true'})
     fetchNearbyPlaces(value)
@@ -112,49 +102,44 @@ class BookAppointment extends Component {
     const {availableStores} = this.props
     if(!!availableDates && availableDates !== 'none' && availableDates !== 'loader' && availableDates.length > 0) {
       var availableTimes = getAvailableTimes(appointmentDate, availableDates)
-      console.log("availableTIMES defined ",availableDates, availableTimes, appointmentDate)
     }
     return (
       <span className='newWrap bookAppointment'>
         <Ticket title="Book an Appointment">
           <div className='welcomeMessage inverted'> Book a New Appointment </div>
-            <NewGmap clickStore={this.getSelections} selectedStoreId={selectedStoreId} fetchNearbyPlaces={this.searchForNearbyPlaces}/>
+            <NewGmap clickStore={this.handleStoreSelect} selectedStoreId={selectedStoreId} fetchNearbyPlaces={this.searchForNearbyPlaces}/>
             <div style={{padding:'0 10px'}}>
 
-              {/* {!!availableStores && !!availableStores[0]?
+              {!!availableStores && !!availableStores[0]?
                 <StoreStrip
                   selectedStore={selectedStore}
-                  giveSelections={this.handleStoreSelect}
+                  handleStoreSelect={this.handleStoreSelect}
                   availableStores={availableStores}
                 />
-                :null} */}
-
-              {!!availableStores && !!availableStores[0]?
-                <DefineSelectStrip
-                  newSelectedStore={selectedStore}
-                  name="selectedStore"
-                  giveSelections={this.getSelections}
-                  items={availableStores}/> :null }
+                :null}
 
               {searching === 'true'? <AppointmentText text='Loading...'/> : null }
               {searching === 'error'? <AppointmentText text='No stores nearby. Check your internet connection and search again'/> : null }
 
-              {/* {!!availableDates && !!availableDates.length?
-                <DefineSelectStrip
-                  name="appointmentDate"
-                  value={this.state.appointmentDate}
-                  giveSelections={this.getSelections}
-                  items={availableDates}/> :null } */}
+              {!!availableDates && !!availableDates.length && availableDates !== 'none' && availableDates !== 'loader'?
+                <DateStrip
+                  selectedDate={this.state.appointmentDate}
+                  handleDateSelect={this.handleDateSelect}
+                  availableDates={availableDates}
+                />
+                :null}
 
               {!!availableDates && availableDates === 'loader'? <AppointmentText text='Loading...'/>:null}
               {!!availableDates && availableDates === 'none'? <AppointmentText text='No appointments currently available at this store'/>:null}
 
               {!!availableTimes && !!availableTimes.length?
-                <DefineSelectStrip
-                  noScroll value={this.state.appointmentTime}
-                  name="appointmentTime"
-                  giveSelections={this.getSelections}
-                  items={availableTimes}/> : null}
+                <TimeStrip
+                  selectedTime={this.state.appointmentTime}
+                  handleTimeSelect={this.handleTimeSelect}
+                  availableTimes={availableTimes}
+                />
+                :null}
+
 
               {appointmentTime !== ''?
               <span>

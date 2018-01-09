@@ -3,6 +3,8 @@ import {humanize} from 'underscore.string'
 import SelectStrip from '../../modules/SelectStrip'
 import DropDown from '../../modules/DropDown'
 import {brandNames, lenseTypes,cardTypes,appointmentType,appointmentFor } from '../../../store/modules/seed'
+import moment from 'moment'
+
 
 export const BookSomeoneElse = ({handleSecondPerson}) => <div style={{paddingLeft:'40px'}}>
   <span className='appointmentInput'>
@@ -23,26 +25,70 @@ export const BookSomeoneElse = ({handleSecondPerson}) => <div style={{paddingLef
   </span>
 </div>
 
-export const DefineSelectStrip = ({name, value, giveSelections, items, noScroll,newSelectedStore}) => {
-// console.log("newSelectedStore: ",newSelectedStore)
-  return <div>
-    <span className='appointmentInput'><label>{humanize(name)}</label></span>
-    <SelectStrip newSelectedStore={newSelectedStore} noScroll={noScroll} value={value} name={name} giveSelections={giveSelections} items={items}/>
-  </div>
-}
+export const DefineSelectStrip = ({name, value, giveSelections, items, noScroll}) =>
+<div>
+  <span className='appointmentInput'><label>{humanize(name)}</label></span>
+  <SelectStrip noScroll={noScroll} value={value} name={name} giveSelections={giveSelections} items={items}/>
+</div>
 
-export const StoreStrip = ({selectedStore, giveSelections, availableStores}) =>
+
+
+
+
+
+
+export const StoreStrip = ({selectedStore, handleStoreSelect, availableStores}) =>
 <div className='storeStrip'>
   <span>Select Store</span>
   <div className='strip'>
     {availableStores.map((store, index) =>
-      <div key={index} className={selectedStore === store.name? 'store selected':'store'} onClick={() => giveSelections(store)} >
+      <div key={index} className={selectedStore === store.name? 'store selected':'store'} onClick={() => handleStoreSelect(store)} >
         <span className='name'>{store.name}</span>
         <span className='distance'>{store.proximity.distance.text}</span>
       </div>
     )}
   </div>
 </div>
+
+export const DateStrip = ({selectedDate,handleDateSelect, availableDates}) => {
+  return (<div className='dateStrip'>
+    <span>Select an appointment date</span>
+    <div className='strip'>
+      { typeof availableDates === 'object'? availableDates.map((day, index) =>
+        <div key={index} className={selectedDate === day.date? 'date selected':'date'} onClick={() => handleDateSelect(day.date)} >
+          <span className='day'>{moment(day.date, 'MMM DD YYYY').format('llll').slice(0, 3)}</span>
+          <span>{moment(day.date, 'MMM DD YYYY').format('ll').slice(0, -6)}</span>
+        </div>
+      ):null}
+    </div>
+  </div>)
+}
+
+export const TimeStrip = ({selectedTime,handleTimeSelect, availableTimes}) => {
+  // console.log("availableDates: ", availableDates, typeof availableDates)
+  return (<div className='timeStrip'>
+    <span>Select an appointment time</span>
+    <div className='strip'>
+      {availableTimes.map((time, index) =>
+        <div key={index} className={selectedTime === time? 'time selected':'time'} onClick={() => handleTimeSelect(time)} >
+          <span className='time'>{time}</span>
+        </div>
+      )}
+    </div>
+  </div>)
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 export const AppointmentText = ({text}) =>
   <div className='noAppointments'>
