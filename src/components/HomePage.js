@@ -13,9 +13,9 @@ class NotLoggedIn extends Component {
     return (
       <span>
         <br/><br/>
-        <LinkButton extraClass='alone' to='/loginpage'>Log In</LinkButton><br/>
+        {/* <LinkButton extraClass='alone' to='/loginpage'>Log In</LinkButton><br/> */}
         <span className='logOutButton alone secondary' onClick={this.fingerprint}>
-          <span>Use Fingerprint</span>
+          <span>Log in</span>
         </span><br/>
       </span>)
   }

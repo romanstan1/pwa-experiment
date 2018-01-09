@@ -9,7 +9,11 @@ export default class QRComponent extends Component {
     result: null,
   }
   handleScan = (data) => {
-    if(!!data) this.setState({ result: data})
+    if(!!data) {
+      this.setState({ result: data})
+      var win = window.open(data, '_blank');
+      win.focus();
+    }
   }
 
   handleError = (err) => console.error(err)
