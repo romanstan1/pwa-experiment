@@ -6,6 +6,10 @@ import LinkButton from './modules/LinkButton'
 import {logout,login} from '../store/modules/actions'
 
 class NotLoggedIn extends Component {
+  componentDidMount() {
+    console.log("componentDidMount")
+    this.props.dispatch(login('tomoconnor', ''))
+  }
   fingerprint = () => {
     this.props.dispatch(login('tomoconnor', ''))
   }
