@@ -12,3 +12,15 @@ export const fetchChatBotResponse = (inputText) => {
   .then(resp => resp)
   .catch(error => console.log(error))
 }
+
+
+// 
+// fetch('https://httpbin.org/post', {
+//   method: 'post',
+//   headers: {
+//     'Accept': 'application/json, text/plain, */*',
+//     'Content-Type': 'application/json'
+//   },
+//   body: JSON.stringify({a: 7, str: 'Some string: &=&'})
+// }).then(res=>res.json())
+//   .then(res => console.log(res));
