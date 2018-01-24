@@ -1,0 +1,44 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="shortcut icon" href="/fav.png"><link rel="manifest" href="/assets-manifest.json"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="theme-color" content="#536878"><title>PWA App</title><script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9T-reTt6UeEjRbwGNBWkH3mB2d21F7rs&v=3&libraries=places"></script><style>body{margin:0;padding:0;font-family:sans-serif}div.App-intro{background:#fff;color:green;font-size:large;display:flex;justify-content:center;align-items:center;height:100vh;width:100vw;text-align:center}p.App-intro{height:30px}</style><link href="/static/css/main.51533bf6.css" rel="stylesheet"></head><body><div id="root"><div class="App-intro"><p class="App-intro">Loading site...</p></div></div><script>"serviceWorker"in navigator?window.addEventListener("load",function(){navigator.serviceWorker.register("service-worker.js").then(function(e){console.log("ServiceWorker registration successful with scope: ",e.scope)},function(e){console.log("ServiceWorker registration failed: ",e)}).catch(function(e){console.log(e)})}):console.log("service worker is not supported")</script><script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script><script>var config = {
+        apiKey: "AIzaSyDpBvzku_aVum3eNUtatPFLJ6PYttj3I8k",
+        authDomain: "specsavers-prototype.firebaseapp.com",
+        databaseURL: "https://specsavers-prototype.firebaseio.com",
+        projectId: "specsavers-prototype",
+        storageBucket: "specsavers-prototype.appspot.com",
+        messagingSenderId: "790954721124"
+      };
+      firebase.initializeApp(config);
+
+      const messaging = firebase.messaging();
+      messaging.requestPermission()
+      .then(function() {
+        console.log("Persission granted for messaging")
+        return messaging.getToken()
+      })
+      .then(function(token) {
+        console.log("Token: ",token)
+        fetch(`https://serene-ocean-70888.herokuapp.com/registertopic`,
+        {
+          method: "POST",
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body:"token=" + token + "&topic=all2"
+        })
+        .then(function(resp) {
+          resp
+          console.log("resp:  ",resp)
+        })
+        .catch(function(error) {
+          error
+          console.log("error:  ",error)
+        })
+
+
+      })
+      .catch(function(err) {
+        console.log("Messaing error: ",err)
+      })
+      messaging.onMessage(function(payload){
+        console.log("onMessage: ",payload)
+      })</script><script type="text/javascript" src="/static/js/main.8a2d8e4a.js"></script></body></html>

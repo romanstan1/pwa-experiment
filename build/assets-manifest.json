@@ -1,0 +1,15 @@
+{
+  "short_name": "Specsavers",
+  "name": "Specsavers PWA",
+  "icons": [
+    {
+      "src":"fav.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/?utm_source=homescreen",
+  "background_color": "#FFF",
+  "theme_color": "#FFF",
+  "display": "standalone"
+}
