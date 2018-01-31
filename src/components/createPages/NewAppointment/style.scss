@@ -1,0 +1,389 @@
+$green: #159936;
+$grey: #f2f2f2;
+$lightGrey: #fcfcfc;
+$greyBlue: #f9fbff;
+$slate: #d4d5d6; // for borders
+
+$navy: #102233;
+$lightNavy: #283c4e;
+
+
+div.bookappointment {
+  border-top: 2px solid $grey;
+  background: white;
+  padding: 10px;
+  min-height: calc(100vh - 75px);
+  padding-bottom: 100px;
+  h2 {
+    padding: 20px 0;
+    margin: 0px 0;
+  }
+}
+
+div.selectAppointmentType {
+  display: flex;
+  flex-direction: column;
+  // background: $navy;
+  text-align: left;
+  margin: 0px 0 5px 0;
+  font-weight: 600;
+  div.label {
+    font-size: 20px;
+    line-height: 50px;
+    color: black;
+      margin: 20px 0 10px 0;
+    text-indent: 0px;
+    font-weight: 400;
+  }
+  div.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    // height: 120px;
+    span {
+      text-align: center;
+      height: 120px;
+      align-self: center;
+      padding: 0 0px;
+      margin-bottom: 10px;
+      line-height: 120px;
+      background: white;
+      color: $navy;
+      background: $grey;
+
+      width: calc(50% - 5px);
+      &.active {
+        background: $green;
+        color: white;
+      }
+    }
+  }
+}
+
+label{
+  font-size: 20px;
+  display: block;
+  line-height: 50px;
+  margin: 50px 0 10px 0;
+}
+
+div.gmap-wrap { // wrap for both components
+  margin-top: 0px;
+  width: 100%;
+  height: 300px;
+  position: relative;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  div.gmap-search-wrap { // search button
+    position: absolute;
+    width: 100%;
+    display:block;
+    top:0;
+    span.click {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      display:block;
+      background: red;
+      top:0;
+    }
+    div#PlacesAutocomplete__root{ // gmap root button
+      line-height: 25px;
+      height: 25px;
+      width: calc(100%);
+      height: 54px;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      input {
+        top: 7px;
+        position: absolute;
+        border: 0px;
+        padding: 0px;
+        outline: none;
+        width: calc(100% - 20px);
+        left: 10px;
+        line-height: 42px;
+        text-indent: 15px;
+        border-radius: 6px;
+        opacity: 0.95;
+        outline: none;
+        transition: 0.2s ease;
+        background: white;
+        &:focus {
+          outline: none;
+          // outline: none;
+          border-radius: 0px;
+          top: 0px;
+          border: 0px;
+          line-height: 62px;
+          left: 0px;
+          width: calc(100%);
+           opacity: 1;
+             background: #fcfcfc;
+          // border-radius: 3px 3px 0 0;
+        }
+      }
+      div.my-autocomplete-container {
+        position: absolute;
+        top: 65px;
+        height: 100px;
+        line-height: 12px;
+        font-size: 11px;
+        opacity: 1;
+        padding: 0px 0;
+        // text-indent: 10px;
+        // border: 2px solid ghostwhite;
+        height: 25px;
+        z-index: 200;
+        display: block;
+        position: absolute;
+        width: 100%;
+        background: white;
+        margin-top: -4px;
+        > div {
+          padding: 20px !important;
+          border-top: 1px solid #eff1f2;
+          font-size: 12px !important;
+        }
+        > div:nth-last-of-type(2) {
+          border-radius: 0 0 2px 2px;
+          background: red;
+        }
+        div#PlacesAutocomplete__google-logo {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+
+div.storeStrip {
+  margin:10px 0 0 0;
+  // margin-top: -50px;
+  // margin-bottom: 70px;
+  display: flex;
+  flex-direction: column;
+  > span {
+    // padding-left: 20px;
+    line-height: 42px;
+    color: white;
+    font-weight: 600;
+    // background: $lightNavy;
+  }
+  div.strip {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    // background: $navy;
+    padding: 0px;
+    padding-top: 15px;
+    // justify-content: center;
+    height: 140px;
+    div.store {
+      align-self: center;
+      padding: 0;
+      margin: 0 10px 0 0 ;
+      height: 110px;
+      width: 120px;
+      background: $grey;
+      display: flex;
+      color: $navy;
+      flex-direction: column;
+      justify-content: center;
+      &.selected {
+        background: $green;
+        color: white;
+      }
+      span {
+        display: block;
+        width: 120px;
+        text-align: center;
+        font-size: 13px;
+        &.name {
+          font-weight: 600;
+          padding: 5px;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+div.dateStrip {
+  margin: 0px 0;
+  display: flex;
+  flex-direction: column;
+  > span {
+    padding-left: 0px;
+    line-height: 50px;
+    color: black;
+    font-weight: 400;
+    font-size: 20px;
+    margin-top: 50px;
+    // background: $lightNavy;
+      text-transform: capitalize;
+  }
+  div.strip {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    // background: $navy;
+    padding: 0px;
+    // padding-top: 15px;
+    // justify-content: center;
+    height: 140px;
+    div.date {
+      align-self: center;
+      padding: 0;
+      margin: 0 12px 0 0;
+      height: 120px;
+      width: 70px;
+      background: $grey;
+      display: flex;
+      color: $navy;
+      flex-direction: column;
+      justify-content: center;
+      &.selected {
+        background: $green;
+        color: white;
+      }
+      span {
+        display: block;
+        width: 70px;
+        text-align: center;
+        font-size: 13px;
+        &.day {
+          text-transform: uppercase;
+          font-weight: 600;
+          padding: 5px;
+        }
+      }
+    }
+  }
+}
+
+div.timeStrip {
+  margin: 5px 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  // > span {
+  //   padding-left: 20px;
+  //   line-height: 42px;
+  //   color: white;
+  //   font-weight: 600;
+  //   background: $lightNavy;
+  //   text-transform: capitalize;
+  // }
+  div.timeButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center;
+    span {
+      display: inline-block;
+      width: 32%;
+      text-align: center;
+      height: 40px;
+      line-height: 40px;
+      font-weight: 600;
+      font-size: 13px;
+      background: $slate;
+      margin: 0px 0;
+      &.selected {
+        background: #5b5b5b;
+        color: white;
+      }
+    }
+  }
+  div.strip {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    // overflow-x: scroll;
+    // background: $navy;
+    padding: 3px 0;
+    justify-content: space-between;
+    // height: 140px;
+    // margin: 10px 0
+    div.time {
+      align-self: center;
+      padding: 0;
+      margin: 2px 0;
+      height: 50px;
+      width: 32%;
+      background: white;
+      text-align: center;
+      display: flex;
+      color: $navy;
+      flex-direction: column;
+      justify-content: center;
+      background: $grey;
+      &.selected {
+        background: $green;
+        color: white;
+      }
+      span {
+        display: block;
+        width: 100%;
+        text-align: center;
+        font-size: 13px;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+span.appointmentInput {
+  padding: 15px 0px 0 0px;
+  display: block;
+  width:100%;
+  text-align: left;
+  label.someoneElse {
+    margin-top: 5px;
+    margin-bottom: 0px;
+    // height: 42px;
+    line-height: 32px;
+    // display: block;
+    // font-weight: 600;
+    // margin-top: 5px;
+    // background: $lightNavy;
+    // color: white;
+    // text-indent: 20px;
+    font-size:18px;
+  }
+  input,textarea {
+    width: 100%;
+    font-weight:600;
+    font-size:12px;
+    padding: 0px;
+    text-align: left;
+    text-align:-webkit-left;
+    outline: none;
+    border-radius: 0px;
+    line-height: 34px;
+    text-indent: 20px;
+    background: $lightGrey;
+    border:2px solid $slate;
+    // border: 0px;
+  }
+  textarea {
+    font-weight: 400;
+    line-height: 16px;
+    text-indent: 0px;
+    padding: 10px;
+    min-height: 88px;
+    max-height: 150px;
+    min-width: 100%;
+    max-width: 100%;
+    background: $lightGrey;
+    border:2px solid $slate;
+  }
+}

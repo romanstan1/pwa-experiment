@@ -427,65 +427,6 @@ div.gmapsMarker {
         width: 80px;
         height: 65px; }
 
-div.gmap-wrap {
-  width: 100%;
-  height: 300px;
-  position: relative; }
-  div.gmap-wrap div.gmap-search-wrap {
-    position: absolute;
-    width: 100%;
-    display: block;
-    top: 0; }
-    div.gmap-wrap div.gmap-search-wrap span.click {
-      position: absolute;
-      width: 40px;
-      height: 40px;
-      display: block;
-      background: red;
-      top: 0; }
-    div.gmap-wrap div.gmap-search-wrap div#PlacesAutocomplete__root {
-      line-height: 25px;
-      height: 25px;
-      width: calc(100% - 20px);
-      height: 34px;
-      position: absolute;
-      top: 7px;
-      right: 10px; }
-      div.gmap-wrap div.gmap-search-wrap div#PlacesAutocomplete__root input {
-        border: 0px;
-        padding: 0px;
-        outline: none;
-        width: 100%;
-        line-height: 42px;
-        text-indent: 15px;
-        border-radius: 2px;
-        opacity: 0.85;
-        outline: none; }
-        div.gmap-wrap div.gmap-search-wrap div#PlacesAutocomplete__root input:focus {
-          outline: none;
-          border: 0px;
-          opacity: 1; }
-      div.gmap-wrap div.gmap-search-wrap div#PlacesAutocomplete__root div.my-autocomplete-container {
-        height: 100px;
-        line-height: 12px;
-        font-size: 11px;
-        opacity: 1;
-        padding: 2px 0;
-        height: 25px;
-        z-index: 200;
-        display: block;
-        position: absolute;
-        width: 100%;
-        background: white;
-        margin-top: -2px; }
-        div.gmap-wrap div.gmap-search-wrap div#PlacesAutocomplete__root div.my-autocomplete-container > div {
-          border-top: 1px solid #eff1f2; }
-        div.gmap-wrap div.gmap-search-wrap div#PlacesAutocomplete__root div.my-autocomplete-container > div:nth-last-of-type(2) {
-          border-radius: 0 0 2px 2px;
-          background: red; }
-        div.gmap-wrap div.gmap-search-wrap div#PlacesAutocomplete__root div.my-autocomplete-container div#PlacesAutocomplete__google-logo {
-          display: none; }
-
 div.webcam {
   height: calc(100vh - 30px);
   font-size: 0; }
@@ -944,42 +885,6 @@ div.selectStrip {
       padding: 0;
       margin: 5px 0 5px 0; }
 
-span.appointmentInput {
-  padding: 15px 0px 0 0px;
-  display: block;
-  width: 100%;
-  text-align: left; }
-  span.appointmentInput label {
-    height: 42px;
-    line-height: 42px;
-    display: block;
-    font-weight: 600;
-    margin-top: 5px;
-    background: #283c4e;
-    color: white;
-    text-indent: 20px;
-    font-size: 14px; }
-  span.appointmentInput input, span.appointmentInput textarea {
-    width: 100%;
-    font-weight: 600;
-    font-size: 12px;
-    padding: 0px;
-    text-align: left;
-    text-align: -webkit-left;
-    outline: none;
-    border-radius: 0px;
-    line-height: 34px;
-    text-indent: 20px; }
-  span.appointmentInput textarea {
-    font-weight: 400;
-    line-height: 16px;
-    text-indent: 0px;
-    padding: 10px;
-    min-height: 88px;
-    max-height: 150px;
-    min-width: 100%;
-    max-width: 100%; }
-
 span.formInput {
   display: flex;
   justify-content: center;
@@ -1064,35 +969,6 @@ div.welcomeMessage {
     padding: 15px 10px;
     background: #102233;
     font-weight: 400; }
-
-div.selectAppointmentType {
-  display: flex;
-  flex-direction: column;
-  background: #102233;
-  text-align: left;
-  margin: 25px 0 5px 0;
-  font-weight: 600; }
-  div.selectAppointmentType div.label {
-    line-height: 42px;
-    background: #283c4e;
-    color: white;
-    text-indent: 20px; }
-  div.selectAppointmentType div.row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    height: 90px; }
-    div.selectAppointmentType div.row span {
-      text-align: center;
-      height: 50px;
-      align-self: center;
-      padding: 0 15px;
-      line-height: 50px;
-      background: white;
-      color: #102233; }
-      div.selectAppointmentType div.row span.active {
-        background: #159936;
-        color: white; }
 
 div.Select.Select--single.is-focused.is-searchable.has-value {
   box-shadow: none;
@@ -1251,130 +1127,6 @@ span.notificationBubble {
     right: 2px;
     font-size: 16px;
     top: -7px; }
-
-div.storeStrip {
-  margin: 20px 0;
-  display: flex;
-  flex-direction: column; }
-  div.storeStrip > span {
-    padding-left: 20px;
-    line-height: 42px;
-    color: white;
-    font-weight: 600;
-    background: #283c4e; }
-  div.storeStrip div.strip {
-    display: flex;
-    flex-direction: row;
-    overflow-x: scroll;
-    background: #102233;
-    padding: 0px 5px;
-    padding-top: 15px;
-    height: 140px; }
-    div.storeStrip div.strip div.store {
-      align-self: center;
-      padding: 0;
-      margin: 0 5px;
-      height: 110px;
-      width: 100px;
-      background: white;
-      display: flex;
-      color: #102233;
-      flex-direction: column;
-      justify-content: center; }
-      div.storeStrip div.strip div.store.selected {
-        background: #159936;
-        color: white; }
-      div.storeStrip div.strip div.store span {
-        display: block;
-        width: 100px;
-        text-align: center;
-        font-size: 13px; }
-        div.storeStrip div.strip div.store span.name {
-          font-weight: 600;
-          padding: 5px; }
-
-div.dateStrip {
-  margin: 20px 0;
-  display: flex;
-  flex-direction: column; }
-  div.dateStrip > span {
-    padding-left: 20px;
-    line-height: 42px;
-    color: white;
-    font-weight: 600;
-    background: #283c4e;
-    text-transform: capitalize; }
-  div.dateStrip div.strip {
-    display: flex;
-    flex-direction: row;
-    overflow-x: scroll;
-    background: #102233;
-    padding: 0px 5px;
-    padding-top: 15px;
-    height: 140px; }
-    div.dateStrip div.strip div.date {
-      align-self: center;
-      padding: 0;
-      margin: 0 5px;
-      height: 110px;
-      width: 70px;
-      background: white;
-      display: flex;
-      color: #102233;
-      flex-direction: column;
-      justify-content: center; }
-      div.dateStrip div.strip div.date.selected {
-        background: #159936;
-        color: white; }
-      div.dateStrip div.strip div.date span {
-        display: block;
-        width: 70px;
-        text-align: center;
-        font-size: 13px; }
-        div.dateStrip div.strip div.date span.day {
-          text-transform: uppercase;
-          font-weight: 600;
-          padding: 5px; }
-
-div.timeStrip {
-  margin: 20px 0;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap; }
-  div.timeStrip > span {
-    padding-left: 20px;
-    line-height: 42px;
-    color: white;
-    font-weight: 600;
-    background: #283c4e;
-    text-transform: capitalize; }
-  div.timeStrip div.strip {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    background: #102233;
-    padding: 10px 5px;
-    justify-content: center; }
-    div.timeStrip div.strip div.time {
-      align-self: center;
-      padding: 0;
-      margin: 5px 5px;
-      height: 50px;
-      width: 70px;
-      background: white;
-      display: flex;
-      color: #102233;
-      flex-direction: column;
-      justify-content: center; }
-      div.timeStrip div.strip div.time.selected {
-        background: #159936;
-        color: white; }
-      div.timeStrip div.strip div.time span {
-        display: block;
-        width: 70px;
-        text-align: center;
-        font-size: 13px;
-        font-weight: 600; }
 
 .sk-circle {
   margin: 100px auto;

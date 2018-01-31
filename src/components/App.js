@@ -19,6 +19,7 @@ import MyOrders from './myPages/MyOrders'
 import AddCard from './createPages/AddCard'
 import ConfirmAppointment from './createPages/ConfirmAppointment'
 import BookAppointment from './createPages/BookAppointment/index'
+import NewAppointment from './createPages/NewAppointment'
 import NewOrder from './createPages/NewOrder'
 import UpdateSubscription from './createPages/UpdateSubscription'
 import UpdatePerscription from './createPages/UpdatePerscription'
@@ -48,6 +49,7 @@ class App extends Component {
                 <Route exact path="/neworder" component={NewOrder} />
                 <Route exact path="/confirmappointment" component={ConfirmAppointment} />
                 <Route exact path="/bookappointment" component={BookAppointment} />
+                <Route exact path="/newappointment" component={NewAppointment} />
                 <Route exact path="/addcard" component={AddCard} />
 
                 <Route exact path="/updatesubscription" component={UpdateSubscription} />
