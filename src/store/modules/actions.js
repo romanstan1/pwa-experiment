@@ -32,6 +32,12 @@ export const bookAppointment = ({selectedStore,appointmentDate,appointmentTime,a
     idNumber
   })
 }
+export const setAppointments = (appointments) => {
+  return dispatch => dispatch({
+    type: 'SET_APPOINTMENTS',
+    payload: appointments
+  })
+}
 export const newOrder = (brand,lenseType) => {
   return dispatch => dispatch({
     type: 'NEW_ORDER',

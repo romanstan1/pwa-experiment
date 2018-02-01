@@ -15,8 +15,8 @@ class MyAppointments extends Component {
 
   render () {
     const {currentUser} = this.props
-    const upcomingAppointments = currentUser.appointments.filter(app => moment(app.date,'MMMDDYYYY') >= moment())
-    const pastAppointments = currentUser.appointments.filter(app => moment(app.date,'MMMDDYYYY') <= moment())
+    const upcomingAppointments = currentUser.appointments.filter(app => moment(app.dateAndTime) >= moment())
+    const pastAppointments = currentUser.appointments.filter(app => moment(app.dateAndTime) <= moment())
     return (<span>
       <Ticket title="My Appointments">
         <div className="notificationCard">

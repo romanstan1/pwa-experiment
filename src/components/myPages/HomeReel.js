@@ -3,18 +3,20 @@ import {connect} from 'react-redux'
 import moment from 'moment'
 import Ticket from '../modules/Ticket'
 import {addSeven} from '../../store/modules/seed'
-import {clickedOnNotifications} from '../../store/modules/actions'
+import {clickedOnNotifications, setAppointments} from '../../store/modules/actions'
 import ChatIntercom from '../modules/ChatIntercom'
 import CollapsibleParent from '../modules/CollapsibleParent'
 import {AppointmentCard, OrderCard} from '../modules/Card'
 import LinkButton from '../modules/LinkButton'
 import specsImage1 from '../../content/images/specs_image_1.jpg'
 import specsImage2 from '../../content/images/childrens-eye-health.jpg'
+import * as firebase from 'firebase';
+require("firebase/firestore");
 
 const MultipleAppointments = ({currentUser}) => {
-  const upcomingAppointments = currentUser.appointments.filter(app => moment(app.date,'MMMDDYYYY') >= moment())
+  const upcomingAppointments = currentUser.appointments.filter(app => moment(app.dateAndTime) >= moment())
   return (<span> <div className='orderAndAppointments'>My eye tests</div>
-    {upcomingAppointments.sort((a,b)=> new Date(b.date) - new Date(a.date))
+    {upcomingAppointments.sort((a,b)=> new Date(b.dateAndTime) - new Date(a.dateAndTime))
       .map((appointment,index)=>(
         <AppointmentCard
           key={index}
@@ -47,9 +49,20 @@ class HomeReel extends Component {
     // console.log("clickedOnNotifications",notificationType)
     this.props.dispatch(clickedOnNotifications(notificationType))
   }
+
+  componentDidMount() {
+    const fs = firebase.firestore();
+    fs.collection("appointments").get().then(snap => {
+      const keys = snap.docs.map(doc => doc.id)
+      const appointments = snap.docs.map(doc => doc.data())
+      const addIds = appointments.map((appointment, i) => { return {...appointment, uuid: keys[i]} })
+      this.props.dispatch(setAppointments(addIds))
+    })
+  }
+
   render () {
     const {currentUser} = this.props
-    const {orders, appointments} = currentUser.notifications
+    const upcomingAppointments = currentUser.appointments.filter(app => moment(app.dateAndTime) >= moment())
     const {orders: clickedOrders, appointments: clickedAppointments} = currentUser.clicked_notifications
     return (
       <span>
@@ -58,7 +71,7 @@ class HomeReel extends Component {
             <div className='welcomeMessage'> Good morning, {currentUser.first_name}</div>
             <CollapsibleParent
               clickedOnNotifications={this.clickedOnNotifications}
-              numberOfEntities={appointments}
+              numberOfEntities={upcomingAppointments.length}
               numberOfNotifications={clickedAppointments}
               name='Appointments'>
               <MultipleAppointments currentUser={currentUser}/>
@@ -67,7 +80,7 @@ class HomeReel extends Component {
 
             <CollapsibleParent
               clickedOnNotifications={this.clickedOnNotifications}
-              numberOfEntities={orders}
+              numberOfEntities={0}
               numberOfNotifications={clickedOrders}
               name='Orders'>
               <MultipleOrders currentUser={currentUser}/>

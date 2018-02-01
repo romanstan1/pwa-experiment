@@ -26,8 +26,23 @@ import UpdatePerscription from './createPages/UpdatePerscription'
 import UpdateDetails from './createPages/UpdateDetails'
 import UpdateAccount from './createPages/UpdateAccount'
 import {history} from '../store'
+// import * as firebase from 'firebase';
+// require("firebase/firestore");
 
 class App extends Component {
+
+  // componentDidMount() {
+  //   const fs = firebase.firestore();
+  //   fs.collection("appointments").get().then(snap => {
+  //     const keys = snap.docs.map(doc => doc.id)
+  //     const appointments = snap.docs.map(doc => doc.data())
+  //     const addIds = appointments.map((appointment, i) => { return {...appointment, uuid: keys[i]} })
+  //     // this.setState({appointments: addIds})
+  //     // this.props.dispatch(setAppointments(addIds))
+  //     console.log("addIds: ",addIds)
+  //   })
+  // }
+
   render() {
     const {currentUser} = this.props
     return (

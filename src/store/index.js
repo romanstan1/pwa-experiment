@@ -10,7 +10,7 @@ export const history = createHistory()
 const enhancers = []
 const logger = store => next => action => {
   let result = next(action)
-  console.log(store.getState())
+  // console.log(store.getState())
 
   if(action.type === 'LOGIN') store.dispatch({type: 'USER_STORE_UPDATE'})
   else if(['DELETE_APPOINTMENT','CANCEL_ORDER'].includes(action.type)) store.dispatch(updateNotifications(true))

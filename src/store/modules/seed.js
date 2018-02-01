@@ -85,49 +85,7 @@ export const initialState = {
           number: '**** **** **** 9800'
         }
       ],
-      appointments: [
-        {
-          location: 'London - Wimbledon',
-          address: '38 The Broadway, Wimbledon, London SW19 1RQ, UK',
-          homeLocation: {lat: "51.4149653", lng: "-0.2402061999999887"},
-          date: beforeDate(31),
-          optician:'John Barnes',
-          time:'11.30am',
-          id:809861,
-          type:'Eye test',
-          for: 'Myself',
-          additional:'No additional info',
-          phoneNumber: "020 8542 4434",
-        },
-        {
-          location: 'Surbiton',
-          date: beforeDate(131),
-          address: '2 Surbiton Parade, Surbiton KT6 4RB, UK',
-          optician:'David Seaman',
-          homeLocation: {lat: "51.4149653", lng: "-0.2402061999999887"},
-          phoneNumber: "020 8339 8900",
-          time:'9.00am',
-          secondPerson: {},
-          id:219295,
-          type:'Eye test',
-          for: 'Myself',
-          additional:'No additional info',
-        },
-        {
-          location: 'London - Wimbledon',
-          address: '38 The Broadway, Wimbledon, London SW19 1RQ, UK',
-          homeLocation: {lat: "51.4149653", lng: "-0.2402061999999887"},
-          date: afterDate(21),
-          phoneNumber: "020 8542 4434",
-          optician:'Teddy Sherringham',
-          time:'2.30pm',
-          id:819290,
-          type:'Eye test',
-          for: 'Myself',
-          additional:"I require disabled access",
-          secondPerson:{}
-        }
-      ],
+      appointments: [],
       orders:[
         {
           purchase_date: beforeDate(4),

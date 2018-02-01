@@ -114,10 +114,13 @@ class BookAppointment extends Component {
 
   bookNewAppointment = () => {
     const fs = firebase.firestore();
-
+    const date = this.state.appointmentDate
+    const time = this.state.appointmentTime
+    const dateAndTime = moment(date + ' ' + time, 'lll').format('llll')
+    console.log("this.state: ",this.state)
     fs.collection("appointments").add({
-      date: moment(this.state.appointmentDate,'MMMDDYYYY').format('ll'),
-      location: this.state.input,
+      selectedStore: this.state.selectedStore,
+      dateAndTime: dateAndTime,
       address: this.state.address,
       optician:random(opticianNames),
       homeLocation: this.state.homeLocation,
@@ -133,6 +136,7 @@ class BookAppointment extends Component {
 
 
   render () {
+
     const {searching,additionalInfo,
       appointmentFor,availableDates,appointmentDate,
       appointmentTime,selectedStoreId,selectedStore} = this.state
@@ -203,15 +207,15 @@ class BookAppointment extends Component {
             { appointmentFor ==='Someone else'?
             <BookSomeoneElse handleSecondPerson={this.handleSecondPerson}/>
             : null}
-
-            <AdditionalInfo handleAdditionalInfo={this.handleAdditionalInfo}/><br/>
           </span>
           : null }
 
-          { !!additionalInfo?
+          { !!appointmentFor?
             <span>
+              <AdditionalInfo handleAdditionalInfo={this.handleAdditionalInfo}/><br/>
               <AppointmentSummary details={this.state}/>
-              <div onClick={this.handleBookAppointment} className='button primary'> Book Appointment</div>
+              {/* <div onClick={this.handleBookAppointment} className='button primary'> Book Appointment</div> */}
+              <div onClick={this.bookNewAppointment} className='button primary'> Book appointment</div>
             </span> : null
           }
 

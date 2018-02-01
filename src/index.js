@@ -5,7 +5,7 @@ import store, {history} from './store'
 import App from './components/App';
 import {Provider} from 'react-redux'
 import './index.css'
-import registerServiceWorker from './registerServiceWorker';
+// import registerServiceWorker from './registerServiceWorker';
 import * as firebase from 'firebase';
 require("firebase/firestore");
 
@@ -27,4 +27,4 @@ render(
       <App/>
     </ConnectedRouter>
   </Provider>, document.getElementById('root'));
-registerServiceWorker();
+// registerServiceWorker();

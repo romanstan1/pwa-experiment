@@ -4,7 +4,6 @@ import AddToCalendar from 'react-add-to-calendar';
 import moment from 'moment'
 import Modal from 'react-modal';
 
-
 export default class Card extends Component {
   render () {
     const {title,children,onClick,index} = this.props
@@ -31,8 +30,8 @@ export class AppointmentCard extends Component {
 
   render () {
     const {extraClass, appointment, children} = this.props
-    const time24 = moment(appointment.time, 'HHmm A').format('HH:mm:ss')
-    const date = moment(appointment.date, 'MMMDDYYYY').format('YYYY-MM-DD')
+    const time24 = moment(appointment.dateAndTime, 'HHmm A').format('HH:mm:ss')
+    const date = moment(appointment.dateAndTime).format('YYYY-MM-DD')
     const event = {
       title: 'Eye Test',
       location:  appointment.address,
@@ -49,11 +48,10 @@ export class AppointmentCard extends Component {
         contentLabel='appointment'
         >
           <h4>Appointment Info</h4>
-          <div><h2>Store - </h2><h3>{appointment.location}</h3></div>
+          <div><h2>Store - </h2><h3>{appointment.selectedStore}</h3></div>
           <div><h2>Address - </h2><h3>{appointment.address}</h3></div>
-          <div><h2>Time - </h2><h3>{appointment.time}</h3></div>
           <div><h2>Optician - </h2><h3>{appointment.optician}</h3></div>
-          <div><h2>Additional Info - </h2><h3>{appointment.addional}</h3></div>
+          <div><h2>Additional Info - </h2><h3>{appointment.additional}</h3></div>
           <div><h2>Store Phone Number - </h2><a href={`tel:${appointment.phoneNumber}`}><h3>{appointment.phoneNumber}</h3></a></div>
       </Modal>
 
@@ -61,15 +59,15 @@ export class AppointmentCard extends Component {
         <div className='calendar'>
           <EventIcon/>
           <AddToCalendar
-            buttonLabel={appointment.date}
+            buttonLabel={moment(appointment.dateAndTime).format('llll').slice(0, - 8) + ' ' + moment(appointment.dateAndTime).format('LT')}
             event={event}
           />
         </div>
         <a target="_blank"
           href={`https://www.google.co.uk/maps/dir/specsavers ${appointment.address.substr(appointment.address.length - 12)}/${appointment.homeLocation.lat},${appointment.homeLocation.lng}`}>
-          <MarkerIcon/><h3>{appointment.location}</h3>
+          <MarkerIcon/><h3>{appointment.selectedStore}</h3>
         </a>
-        <div onClick={this.openModal}><InfoIcon/> <h3>{appointment.time}</h3></div>
+        <div onClick={this.openModal}><InfoIcon/> <h3>Info</h3></div>
       </div>
       {!!appointment.optician?<div className='optician'><h2>Optician</h2> <span>-</span> <h3>{appointment.optician}</h3></div>: null}
       {children}

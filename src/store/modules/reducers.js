@@ -55,6 +55,13 @@ export default (state=initialState, action)=>{
         address:action.address
       }
     }
+    case 'SET_APPOINTMENTS': return {
+      ...state,
+      currentUser: {
+        ...state.currentUser,
+        appointments: [].concat(action.payload)
+      }
+    }
     case 'NEW_ORDER': return {
       ...state,
       currentUser: {

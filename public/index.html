@@ -46,7 +46,7 @@
         </p>
       </div>
     </div>
-    <script>
+    <!-- <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
           navigator.serviceWorker.register('service-worker.js').then(function(registration) {
@@ -62,7 +62,7 @@
       } else {
         console.log('service worker is not supported');
       }
-    </script>
+    </script> -->
     <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
     <script>
       var config = {
@@ -78,28 +78,28 @@
       const messaging = firebase.messaging();
       messaging.requestPermission()
       .then(function() {
-        console.log("Persission granted for messaging")
+        // console.log("Persission granted for messaging")
         return messaging.getToken()
       })
       .then(function(token) {
-        console.log("Token: ",token)
-        fetch(`https://serene-ocean-70888.herokuapp.com/registertopic`,
-        {
-          method: "POST",
-          mode: 'cors',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          body:"token=" + token + "&topic=all2"
-        })
-        .then(function(resp) {
-          resp
-          console.log("resp:  ",resp)
-        })
-        .catch(function(error) {
-          error
-          console.log("error:  ",error)
-        })
+        // console.log("Token: ",token)
+        // fetch(`https://serene-ocean-70888.herokuapp.com/registertopic`,
+        // {
+        //   method: "POST",
+        //   mode: 'cors',
+        //   headers: {
+        //     'Content-Type': 'application/x-www-form-urlencoded'
+        //   },
+        //   body:"token=" + token + "&topic=all2"
+        // })
+        // .then(function(resp) {
+        //   resp
+        //   console.log("resp:  ",resp)
+        // })
+        // .catch(function(error) {
+        //   error
+        //   console.log("error:  ",error)
+        // })
 
 
       })
