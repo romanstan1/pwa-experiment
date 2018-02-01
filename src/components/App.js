@@ -18,7 +18,6 @@ import MyOrders from './myPages/MyOrders'
 
 import AddCard from './createPages/AddCard'
 import ConfirmAppointment from './createPages/ConfirmAppointment'
-import BookAppointment from './createPages/BookAppointment/index'
 import NewAppointment from './createPages/NewAppointment'
 import NewOrder from './createPages/NewOrder'
 import UpdateSubscription from './createPages/UpdateSubscription'
@@ -65,7 +64,7 @@ class App extends Component {
                 <Route exact path="/account" component={Account} />
                 <Route exact path="/myorders" component={MyOrders} />
 
-                <Route component={ErrorPage}/>
+                <Route component={HomePage}/>
               </Switch>
              }
              <Header/>
