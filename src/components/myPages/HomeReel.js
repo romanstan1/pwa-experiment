@@ -63,6 +63,7 @@ class HomeReel extends Component {
   render () {
     const {currentUser} = this.props
     const upcomingAppointments = currentUser.appointments.filter(app => moment(app.dateAndTime) >= moment())
+    const upcomingOrders = currentUser.orders.filter(order => order.status === 'Processing'|| order.status ==='Out for delivery')
     const {orders: clickedOrders, appointments: clickedAppointments} = currentUser.clicked_notifications
     return (
       <span>
@@ -80,7 +81,7 @@ class HomeReel extends Component {
 
             <CollapsibleParent
               clickedOnNotifications={this.clickedOnNotifications}
-              numberOfEntities={0}
+              numberOfEntities={upcomingOrders.length}
               numberOfNotifications={clickedOrders}
               name='Orders'>
               <MultipleOrders currentUser={currentUser}/>

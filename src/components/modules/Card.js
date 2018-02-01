@@ -35,9 +35,9 @@ export class AppointmentCard extends Component {
     const event = {
       title: 'Eye Test',
       location:  appointment.address,
-      startTime: moment(date + 'T' + time24),
-      description: appointment.location + ' | ' + appointment.optician,
-      endTime: moment(date + 'T' + time24).add(30, 'minutes')
+      startTime: appointment.dateAndTime,
+      description: appointment.selectedStore + ' | ' + appointment.optician,
+      endTime: moment(appointment.dateAndTime).add(15, 'minutes')
     }
     return (
     <div className='appointmentCard'>

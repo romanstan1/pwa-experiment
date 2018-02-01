@@ -5,7 +5,7 @@ import store, {history} from './store'
 import App from './components/App';
 import {Provider} from 'react-redux'
 import './index.css'
-// import registerServiceWorker from './registerServiceWorker';
+import registerServiceWorker from './registerServiceWorker';
 import * as firebase from 'firebase';
 require("firebase/firestore");
 
@@ -21,10 +21,43 @@ const config = {
 firebase.initializeApp(config);
 firebase.firestore().enablePersistence()
 
+const messaging = firebase.messaging();
+messaging.requestPermission()
+.then(function() {
+  console.log("Persission granted for messaging")
+  return messaging.getToken()
+})
+.then(function(token) {
+  console.log("Token: ",token)
+  fetch(`https://serene-ocean-70888.herokuapp.com/registertopic`,
+  {
+    method: "POST",
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body:"token=" + token + "&topic=all2"
+  })
+  .then(function(resp) {
+    resp
+    console.log("resp:  ",resp)
+  })
+  .catch(function(error) {
+    error
+    console.log("error:  ",error)
+  })
+})
+.catch(function(err) {
+  console.log("Messaing error: ",err)
+})
+messaging.onMessage(function(payload){
+  console.log("onMessage: ",payload)
+})
+
 render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <App/>
     </ConnectedRouter>
   </Provider>, document.getElementById('root'));
-// registerServiceWorker();
+registerServiceWorker();

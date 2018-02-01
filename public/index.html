@@ -63,7 +63,7 @@
         console.log('service worker is not supported');
       }
     </script> -->
-    <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
     <script>
       var config = {
         apiKey: "AIzaSyDpBvzku_aVum3eNUtatPFLJ6PYttj3I8k",
@@ -73,43 +73,43 @@
         storageBucket: "specsavers-prototype.appspot.com",
         messagingSenderId: "790954721124"
       };
-      firebase.initializeApp(config);
-
-      const messaging = firebase.messaging();
-      messaging.requestPermission()
-      .then(function() {
-        // console.log("Persission granted for messaging")
-        return messaging.getToken()
-      })
-      .then(function(token) {
-        // console.log("Token: ",token)
-        // fetch(`https://serene-ocean-70888.herokuapp.com/registertopic`,
-        // {
-        //   method: "POST",
-        //   mode: 'cors',
-        //   headers: {
-        //     'Content-Type': 'application/x-www-form-urlencoded'
-        //   },
-        //   body:"token=" + token + "&topic=all2"
-        // })
-        // .then(function(resp) {
-        //   resp
-        //   console.log("resp:  ",resp)
-        // })
-        // .catch(function(error) {
-        //   error
-        //   console.log("error:  ",error)
-        // })
-
-
-      })
-      .catch(function(err) {
-        console.log("Messaing error: ",err)
-      })
-      messaging.onMessage(function(payload){
-        console.log("onMessage: ",payload)
-      })
-    </script>
+      firebase.initializeApp(config); -->
+<!-- 
+      // const messaging = firebase.messaging();
+      // messaging.requestPermission()
+      // .then(function() {
+      //   // console.log("Persission granted for messaging")
+      //   return messaging.getToken()
+      // })
+      // .then(function(token) {
+      //   console.log("Token: ",token)
+      //   fetch(`https://serene-ocean-70888.herokuapp.com/registertopic`,
+      //   {
+      //     method: "POST",
+      //     mode: 'cors',
+      //     headers: {
+      //       'Content-Type': 'application/x-www-form-urlencoded'
+      //     },
+      //     body:"token=" + token + "&topic=all2"
+      //   })
+      //   .then(function(resp) {
+      //     resp
+      //     console.log("resp:  ",resp)
+      //   })
+      //   .catch(function(error) {
+      //     error
+      //     console.log("error:  ",error)
+      //   })
+      //
+      //
+      // })
+      // .catch(function(err) {
+      //   console.log("Messaing error: ",err)
+      // })
+      // messaging.onMessage(function(payload){
+      //   console.log("onMessage: ",payload)
+      // }) -->
+    <!-- </script> -->
 
   </body>
 </html>

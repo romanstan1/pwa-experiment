@@ -13,8 +13,10 @@ export const updateNotifications = (orders, appointments, type) => {
     else return entities.filter(order => order.status === 'Processing'|| order.status ==='Out for delivery')
   }
   return {
-    orders: countFutureEntities(orders,'purchase_date').length,
-    appointments: countFutureEntities(appointments,'date').length,
+    // orders: countFutureEntities(orders,'purchase_date').length,
+    // appointments: countFutureEntities(appointments,'date').length,
+    orders: 0,
+    appointments:0,
     chat: 0,
     misc: 0
   }
