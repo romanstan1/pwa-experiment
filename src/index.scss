@@ -135,6 +135,12 @@ div.button {
   &.directions {
     text-transform: uppercase;
   }
+  &.AddToCalendar {
+    margin-top: 0px;
+    height: 38px;
+    line-height: 38px;
+    font-size: 16px;
+  }
 }
 div.content-image {
   display: block;
@@ -805,79 +811,127 @@ div.react-add-to-calendar__dropdown {
   z-index: 1000;
   color: black;
   text-align: left;
-  top: 0px;
-  width: 220px;
-  left: 45vw;
-  height: 100px;
-  transform: translate(-50%,0%);
+  top: -120px;
+  width: 110%;
+  left: -5%;
+  height: 200px;
+  // transform: translate(-50%,0%);
   ul {
     z-index: 1000;
     padding: 0;
     margin: 0;
-    background: white;
-    -webkit-box-shadow: 10px 10px 104px 24px rgba(0,0,0,0.53);
-    -moz-box-shadow: 10px 10px 104px 24px rgba(0,0,0,0.53);
-    box-shadow: 10px 10px 104px 24px rgba(0,0,0,0.53);
+    // -webkit-box-shadow: 10px 10px 104px 24px rgba(0,0,0,0.53);
+    // -moz-box-shadow: 10px 10px 104px 24px rgba(0,0,0,0.53);
+    // box-shadow: 10px 10px 104px 24px rgba(0,0,0,0.53);
+    li {
+      position: relative;
+      margin-left: 20px;
+      padding-left: 30px;
+      display: block;
+      background: $grey;
+      &:nth-child(even) {
+        background: $slate;
+      }
+    }
     a {
-      text-indent: 20px;
+      // background: red;
+      display: inline-block;
+      text-indent: 10px;
       text-align: left;
       z-index: 1000;
       padding: 0px;
       color: $navy;
-      border-top: 1px solid $navy;
-      border-bottom: 1px solid $navy;
-      background: white;
-      position: relative;
-      line-height: 38px;
+      width: 100%;
+      // text-indent: 20px;
+      margin-left: 10px;
+      // border-top: 1px solid $navy;
+      // border-bottom: 1px solid $navy;
+      // background: white;
+      // position: relative;
+      line-height: 50px;
       &::after {
+        padding-right: 10px;
+        text-align: right;
         content: '+';
         position: absolute;
-        right: 15px;
+        left: 0px;
         font-size: 20px;
         font-weight: 600;
         color:$green;
+        width: calc(100% - 10px);
         top:-1px;
       }
     }
   }
 }
+//
+// div.ReactModal__Overlay ReactModal__Overlay--after-open{
+//   background: black  !important;
+// }
 div.ReactModalPortal {
   z-index: 9999;
   div.ReactModal__Overlay {
     z-index: 9999;
+    background-color:rgba(0,0,0,0.88) !important;
     div.ReactModal__Content {
       right: 10px  !important;
       top: 10px  !important;
       left: 10px  !important;
       bottom: 10px  !important;
       height: 70%;
-      margin-top: 20%;
+      margin-top: 24%;
       border: 0px !important;
       border-radius: 0px !important;
-      background: $navy !important;
-      color: white;
+      background: white !important;
+      // color: red !important;
       * {padding: 0; margin: 0;}
-      h4 {
-        font-size: 15px;
-        text-align: center;
-        padding: 30px 0;
-      }
-      div {
-        margin-bottom: 5px;
+      section {
+        margin: 10px 0;
+        &.heading{
+          width: 100%;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-self: center;
+          svg {
+            align-self: center;
+          }
+          h4{
+            padding: 5px 0;
+            font-size: 20px;
+          }
+        }
         h2 {
-          font-size: 13px;
-          display: inline-block;
-          padding-right: 10px;
+          padding: 10px 0 0 0;
+          font-size: 16px;
         }
-        a {
-          color: $green;
-        }
-        h3 {
-          font-size: 13px;
-          font-weight: 400;
-          display: inline-block;
+        p {
+          padding: 5px 0 0 0;
+          font-size: 16px;
         }
       }
+      // h4 {
+      //   font-size: 15px;
+      //   text-align: center;
+      //   padding: 30px 0;
+      // }
+      // div {
+      //   margin-bottom: 5px;
+      //   h2 {
+      //     font-size: 13px;
+      //     display: inline-block;
+      //     padding-right: 10px;
+      //   }
+      //   a {
+      //     color: $green;
+      //   }
+      //   h3 {
+      //     font-size: 13px;
+      //     font-weight: 400;
+      //     display: inline-block;
+      //   }
+      // }
     }
   }
 }
@@ -900,6 +954,13 @@ div.appointmentCard {
       height: 100px;
       background: $lightNavy;
       padding: 15px 0 6px 0;
+      position: relative;
+      > span {
+        position: absolute;
+        top:0;
+        width: 100%;
+        bottom: 0;
+      }
       h3 {
         line-height: 40px;
         display: block;
@@ -935,6 +996,7 @@ div.appointmentCard {
               height: 100%;
               display: block;
               position: relative;
+              // background: red;
               span {
                 width: 100%;
                 position: absolute;
@@ -1104,6 +1166,20 @@ span.close {
   }
   &:after {
     transform: rotate(-45deg);
+  }
+  &.modal {
+    top: 18px;
+    width: 28px;
+    right: 12px;
+    height: 28px;
+    &::before{
+      width: 3px;
+      height: 28px;
+    }
+    &::after{
+      width: 3px;
+      height: 28px;
+    }
   }
 }
 div.noAppointments {

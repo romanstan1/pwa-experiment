@@ -14,6 +14,8 @@ div.selectAppointmentType {
   text-align: left;
   margin: 0px 0 5px 0;
   font-weight: 600; }
+  div.selectAppointmentType.whoFor {
+    margin-top: 55px; }
   div.selectAppointmentType div.label {
     font-size: 20px;
     line-height: 50px;
@@ -290,3 +292,13 @@ span.appointmentInput {
     max-width: 100%;
     background: #fcfcfc;
     border: 2px solid #d4d5d6; }
+
+div.appointmentSummary {
+  background: #f2f2f2;
+  padding: 40px 10px;
+  margin: 50px 0; }
+  div.appointmentSummary h2 {
+    font-weight: 400;
+    margin: 0;
+    padding: 0px 0 25px 0;
+    font-size: 20px; }

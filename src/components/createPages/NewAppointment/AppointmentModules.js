@@ -120,7 +120,7 @@ export const SelectAppointmentType = ({handleTypeChange, selectedAppointmentType
   </div>
 
 export const SelectWhoAppointmentIsFor = ({handleAppointmentFor, selectedAppointment}) =>
-  <div className='selectAppointmentType'>
+  <div className='selectAppointmentType whoFor'>
     <div className='label'>Select Who Appointment Is For</div>
     <div className='row'>
       {appointmentFor.map((item, index) =>

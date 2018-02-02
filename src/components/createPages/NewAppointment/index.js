@@ -9,6 +9,8 @@ import {opticianNames,random} from '../../../store/modules/seed'
 import * as firebase from 'firebase';
 import './style.css'
 import moment from 'moment'
+import {AppointmentCard} from '../../modules/Card'
+
 import {BookSomeoneElse,
   SelectAppointmentType,
   SelectWhoAppointmentIsFor,
@@ -47,6 +49,9 @@ class BookAppointment extends Component {
       availableDates:[],
       center:{},
       appointmentTime: ''})
+    this.props.dispatch(availableStoresAtLocation([]))
+  }
+  componentDidMount() {
     this.props.dispatch(availableStoresAtLocation([]))
   }
 
@@ -106,10 +111,10 @@ class BookAppointment extends Component {
   handleSecondPerson = ({target}) => this.setState({secondPerson:{ ...this.state.secondPerson,[target.name]:target.value}})
 
   handleBookAppointment = () => {
-    const idNumber= 1231224
-    const {history,dispatch} = this.props
-    dispatch(bookAppointment(this.state,idNumber))
-    history.push(`/confirmappointment`)
+    // const idNumber= 1231224
+    // const {history,dispatch} = this.props
+    // dispatch(bookAppointment(this.state,idNumber))
+    this.props.history.push(`/confirmappointment`)
   }
 
   bookNewAppointment = () => {
@@ -213,8 +218,11 @@ class BookAppointment extends Component {
           { !!appointmentFor?
             <span>
               <AdditionalInfo handleAdditionalInfo={this.handleAdditionalInfo}/><br/>
-              <AppointmentSummary details={this.state}/>
-              {/* <div onClick={this.handleBookAppointment} className='button primary'> Book Appointment</div> */}
+              <div className='appointmentSummary'>
+                <h2>{`${this.props.currentUser.first_name}'s Appointment Summary`}</h2>
+                <AppointmentCard appointment={this.state} />
+              </div>
+              <br/>
               <div onClick={this.bookNewAppointment} className='button primary'> Book appointment</div>
             </span> : null
           }

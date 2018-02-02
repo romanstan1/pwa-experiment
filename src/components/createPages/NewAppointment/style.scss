@@ -23,10 +23,12 @@ div.bookappointment {
 div.selectAppointmentType {
   display: flex;
   flex-direction: column;
-  // background: $navy;
   text-align: left;
   margin: 0px 0 5px 0;
   font-weight: 600;
+  &.whoFor{
+    margin-top: 55px;
+  }
   div.label {
     font-size: 20px;
     line-height: 50px;
@@ -40,7 +42,6 @@ div.selectAppointmentType {
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
-    // height: 120px;
     span {
       text-align: center;
       height: 120px;
@@ -385,5 +386,17 @@ span.appointmentInput {
     max-width: 100%;
     background: $lightGrey;
     border:2px solid $slate;
+  }
+}
+
+div.appointmentSummary {
+  background: $grey;
+  padding: 40px 10px;
+  margin: 50px 0;
+  h2 {
+    font-weight: 400;
+    margin: 0;
+    padding: 0px 0 25px 0;
+    font-size: 20px;
   }
 }

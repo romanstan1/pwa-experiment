@@ -42,6 +42,7 @@ exports.checkAppointments = functions.https.onRequest((req, res) => {
 
     const appointments = snap.docs.map(doc => doc.data());
     const upcomingAppointments = appointments.filter(appot => moment(appot.dateAndTime).isBetween(today,tomorrow))
+    
     upcomingAppointments.forEach(upcoming => pushNotification(upcoming))
 
     return res.send(upcomingAppointments);

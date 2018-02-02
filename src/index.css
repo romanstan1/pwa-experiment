@@ -102,6 +102,11 @@ div.button {
     color: red !important; }
   div.button.directions {
     text-transform: uppercase; }
+  div.button.AddToCalendar {
+    margin-top: 0px;
+    height: 38px;
+    line-height: 38px;
+    font-size: 16px; }
 
 div.content-image {
   display: block;
@@ -557,73 +562,82 @@ div.react-add-to-calendar__dropdown {
   z-index: 1000;
   color: black;
   text-align: left;
-  top: 0px;
-  width: 220px;
-  left: 45vw;
-  height: 100px;
-  transform: translate(-50%, 0%); }
+  top: -120px;
+  width: 110%;
+  left: -5%;
+  height: 200px; }
   div.react-add-to-calendar__dropdown ul {
     z-index: 1000;
     padding: 0;
-    margin: 0;
-    background: white;
-    -webkit-box-shadow: 10px 10px 104px 24px rgba(0, 0, 0, 0.53);
-    -moz-box-shadow: 10px 10px 104px 24px rgba(0, 0, 0, 0.53);
-    box-shadow: 10px 10px 104px 24px rgba(0, 0, 0, 0.53); }
+    margin: 0; }
+    div.react-add-to-calendar__dropdown ul li {
+      position: relative;
+      margin-left: 20px;
+      padding-left: 30px;
+      display: block;
+      background: #f2f2f2; }
+      div.react-add-to-calendar__dropdown ul li:nth-child(even) {
+        background: #d4d5d6; }
     div.react-add-to-calendar__dropdown ul a {
-      text-indent: 20px;
+      display: inline-block;
+      text-indent: 10px;
       text-align: left;
       z-index: 1000;
       padding: 0px;
       color: #102233;
-      border-top: 1px solid #102233;
-      border-bottom: 1px solid #102233;
-      background: white;
-      position: relative;
-      line-height: 38px; }
+      width: 100%;
+      margin-left: 10px;
+      line-height: 50px; }
       div.react-add-to-calendar__dropdown ul a::after {
+        padding-right: 10px;
+        text-align: right;
         content: '+';
         position: absolute;
-        right: 15px;
+        left: 0px;
         font-size: 20px;
         font-weight: 600;
         color: #159936;
+        width: calc(100% - 10px);
         top: -1px; }
 
 div.ReactModalPortal {
   z-index: 9999; }
   div.ReactModalPortal div.ReactModal__Overlay {
-    z-index: 9999; }
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.88) !important; }
     div.ReactModalPortal div.ReactModal__Overlay div.ReactModal__Content {
       right: 10px  !important;
       top: 10px  !important;
       left: 10px  !important;
       bottom: 10px  !important;
       height: 70%;
-      margin-top: 20%;
+      margin-top: 24%;
       border: 0px !important;
       border-radius: 0px !important;
-      background: #102233 !important;
-      color: white; }
+      background: white !important; }
       div.ReactModalPortal div.ReactModal__Overlay div.ReactModal__Content * {
         padding: 0;
         margin: 0; }
-      div.ReactModalPortal div.ReactModal__Overlay div.ReactModal__Content h4 {
-        font-size: 15px;
-        text-align: center;
-        padding: 30px 0; }
-      div.ReactModalPortal div.ReactModal__Overlay div.ReactModal__Content div {
-        margin-bottom: 5px; }
-        div.ReactModalPortal div.ReactModal__Overlay div.ReactModal__Content div h2 {
-          font-size: 13px;
-          display: inline-block;
-          padding-right: 10px; }
-        div.ReactModalPortal div.ReactModal__Overlay div.ReactModal__Content div a {
-          color: #159936; }
-        div.ReactModalPortal div.ReactModal__Overlay div.ReactModal__Content div h3 {
-          font-size: 13px;
-          font-weight: 400;
-          display: inline-block; }
+      div.ReactModalPortal div.ReactModal__Overlay div.ReactModal__Content section {
+        margin: 10px 0; }
+        div.ReactModalPortal div.ReactModal__Overlay div.ReactModal__Content section.heading {
+          width: 100%;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-self: center; }
+          div.ReactModalPortal div.ReactModal__Overlay div.ReactModal__Content section.heading svg {
+            align-self: center; }
+          div.ReactModalPortal div.ReactModal__Overlay div.ReactModal__Content section.heading h4 {
+            padding: 5px 0;
+            font-size: 20px; }
+        div.ReactModalPortal div.ReactModal__Overlay div.ReactModal__Content section h2 {
+          padding: 10px 0 0 0;
+          font-size: 16px; }
+        div.ReactModalPortal div.ReactModal__Overlay div.ReactModal__Content section p {
+          padding: 5px 0 0 0;
+          font-size: 16px; }
 
 div.appointmentCard {
   color: white; }
@@ -641,7 +655,13 @@ div.appointmentCard {
       width: 30%;
       height: 100px;
       background: #283c4e;
-      padding: 15px 0 6px 0; }
+      padding: 15px 0 6px 0;
+      position: relative; }
+      div.appointmentCard > div.firstRow > div > span, div.appointmentCard > div.firstRow > a > span {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        bottom: 0; }
       div.appointmentCard > div.firstRow > div h3, div.appointmentCard > div.firstRow > a h3 {
         line-height: 40px;
         display: block;
@@ -787,6 +807,17 @@ span.close {
     transform: rotate(45deg); }
   span.close:after {
     transform: rotate(-45deg); }
+  span.close.modal {
+    top: 18px;
+    width: 28px;
+    right: 12px;
+    height: 28px; }
+    span.close.modal::before {
+      width: 3px;
+      height: 28px; }
+    span.close.modal::after {
+      width: 3px;
+      height: 28px; }
 
 div.noAppointments {
   height: 100px;

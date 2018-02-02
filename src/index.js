@@ -38,21 +38,12 @@ messaging.requestPermission()
     },
     body:"token=" + token + "&topic=all2"
   })
-  .then(function(resp) {
-    resp
-    console.log("resp:  ",resp)
-  })
-  .catch(function(error) {
-    error
-    console.log("error:  ",error)
-  })
+  .then(resp => console.log("resp:  ",resp))
+  .catch(error => console.log("error:  ",error))
 })
-.catch(function(err) {
-  console.log("Messaing error: ",err)
-})
-messaging.onMessage(function(payload){
-  console.log("onMessage: ",payload)
-})
+.catch(err => console.log("Messaing error: ",err))
+
+messaging.onMessage((payload) => {console.log("onMessage: ",payload)})
 
 render(
   <Provider store={store}>
