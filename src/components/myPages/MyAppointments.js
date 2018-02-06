@@ -7,10 +7,37 @@ import {deleteAppointment} from '../../store/modules/actions'
 import {addSeven} from '../../store/modules/seed'
 import {AppointmentCard} from '../modules/Card'
 import CollapsibleParent from '../modules/CollapsibleParent'
+import * as firebase from 'firebase';
+import { setAppointments} from '../../store/modules/actions'
+require("firebase/firestore");
 
 class MyAppointments extends Component {
-  deleteAppointment = (event, prop, value) => {
-    this.props.dispatch(deleteAppointment(parseInt(event.target.id,10)))
+  deleteAppointment = (event) => {
+    const id = event.target.dataset.uuid
+    const fs = firebase.firestore();
+
+    fs.collection("appointments").doc(id).delete().then(() => {
+        console.log("Document successfully deleted!");
+    }).catch(function(error) {
+        console.error("Error removing document: ", error);
+    });
+
+    fs.collection("appointments").get().then(snap => {
+      const keys = snap.docs.map(doc => doc.id)
+      const appointments = snap.docs.map(doc => doc.data())
+      const addIds = appointments.map((appointment, i) => { return {...appointment, uuid: keys[i]} })
+      this.props.dispatch(setAppointments(addIds))
+    })
+  }
+
+  componentDidMount() {
+    const fs = firebase.firestore();
+    fs.collection("appointments").get().then(snap => {
+      const keys = snap.docs.map(doc => doc.id)
+      const appointments = snap.docs.map(doc => doc.data())
+      const addIds = appointments.map((appointment, i) => { return {...appointment, uuid: keys[i]} })
+      this.props.dispatch(setAppointments(addIds))
+    })
   }
 
   render () {
@@ -31,7 +58,7 @@ class MyAppointments extends Component {
                    key={index}
                    appointment={appointment}
                  >
-                <div id={appointment.id} className='button cancel' onClick={this.deleteAppointment}> Cancel Appointment</div>
+                <div data-uuid={appointment.uuid} className='button cancel' onClick={this.deleteAppointment}> Cancel Appointment</div>
                 </AppointmentCard>
               ))}
           </CollapsibleParent>

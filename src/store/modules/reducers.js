@@ -28,6 +28,7 @@ export const onFocusReducer = (state='blur', action) =>{
 }
 
 export default (state=initialState, action)=>{
+  if(action.type === 'CONFIRM_APPOINTMENT') console.log("CONFIRM_APPOINTMENT: ", action)
   switch(action.type){
     case 'LOGIN': return {
       ...state,
@@ -38,21 +39,20 @@ export default (state=initialState, action)=>{
       currentUser: null
     }
     // Create / Update Reducers - - - - - - - - - - - - - - - - - - - - - - - - - -
-    case 'BOOK_APPOINTMENT': return {
+    case 'CONFIRM_APPOINTMENT': return {
       ...state,
-      bookAppointment: {
-        type: action.appointmentType,
-        for: action.appointmentFor,
-        additional:action.additionalInfo,
-        time:action.appointmentTime,
-        location:action.selectedStore,
-        date:moment(action.appointmentDate,'MMMDDYYYY').format('ll'),
-        optician:random(opticianNames),
-        secondPerson:action.secondPerson,
-        phoneNumber: action.phoneNumber,
-        homeLocation: action.homeLocation,
-        id: action.idNumber,
-        address:action.address
+      confirmedAppointment: {
+        selectedStore: action.payload.selectedStore,
+        dateAndTime: action.payload.dateAndTime,
+        address: action.payload.address,
+        optician:action.payload.optician,
+        homeLocation: action.payload.homeLocation,
+        placeId:action.payload.placeId,
+        type:action.payload.type,
+        for: action.payload.for,
+        additional:action.payload.additionalInfo,
+        phoneNumber: action.payload.phoneNumber,
+        uuid: action.payload.uuid
       }
     }
     case 'SET_APPOINTMENTS': return {
@@ -175,18 +175,18 @@ export default (state=initialState, action)=>{
         }
       }
     }
-    case 'CONFIRM_APPOINTMENT': return {
-      ...state,
-      currentUser: {
-        ...state.currentUser,
-        appointments: [].concat(state.currentUser.appointments, [{
-          ...state.bookAppointment
-        }])
-      }
-    }
+    // case 'CONFIRM_APPOINTMENT': return {
+    //   ...state,
+    //   currentUser: {
+    //     ...state.currentUser,
+    //     appointments: [].concat(state.currentUser.appointments, [{
+    //       ...state.bookAppointment
+    //     }])
+    //   }
+    // }
     case 'CLEAR_APPOINTMENT_CACHE': return {
       ...state,
-      bookAppointment: null
+      confirmedAppointment: null
     }
 
     // Delete Reducers - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

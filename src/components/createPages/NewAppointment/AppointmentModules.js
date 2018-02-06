@@ -82,17 +82,27 @@ export class TimeStrip extends Component {
   handleButton = (e) => this.setState({period: e.target.dataset.value})
   render() {
     const {selectedTime,handleTimeSelect, availableTimes} = this.props
+    const lunchTime = moment('12:00 pm', 'h:mm aa')
+    const dusk = moment('4:00 pm', 'h:mm aa')
+    const {period} = this.state
+    const filteredTimes = availableTimes.filter((time) => {
+      const mom = moment(time, 'h:mm aa')
+      if (period === 'Morning') { return mom < lunchTime }
+      else if (period === 'Afternoon') { return mom >= lunchTime && mom < dusk }
+      else { return mom >= dusk }
+    })
+
     return (<div className='timeStrip'>
       <div className='timeButtons'>
         {['Morning','Afternoon','Evening'].map((button, i) =>
-          <span className={this.state.period === button? 'selected': null}
+          <span className={period === button? 'selected': null}
             key={i}
             onClick={this.handleButton}
             data-value={button}>{button}</span>
         )}
       </div>
       <div className='strip'>
-        {availableTimes.map((time, index) =>
+        {filteredTimes.map((time, index) =>
           <div key={index} className={selectedTime === time? 'time selected':'time'} onClick={() => handleTimeSelect(time)} >
             <span className='time'>{time}</span>
           </div>

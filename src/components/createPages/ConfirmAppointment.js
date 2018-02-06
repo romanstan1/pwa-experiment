@@ -5,87 +5,79 @@ import Card from '../modules/Card'
 import MiniTicket from '../modules/MiniTicket'
 import LinkButton from '../modules/LinkButton'
 import {AppointmentCard} from '../modules/Card'
+import {clearAppointmentCache} from '../../store/modules/actions'
+import * as firebase from 'firebase';
+require("firebase/firestore");
 
-import {clearAppointmentCache,confirmAppointment} from '../../store/modules/actions'
-import {addSeven} from '../../store/modules/seed'
-
-const ConfirmPopUp = ({show}) => {
-  const componentClasses = ['confirmAppointmentPopUp']
-  if (show) componentClasses.push('show')
-  return (
-    <div className={componentClasses.join(' ')}>
-      <span>Appointment Booked!</span>
-      <br/>
-      <LinkButton to='/myappointments'> Continue </LinkButton>
-    </div>
-  )
-}
+const ConfirmPopUp = ({show, handlePopUp}) =>
+  <div className={show? 'confirmAppointmentPopUp show': 'confirmAppointmentPopUp'}>
+    <span>Appointment Booked!</span>
+    <br/>
+    <div className='continue' onClick={handlePopUp}> Continue </div>
+  </div>
 
 class ConfirmAppointment extends Component {
   state = {
-    confirmed:false
+    confirmed:false,
+    show: false
   }
 
   cancelAppointment = () => {
     this.props.history.push(`/myappointments`)
   }
 
-  handleConfirmAppointment = () => {
-    this.props.dispatch(confirmAppointment())
-    this.setState({confirmed: true})
+  deleteAppointment = (event) => {
+    const id = event.target.dataset.uuid
+    const fs = firebase.firestore();
+    fs.collection("appointments").doc(id).delete().then(() => {
+        console.log("Document successfully deleted!")
+        this.props.dispatch(clearAppointmentCache())
+    }).catch(error => {console.error("Error removing document: ", error)})
   }
 
   componentWillUnmount () {
     this.props.dispatch(clearAppointmentCache())
   }
+  componentWillMount () {
+    if(this.props.confirmedAppointment) {
+      this.setState({show: true})
+    }
+  }
+
+  handlePopUp = () => {
+    this.setState({show: false})
+  }
 
   render () {
-    const {appointment} = this.props
+    const {confirmedAppointment,currentUser} = this.props
     return (
       <span>
-        <ConfirmPopUp show={this.state.confirmed}/>
+        <ConfirmPopUp handlePopUp={this.handlePopUp} show={this.state.show}/>
         <Ticket title="Confirmation">
-          <MiniTicket title="Confirm Appointment">
 
-            <br/>
-            {!!appointment?
-            <AppointmentCard
-              extraClass='confirmation'
-              appointment={appointment}
-            >
-              <div className='children'>
-
-                  {appointment.for ==='Someone else'?
-                <div className='someoneElse'>
-                  <div><h2>Appointment for someone else</h2></div>
-                  <div><h2>Title - </h2><h3>{appointment.secondPerson.title}</h3></div>
-                  <div><h2>First name -</h2><h3>{appointment.secondPerson.first_name}</h3></div>
-                  <div><h2>Last name -</h2><h3>{appointment.secondPerson.last_name}</h3></div>
-                  <div><h2>Date of birth -</h2><h3>{appointment.secondPerson.dob}</h3></div>
-                </div> : null }
-
-                <div className='extras'><h2>Additional Info:</h2><h3>{appointment.additional}</h3></div>
-                <div className='extras'><h2>Store Phone Number:</h2><h3>{appointment.phoneNumber}</h3></div>
-                <div className='button directions'>
-                  <a target="_blank"
-                    href={`https://www.google.co.uk/maps/dir/specsavers ${appointment.address.substr(appointment.address.length - 12)}/${appointment.homeLocation.lat},${appointment.homeLocation.lng}`}>
-                    Get Directions
-                  </a>
+          <div className='confirmAppointment'>
+            {!!confirmedAppointment?
+              <span>
+                <h2>Your appointment is booked</h2>
+                <div className='inner'>
+                  <h3>{currentUser.first_name}'s Appointment</h3>
+                  <AppointmentCard appointment={confirmedAppointment}>
+                    <div data-uuid={confirmedAppointment.uuid} className='button cancel' onClick={this.deleteAppointment}> Cancel Appointment</div>
+                  </AppointmentCard>
                 </div>
-
-                <div className='button cancel' onClick={this.cancelAppointment}> Cancel Appointment</div>
-                <div className='button primary' onClick={this.handleConfirmAppointment}> Confirm Appointment</div>
-
-              </div>
-            </AppointmentCard>
-             :
+              </span>
+            :
             <Card>
-              Appointment Cancelled
-              <LinkButton extraClass='' to='/bookappointment'>Book a new Appointment</LinkButton>
-              <LinkButton extraClass='secondary' to='/myappointments'>My Appointments</LinkButton>
+              <div className='confirmAppointment'>
+                <div className='inner'>
+                  Appointment Cancelled
+                </div>
+              </div>
             </Card>}
-        </MiniTicket>
-        <br/>
+            <LinkButton extraClass='' to='/bookappointment'>Book Another Appointment</LinkButton>
+            <LinkButton extraClass='secondary confirm' to='/myappointments'>My Appointments</LinkButton>
+          <br/>
+          </div>
         </Ticket>
         <br/>
       </span>)
@@ -95,5 +87,5 @@ class ConfirmAppointment extends Component {
 
 export default connect(state => ({
   currentUser: state.data.currentUser,
-  appointment: state.data.bookAppointment
+  confirmedAppointment: state.data.confirmedAppointment
 }))(ConfirmAppointment)

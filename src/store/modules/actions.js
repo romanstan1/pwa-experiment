@@ -32,6 +32,12 @@ export const bookAppointment = ({selectedStore,appointmentDate,appointmentTime,a
     idNumber
   })
 }
+export const confirmAppointment = (newAppointment) => {
+  return dispatch => dispatch({
+    type: 'CONFIRM_APPOINTMENT',
+    payload: newAppointment
+  })
+}
 export const setAppointments = (appointments) => {
   return dispatch => dispatch({
     type: 'SET_APPOINTMENTS',
@@ -131,11 +137,11 @@ export const clickedOnNotifications = (notificationType) => {
     notificationType
   })
 }
-export const confirmAppointment = () => {
-  return dispatch => dispatch({
-    type: 'CONFIRM_APPOINTMENT'
-  })
-}
+// export const confirmAppointment = () => {
+//   return dispatch => dispatch({
+//     type: 'CONFIRM_APPOINTMENT'
+//   })
+// }
 export const clearAppointmentCache = () => {
   return dispatch => dispatch({
     type: 'CLEAR_APPOINTMENT_CACHE'

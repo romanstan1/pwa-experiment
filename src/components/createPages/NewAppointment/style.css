@@ -36,7 +36,7 @@ div.selectAppointmentType {
       margin-bottom: 10px;
       line-height: 120px;
       background: white;
-      color: #102233;
+      color: #3c3f49;
       background: #f2f2f2;
       width: calc(50% - 5px); }
       div.selectAppointmentType div.row span.active {
@@ -149,7 +149,7 @@ div.storeStrip {
       width: 120px;
       background: #f2f2f2;
       display: flex;
-      color: #102233;
+      color: #3c3f49;
       flex-direction: column;
       justify-content: center; }
       div.storeStrip div.strip div.store.selected {
@@ -190,7 +190,7 @@ div.dateStrip {
       width: 70px;
       background: #f2f2f2;
       display: flex;
-      color: #102233;
+      color: #3c3f49;
       flex-direction: column;
       justify-content: center; }
       div.dateStrip div.strip div.date.selected {
@@ -244,7 +244,7 @@ div.timeStrip {
       background: white;
       text-align: center;
       display: flex;
-      color: #102233;
+      color: #3c3f49;
       flex-direction: column;
       justify-content: center;
       background: #f2f2f2; }
@@ -294,11 +294,24 @@ span.appointmentInput {
     border: 2px solid #d4d5d6; }
 
 div.appointmentSummary {
-  background: #f2f2f2;
+  background: #3c3f49;
   padding: 40px 10px;
   margin: 50px 0; }
   div.appointmentSummary h2 {
     font-weight: 400;
     margin: 0;
     padding: 0px 0 25px 0;
-    font-size: 20px; }
+    font-size: 20px;
+    color: white;
+    font-weight: 600; }
+
+div.offlineBookAppointment {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 70vh;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 30px; }

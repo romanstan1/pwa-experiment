@@ -155,7 +155,7 @@ span.linkButton {
     margin: 10px 10px 0 10px;
     padding-bottom: 4px; }
   span.linkButton.blue a {
-    background: #102233; }
+    background: #3c3f49; }
   span.linkButton.secondary {
     border: 1px solid #159936;
     color: white; }
@@ -163,8 +163,17 @@ span.linkButton {
       padding: 0;
       background: transparent;
       line-height: 15px; }
+  span.linkButton.secondary.confirm {
+    border: 1px solid #159936;
+    color: #3c3f49;
+    padding: 0; }
+    span.linkButton.secondary.confirm a {
+      color: inherit;
+      padding: 0;
+      background: transparent;
+      line-height: 40px; }
   span.linkButton.appointment {
-    background: #102233;
+    background: #3c3f49;
     border: 0px; }
   span.linkButton a, span.linkButton span {
     text-align: center;
@@ -194,6 +203,16 @@ span.linkButton {
     span.linkButton.big a:hover {
       opacity: 0.4; }
 
+div.confirmAppointment {
+  padding: 10px; }
+  div.confirmAppointment h3 {
+    color: white;
+    padding: 0;
+    font-size: 18px; }
+  div.confirmAppointment div.inner {
+    background: #3c3f49;
+    padding: 10px; }
+
 div.confirmAppointmentPopUp {
   -webkit-transition: 0.5s;
   -moz-transition: 0.5s;
@@ -213,6 +232,16 @@ div.confirmAppointmentPopUp {
   div.confirmAppointmentPopUp.show {
     opacity: 1;
     visibility: visible; }
+  div.confirmAppointmentPopUp div.continue {
+    background: #159936;
+    color: white;
+    margin-top: 20px;
+    width: 40%;
+    line-height: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600; }
   div.confirmAppointmentPopUp span {
     font-size: 22px;
     font-weight: 600;
@@ -259,7 +288,7 @@ div.Collapsible {
     color: white; }
   div.Collapsible div.Collapsible__contentInner p {
     position: relative;
-    background: #283c4e;
+    background: #5e6272;
     line-height: 30px;
     border: 0px solid red;
     padding: 0px;
@@ -268,7 +297,7 @@ div.Collapsible {
     color: white; }
 
 div.notificationCard {
-  background: #102233;
+  background: #3c3f49;
   margin: 10px; }
   div.notificationCard div.Collapsible {
     border-top: 1px solid white !important; }
@@ -328,7 +357,7 @@ span.chatIntercomWrap {
           border-radius: 8px;
           margin-right: 26%;
           margin-left: 3%;
-          background: #283c4e;
+          background: #5e6272;
           color: white; }
           span.chatIntercomWrap div.chatDialog > div > div.history div.message.them > div.replies {
             margin: 12px;
@@ -352,7 +381,7 @@ span.chatIntercomWrap {
               margin: 4px;
               background: #159936;
               background: #dce4ea;
-              color: #102233;
+              color: #3c3f49;
               cursor: pointer; }
               span.chatIntercomWrap div.chatDialog > div > div.history div.message.them > div.replies > span.clicked {
                 background: #159936;
@@ -424,7 +453,7 @@ div.gmapsMarker {
       transition: 0.2s ease;
       transform: translate(-50%, -100%);
       height: 35px;
-      fill: #102233; }
+      fill: #3c3f49; }
     div.gmapsMarker.store.selected {
       z-index: 100; }
       div.gmapsMarker.store.selected svg {
@@ -486,7 +515,7 @@ div.webcam {
     font-size: 14px;
     line-height: 40px;
     display: block;
-    background: #102233;
+    background: #3c3f49;
     color: white;
     text-align: center;
     font-weight: 600; }
@@ -494,7 +523,7 @@ div.webcam {
 a.scanQRCode {
   display: block;
   text-align: center;
-  background: #102233;
+  background: #3c3f49;
   height: 50px;
   line-height: 50px;
   color: white;
@@ -524,7 +553,7 @@ div.miniTicket {
     box-shadow: 0px 1px 6px 2px rgba(0, 0, 0, 0.03);
     text-align: left;
     background: #fcfcfc;
-    background: #102233;
+    background: #3c3f49;
     position: relative;
     padding-bottom: 0px; }
     div.miniTicket div.miniTicketInnerWrap > span {
@@ -584,7 +613,7 @@ div.react-add-to-calendar__dropdown {
       text-align: left;
       z-index: 1000;
       padding: 0px;
-      color: #102233;
+      color: #3c3f49;
       width: 100%;
       margin-left: 10px;
       line-height: 50px; }
@@ -654,7 +683,7 @@ div.appointmentCard {
       display: flex;
       width: 30%;
       height: 100px;
-      background: #283c4e;
+      background: #5e6272;
       padding: 15px 0 6px 0;
       position: relative; }
       div.appointmentCard > div.firstRow > div > span, div.appointmentCard > div.firstRow > a > span {
@@ -736,7 +765,7 @@ div.appointmentCard {
       font-weight: 400;
       padding-left: 10px; }
     div.appointmentCard div.children > div {
-      background: #283c4e;
+      background: #5e6272;
       padding: 10px;
       margin: 10px 0; }
       div.appointmentCard div.children > div.someoneElse > div {
@@ -753,13 +782,13 @@ div.appointmentCard {
 div.orderCard {
   display: flex;
   flex-direction: column;
-  background: #283c4e;
+  background: #5e6272;
   margin: 10px 0; }
   div.orderCard div.firstRow {
     display: flex;
     color: white;
     flex-direction: row;
-    background: #283c4e;
+    background: #5e6272;
     padding: 10px; }
     div.orderCard div.firstRow:nth-of-type(2) {
       margin-top: 0px; }
@@ -825,7 +854,7 @@ div.noAppointments {
   font-size: 15px;
   text-align: center;
   font-weight: 600;
-  color: #102233;
+  color: #3c3f49;
   display: flex;
   justify-content: center;
   align-items: center; }
@@ -840,7 +869,7 @@ div.selectStrip {
   padding-top: 15px;
   margin-bottom: 5px;
   background: #d4d5d6;
-  background: #102233; }
+  background: #3c3f49; }
   div.selectStrip > span.stripItem {
     display: inline-flex;
     align-self: center;
@@ -967,7 +996,7 @@ span.formInput {
       display: block;
       font-weight: 600;
       margin-top: 20px;
-      background: #283c4e;
+      background: #5e6272;
       text-indent: 20px;
       color: white; }
     span.formInput > form span.nested input[type="submit"] {
@@ -980,7 +1009,7 @@ span.formInput {
       text-align: center;
       text-align: -webkit-center;
       background: #f9fbff;
-      background: #102233;
+      background: #3c3f49;
       height: 42px;
       line-height: 42px;
       border: 1px solid #159936;
@@ -998,7 +1027,7 @@ div.welcomeMessage {
   div.welcomeMessage.inverted {
     margin-top: 0px;
     padding: 15px 10px;
-    background: #102233;
+    background: #3c3f49;
     font-weight: 400; }
 
 div.Select.Select--single.is-focused.is-searchable.has-value {
@@ -1048,7 +1077,7 @@ div.prescriptionGrid {
     border: 1px solid white;
     font-size: 14px;
     text-indent: 20px;
-    background: #283c4e; }
+    background: #5e6272; }
   div.prescriptionGrid div.bottom {
     border: 1px solid white;
     width: 100%;
@@ -1110,7 +1139,7 @@ nav {
       color: black;
       font-size: 14.5px;
       overflow: visible;
-      color: #102233; }
+      color: #3c3f49; }
     nav div.active a {
       color: #159936; }
 
@@ -1159,6 +1188,14 @@ span.notificationBubble {
     font-size: 16px;
     top: -7px; }
 
+div.offline {
+  line-height: 35px;
+  height: 35px;
+  text-align: center;
+  background: #4a6bce;
+  color: white;
+  font-size: 13px; }
+
 .sk-circle {
   margin: 100px auto;
   width: 60px;
@@ -1181,7 +1218,7 @@ span.notificationBubble {
   margin: 0 auto;
   width: 15%;
   height: 15%;
-  background-color: #283c4e;
+  background-color: #5e6272;
   border-radius: 100%;
   -webkit-animation: sk-circleBounceDelay 1.2s infinite ease-in-out both;
   animation: sk-circleBounceDelay 1.2s infinite ease-in-out both; }
