@@ -91,6 +91,18 @@ export const updateAccountDetails = (username, password) => {
     password
   })
 }
+export const updateCurrentLocation = (location) => {
+  return dispatch => dispatch({
+    type: 'UPDATE_CURRENT_LOCATION',
+    payload: location
+  })
+}
+export const updateWeather = (weatherType) => {
+  return dispatch => dispatch({
+    type: 'UPDATE_WEATHER',
+    payload: weatherType,
+  })
+}
 
 // Misc Actions - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

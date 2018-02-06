@@ -1741,6 +1741,40 @@ div.offline {
   font-size: 13px;
 }
 
+div.LatLngInput {
+  display: flex;
+  flex-direction: column;
+  div.inner {
+    padding: 10px;
+      display: flex;
+      flex-direction: row;
+    span {
+      width: 100%;
+      label {
+        margin-right: 10px;
+        display: inline-block;
+        line-height: 25px;
+        margin: 0;
+        font-size: 16px;
+        color: white;
+        padding: 0;
+      }
+      input {
+        margin-left: 10px;
+        display: inline-block;
+        line-height: 25px;
+        width: 60%;
+        border: 0px;
+        text-indent: 10px;
+        outline: none;
+      }
+    }
+  }
+  input {
+
+  }
+}
+
 
 .sk-circle {
   margin: 100px auto;

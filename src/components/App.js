@@ -25,8 +25,31 @@ import UpdatePerscription from './createPages/UpdatePerscription'
 import UpdateDetails from './createPages/UpdateDetails'
 import UpdateAccount from './createPages/UpdateAccount'
 import {history} from '../store'
+import {fetchWeather} from '../api/darksky'
+import {updateCurrentLocation, updateWeather} from '../store/modules/actions'
 
 class App extends Component {
+  componentDidMount() {
+
+    const {dispatch} = this.props
+
+    if ("geolocation" in navigator) {
+
+      navigator.geolocation.getCurrentPosition((position) => {
+        console.log("position: ",position.coords.latitude, position.coords.longitude)
+        const lat = position.coords.latitude
+        const lng = position.coords.longitude
+        dispatch(updateCurrentLocation({lat, lng}))
+        fetchWeather(lat,lng)
+          .then((weatherType) => {
+            console.log("weatherType: ",weatherType)
+            dispatch(updateWeather(weatherType))
+          })
+      })
+
+    }
+
+  }
 
   render() {
     const {currentUser} = this.props

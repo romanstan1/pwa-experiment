@@ -77,6 +77,13 @@ class NewGmap extends Component {
   clickStore = (store) => {
     this.props.clickStore(store, 'clickStore')
   }
+  componentDidMount() {
+    const center = this.props.currentLocation
+    if(center) {
+      this.setState({center })
+      this.props.fetchNearbyPlaces(center)
+    }
+  }
 
   render() {
     const {center,defaultCenter,zoom} = this.state

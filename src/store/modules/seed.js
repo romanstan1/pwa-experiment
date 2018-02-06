@@ -53,18 +53,6 @@ export const appointmentTypes = ['Under 16', 'Over 16', 'Trial', 'Eye Test']
 
 export const initialState = {
   currentUser: null,
-  // confirmedAppointment: {
-  //   selectedStore:"Wimbledon",
-  //   dateAndTime:' 12 Jan 2017',
-  //   address: 'wherever',
-  //   optician: 'whoever',
-  //   homeLocation: {lat:12, lng: 12},
-  //   placeId:"action.payload.selectedStoreId",
-  //   type:"action.payload.appointmentType",
-  //   for: 'myself',
-  //   additional:"action.payload.additionalInfo",
-  //   phoneNumber: "action.payload.phoneNumber"
-  // },
   users: [
     {
       username:'tomoconnor',
@@ -85,6 +73,7 @@ export const initialState = {
           'DIA': '14.6'
         }
       },
+      currentLocation: null,
       address:'21 Kingston Road, London',
       postcode:'SW20 9BT',
       payment_cards: [

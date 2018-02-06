@@ -9,6 +9,7 @@ import CollapsibleParent from '../modules/CollapsibleParent'
 import {AppointmentCard, OrderCard} from '../modules/Card'
 import LinkButton from '../modules/LinkButton'
 import specsImage1 from '../../content/images/specs_image_1.jpg'
+import sunglassesImage from '../../content/images/au-sunglasses-1.png'
 import specsImage2 from '../../content/images/childrens-eye-health.jpg'
 import * as firebase from 'firebase';
 require("firebase/firestore");
@@ -61,7 +62,7 @@ class HomeReel extends Component {
   }
 
   render () {
-    const {currentUser} = this.props
+    const {currentUser, weatherType} = this.props
     const upcomingAppointments = currentUser.appointments.filter(app => moment(app.dateAndTime) >= moment())
     const upcomingOrders = currentUser.orders.filter(order => order.status === 'Processing'|| order.status ==='Out for delivery')
     const {orders: clickedOrders, appointments: clickedAppointments} = currentUser.clicked_notifications
@@ -92,8 +93,18 @@ class HomeReel extends Component {
           <LinkButton extraClass='alone' to='/bookappointment'> Book a new Appointment</LinkButton>
 
           <div className='content-image'>
-            <div className='imageBox'><img src={specsImage1} alt="Content"/></div>
-            <div className='textBox'> Fashion Trends & Celebrity Styles </div>
+            {
+              weatherType === 'Clear'?
+              <span>
+                <div className='imageBox'><img src={sunglassesImage} alt="Content"/></div>
+                <div className='textBox'> Great deals on Sunglasses in store</div>
+              </span> :
+              <span>
+                <div className='imageBox'><img src={specsImage1} alt="Content"/></div>
+                <div className='textBox'> Fashion Trends & Celebrity Styles </div>
+              </span>
+            }
+
           </div>
 
           <div className='content-image'>
@@ -110,5 +121,6 @@ class HomeReel extends Component {
 
 
 export default connect(state => ({
-  currentUser: state.data.currentUser
+  currentUser: state.data.currentUser,
+  weatherType: state.weatherType
 }))(HomeReel)

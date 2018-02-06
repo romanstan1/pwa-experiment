@@ -24,12 +24,11 @@ firebase.firestore().enablePersistence()
 const messaging = firebase.messaging();
 messaging.requestPermission()
 .then(function() {
-  console.log("Persission granted for messaging")
   return messaging.getToken()
 })
 .then(function(token) {
-  console.log("Token: ",token)
-  fetch(`https://serene-ocean-70888.herokuapp.com/registertopic`,
+  // console.log("Token: ",token)
+  fetch(`https://serene-ocean-70888.herokuapp.com/registertopic`,     //     UNCHECK!
   {
     method: "POST",
     mode: 'cors',

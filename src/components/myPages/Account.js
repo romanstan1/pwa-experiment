@@ -1,17 +1,57 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import imagePic from '../../content/images/tomoconner.jpg'
-import {deleteCard} from '../../store/modules/actions'
+import {deleteCard,updateWeather,updateCurrentLocation} from '../../store/modules/actions'
 import Collapsible from 'react-collapsible';
 import LinkButton from '../modules/LinkButton'
 import Ticket from '../modules/Ticket'
 import {PrescriptionGrid} from '../modules/Card'
 import ChatIntercom from '../modules/ChatIntercom'
+import {fetchWeather} from '../../api/darksky'
+
+
+
+const LatLngInput = ({latlng, searchWeather, handleInputChange}) =>
+<div className='LatLngInput'>
+  <div className='inner'>
+    <span>
+      <label>Lat,Lng</label>
+      <input onChange={handleInputChange} value={latlng} type="text"/>
+    </span>
+  </div>
+
+  <div onClick={searchWeather} className="button">Override Weather Location</div>
+</div>
+
 
 class Account extends Component {
+  state = {
+    latlng:'',
+  }
+
+  handleInputChange = (e) => {
+    this.setState({latlng:e.target.value})
+  }
+
   deleteCard = event => this.props.dispatch(deleteCard(parseInt(event.target.id,10)))
+
+  searchWeather = () => {
+    const {latlng} = this.state
+    const lat = latlng.split(',')[0]
+    const lng = latlng.split(',')[1]
+
+    const {dispatch} = this.props
+
+    dispatch(updateCurrentLocation({lat, lng}))
+    fetchWeather(lat,lng).then((weatherType) => {
+      console.log("weatherType: ",weatherType)
+      dispatch(updateWeather(weatherType))
+    })
+  }
+
   render () {
     const {currentUser} = this.props
+    const {latlng} = this.state
     return (
       <span>
         <Ticket title="Account Details">
@@ -33,6 +73,10 @@ class Account extends Component {
               <p>Username: {currentUser.username}</p>
               <p>Password: {currentUser.password}</p>
               <LinkButton extraClass='secondary'  to='/updateaccount'>Update Account Details</LinkButton>
+
+              <LatLngInput latlng={latlng} searchWeather={this.searchWeather} handleInputChange={this.handleInputChange}/>
+
+
             </Collapsible>
             <Collapsible triggerSibling={()=><span className='titleCollapse'> My Payment Details</span>} transitionTime={100} trigger=" ">
 
@@ -67,5 +111,6 @@ class Account extends Component {
 }
 
 export default connect(state => ({
-  currentUser: state.data.currentUser
+  currentUser: state.data.currentUser,
+  weatherType: state.weatherType
 }))(Account)

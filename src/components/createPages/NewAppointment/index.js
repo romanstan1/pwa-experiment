@@ -154,7 +154,6 @@ class BookAppointment extends Component {
     const time = this.state.appointmentTime
     const dateAndTime = moment(date + ' ' + time, 'lll').format('llll')
     const optician = random(opticianNames)
-    console.log("State on book: ",this.state)
     const newAppointment = {
       selectedStore: this.state.selectedStore,
       dateAndTime: dateAndTime,
@@ -169,7 +168,7 @@ class BookAppointment extends Component {
     }
     fs.collection("appointments").add(newAppointment)
     .then(docRef => {
-      console.log("Document written with ID: ", docRef.id)
+      // console.log("Document written with ID: ", docRef.id)
       newAppointment.uuid = docRef.id
       this.props.dispatch(confirmAppointment(newAppointment))
       this.props.history.push(`/confirmappointment`)
@@ -182,7 +181,7 @@ class BookAppointment extends Component {
     const {searching,additionalInfo,
       appointmentFor,availableDates,appointmentDate,
       appointmentTime,selectedStoreId,selectedStore} = this.state
-    const {availableStores} = this.props
+    const {availableStores, currentUser} = this.props
     if(!!availableDates && availableDates !== 'none' && availableDates !== 'loader' && availableDates.length > 0) {
       var availableTimes = getAvailableTimes(appointmentDate, availableDates)
     }
@@ -202,6 +201,7 @@ class BookAppointment extends Component {
               <span>
                 <label className='selectStoreLabel'>Select Store</label>
                 <NewGmap
+                  currentLocation={currentUser.currentLocation}
                   clickStore={this.handleStoreSelect}
                   selectedStoreId={selectedStoreId}
                   fetchNearbyPlaces={this.searchForNearbyPlaces}

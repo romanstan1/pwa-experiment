@@ -20,6 +20,13 @@ export const selectNavReducer = (state='', action) =>{
   }
 }
 
+export const weatherReducer = (state='', action) =>{
+  switch(action.type){
+    case 'UPDATE_WEATHER': return action.payload
+    default: return state
+  }
+}
+
 export const onFocusReducer = (state='blur', action) =>{
   switch(action.type){
     case 'HANDLE_FOCUS': return action.payload
@@ -96,6 +103,13 @@ export default (state=initialState, action)=>{
           brand: action.brand,
           next_arrival_date:moment(action.date,'MMMDDYYYY').format('ll')
         }
+      }
+    }
+    case 'UPDATE_CURRENT_LOCATION': return {
+      ...state,
+      currentUser: {
+        ...state.currentUser,
+        currentLocation: action.payload
       }
     }
     case 'UPDATE_PERSCRIPTION': return {
