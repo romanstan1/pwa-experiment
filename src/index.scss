@@ -563,6 +563,26 @@ div.headerBar {
   }
 }
 
+div.accountAutocomplete {
+  padding-bottom: 10px;
+  > span{
+    display: inline-block;
+    color: grey;
+    line-height: 20px;
+    height: 20px;
+    margin-bottom: 0px;
+  }
+  input {
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    width: 100%;
+    border: 0px;
+    text-indent: 10px;
+    outline: none;
+  }
+}
+
 div.gmapsMarker {
   width: 0px;
   height:0px;
@@ -573,9 +593,9 @@ div.gmapsMarker {
 
 
   &.home {
-    opacity: 0.8;
+    opacity: 0.9;
     svg {
-      // fill: $navy;
+      fill: dodgerblue;
     }
   }
   &.store {

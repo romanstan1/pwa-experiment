@@ -8,46 +8,41 @@ import Ticket from '../modules/Ticket'
 import {PrescriptionGrid} from '../modules/Card'
 import ChatIntercom from '../modules/ChatIntercom'
 import {fetchWeather} from '../../api/darksky'
+import Autocomplete from '../createPages/NewAppointment/Autocomplete'
+import {handleFocus} from '../../store/modules/actions'
 
 
 
-const LatLngInput = ({latlng, searchWeather, handleInputChange}) =>
-<div className='LatLngInput'>
-  <div className='inner'>
-    <span>
-      <label>Lat,Lng</label>
-      <input onChange={handleInputChange} value={latlng} type="text"/>
-    </span>
-  </div>
-
-  <div onClick={searchWeather} className="button">Override Weather Location</div>
-</div>
+// const LatLngInput = ({latlng, searchWeather, handleInputChange}) =>
+// <div className='LatLngInput'>
+//   <div className='inner'>
+//     <span>
+//       <label>Lat,Lng</label>
+//       <input onChange={handleInputChange} value={latlng} type="text"/>
+//     </span>
+//   </div>
+//
+//   <div onClick={searchWeather} className="button">Override Weather Location</div>
+// </div>
 
 
 class Account extends Component {
   state = {
-    latlng:'',
+    center:''
   }
 
-  handleInputChange = (e) => {
-    this.setState({latlng:e.target.value})
-  }
-
-  deleteCard = event => this.props.dispatch(deleteCard(parseInt(event.target.id,10)))
-
-  searchWeather = () => {
-    const {latlng} = this.state
-    const lat = latlng.split(',')[0]
-    const lng = latlng.split(',')[1]
-
+  searchWeather = center => {
+    const {lat, lng} = center
     const {dispatch} = this.props
-
     dispatch(updateCurrentLocation({lat, lng}))
     fetchWeather(lat,lng).then((weatherType) => {
       console.log("weatherType: ",weatherType)
       dispatch(updateWeather(weatherType))
     })
   }
+
+  deleteCard = event => this.props.dispatch(deleteCard(parseInt(event.target.id,10)))
+  focusHandler = (type) => this.props.dispatch(handleFocus(type))
 
   render () {
     const {currentUser} = this.props
@@ -74,8 +69,13 @@ class Account extends Component {
               <p>Password: {currentUser.password}</p>
               <LinkButton extraClass='secondary'  to='/updateaccount'>Update Account Details</LinkButton>
 
-              <LatLngInput latlng={latlng} searchWeather={this.searchWeather} handleInputChange={this.handleInputChange}/>
-
+              <div className='accountAutocomplete'>
+                <span>Override User Location: </span>
+                <Autocomplete
+                  focusHandler={this.focusHandler}
+                  placeholder='Override User Location'
+                  onInputChanged={this.searchWeather}/>
+              </div>
 
             </Collapsible>
             <Collapsible triggerSibling={()=><span className='titleCollapse'> My Payment Details</span>} transitionTime={100} trigger=" ">
