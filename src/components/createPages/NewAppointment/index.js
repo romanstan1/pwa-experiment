@@ -12,6 +12,7 @@ import moment from 'moment'
 import {AppointmentCard} from '../../modules/Card'
 import { Offline, Online } from 'react-detect-offline';
 import LinkButton from '../../modules/LinkButton'
+import {scroller, animateScroll as scroll} from 'react-scroll';
 import {BookSomeoneElse,
   SelectAppointmentType,
   SelectWhoAppointmentIsFor,
@@ -21,37 +22,6 @@ import {BookSomeoneElse,
   AppointmentSummary,
   StoreStrip, DateStrip, TimeStrip} from './AppointmentModules'
 require("firebase/firestore");
-
-
-function scrollToBottom(history) {
-  history.scrollTop = history.scrollTop + 3
-  if(history.scrollTop < history.scrollHeight - history.clientHeight) {
-    setTimeout(() => scrollToBottom(history), 5)
-  }
-}
-
-function runScroll() {
-  scrollTo(document.body, 0, 600);
-}
-// var scrollme;
-// scrollme = document.querySelector("#scrollme");
-// scrollme.addEventListener("click",runScroll,false)
-
-function scrollTo(element, to, duration) {
-  if (duration <= 0) return;
-  var difference = to - element.scrollTop;
-  var perTick = difference / duration * 10;
-
-  setTimeout(function() {
-    element.scrollTop = element.scrollTop + perTick;
-    if (element.scrollTop == to) return;
-    scrollTo(element, to, duration - 10);
-  }, 10);
-}
-
-
-
-
 
 
 class BookAppointment extends Component {
@@ -84,6 +54,22 @@ class BookAppointment extends Component {
       center:{},
       appointmentTime: ''})
     this.props.dispatch(availableStoresAtLocation([]))
+    // this.scrollTo('scrollAnchor2')
+    console.log("handleTypeChange")
+    // scroller.scrollTo('scrollAnchor2', {duration: 500,smooth: true})
+    // scroll.scrollMore(100);
+    // scroll.scrollTo(200);
+    // requestIdleCallback(()=>scroller.scrollTo('scrollAnchor2', {duration: 500,smooth: true}));
+
+    //
+  }
+
+  scrollTo = (anchor) => {
+    console.log("anchor",anchor)
+  setTimeout(1000, ()=>{
+    console.log("setTimeout")
+    scroller.scrollTo(anchor, {duration: 500,smooth: true, delay: 100})
+  })
   }
   componentDidMount() {
     this.props.dispatch(availableStoresAtLocation([]))
@@ -107,7 +93,7 @@ class BookAppointment extends Component {
     this.setState({availableDates: 'loader'})
     fetchAppointmentsData(placeId)
     .then(res => {
-      if(!!res.availableDates) this.setState({availableDates: res.availableDates})
+      if(!!res) this.setState({availableDates: res})
       else this.setState({availableDates: 'none'})
     })
   }
@@ -140,6 +126,7 @@ class BookAppointment extends Component {
       appointmentTime:time,
       appointmentFor:''
     })
+    // this.scrollTo('scrollAnchor2')
   }
 
   // extra input detail handlers
@@ -197,6 +184,7 @@ class BookAppointment extends Component {
               handleTypeChange={this.handleTypeChange}
             />
 
+            {/* <div id='scrollAnchor1'>scroll anchor 1 </div> */}
             { !!this.state.appointmentType?
               <span>
                 <label className='selectStoreLabel'>Select Store</label>
@@ -239,7 +227,7 @@ class BookAppointment extends Component {
                   availableTimes={availableTimes}
                 />
                 :null}
-
+                {/* <div id='scrollAnchor3'>scroll anchor 2 </div> */}
                 {appointmentTime !== ''?
                 <span>
                   <SelectWhoAppointmentIsFor
